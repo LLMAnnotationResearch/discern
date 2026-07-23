@@ -1,7 +1,8 @@
 # Sample output — Organization Science vs. Strategic Management Journal
 
 A real `discern` run distinguishing the abstracts of two management journals,
-**Organization Science** (OrgSci) and the **Strategic Management Journal** (SMJ).
+**Organization Science** (OrgSci) and the **Strategic Management Journal** (SMJ),
+for articles published since 2023.
 Abstracts were pulled from [OpenAlex](https://openalex.org) (open scholarly
 metadata); the raw abstract text is **not** included here — this page shows only
 `discern`'s output.

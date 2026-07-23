@@ -1,7 +1,8 @@
 # Sample output — Quarterly Journal of Economics vs. Journal of Political Economy
 
 A real `discern` run distinguishing the abstracts of two economics journals,
-the **Quarterly Journal of Economics** (QJE) and the **Journal of Political Economy** (JPE).
+the **Quarterly Journal of Economics** (QJE) and the **Journal of Political Economy** (JPE),
+for articles published since 2020.
 Abstracts were pulled from [OpenAlex](https://openalex.org) (open scholarly
 metadata); the raw abstract text is **not** included here — this page shows only
 `discern`'s output.

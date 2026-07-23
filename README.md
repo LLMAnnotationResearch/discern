@@ -68,8 +68,8 @@ listing/description text across two categories, or posts/bios across two communi
 ## See it in action
 
 Here's `discern` on real data, distinguishing the abstracts of two management journals —
-**Organization Science** vs. the **Strategic Management Journal** — narrowing ~650 abstracts
-down to **26 statistically validated features**, grouped into readable themes:
+**Organization Science** vs. the **Strategic Management Journal**, since 2023 — narrowing ~650
+abstracts down to **26 statistically validated features**, grouped into readable themes:
 
 **→ [Organization Science vs. Strategic Management Journal](examples/sample-output/orgsci-vs-smj.md)** (feature summary + themes)
 
