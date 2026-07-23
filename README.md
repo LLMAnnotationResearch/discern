@@ -73,6 +73,17 @@ down to **26 statistically validated features**, grouped into readable themes:
 
 **→ [Organization Science vs. Strategic Management Journal](examples/sample-output/orgsci-vs-smj.md)** (feature summary + themes)
 
+*Placebo test:* rerun the same abstracts with the group labels randomly permuted and **0 of 50 candidate
+features validate**. The pipeline measures text on held-out abstracts (never the journal name), so a real
+result can't be the model just parroting what it "knows" about the journals.
+
+**For the economists** — here's `discern` run on the abstracts of **QJE vs. JPE** since 2020, narrowing
+734 abstracts to **21 validated features**: QJE skews empirical (quasi-experiments, novel/administrative
+data, inequality and labor), JPE skews theoretical (structural estimation, formal modeling, efficiency
+and mechanism design):
+
+**→ [Quarterly Journal of Economics vs. Journal of Political Economy](examples/sample-output/qje-vs-jpe.md)** (feature summary + themes)
+
 Only the tool's output is shown; the raw abstracts (public metadata from OpenAlex) aren't redistributed.
 
 ---
