@@ -67,13 +67,23 @@ listing/description text across two categories, or posts/bios across two communi
 
 ## Install
 
+You need Python 3.10 or newer. In a terminal, download the code and install it:
+
 ```bash
-pip install -e .          # from a clone
-# or, once published:  pip install discern
+# 1. Download this repository to your computer
+git clone https://github.com/LLMAnnotationResearch/discern.git
+cd discern
+
+# 2. Install it — this makes the `discern` command available
+pip install -e .
 ```
 
-Python ≥ 3.10. Depends on `openai`, `anthropic`, `numpy`, `pandas`, `openpyxl`. Datasets may be
-`.csv`, `.tsv`, or `.xlsx`/`.xls`.
+That's it — you can now run `discern` from any folder. (The `-e` installs it "linked" to
+this folder, so if you later download updates with `git pull`, they take effect without
+reinstalling.)
+
+Required Python packages (`openai`, `anthropic`, `numpy`, `pandas`, `openpyxl`) install
+automatically. Your datasets may be `.csv`, `.tsv`, or Excel (`.xlsx`/`.xls`).
 
 ## 1. Store your API keys (once)
 
