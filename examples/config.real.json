@@ -1,0 +1,18 @@
+{
+  "dataset": "demo.csv",
+  "text_col": "text",
+  "group_col": "group",
+  "id_col": "id",
+  "focal_value": 1,
+  "reference_value": 0,
+  "focal_label": "consumable sellers",
+  "reference_label": "hardware sellers",
+  "unit_label": "product listing",
+  "discovery_models": ["gpt-4o-mini", "claude-haiku", "gpt-4.1-mini", "deepseek"],
+  "rotation_pool": ["gpt-4o-mini", "claude-haiku", "gpt-4.1-mini", "deepseek"],
+  "n_per_group": 60,
+  "n_iterations": 8,
+  "permutations": 1000,
+  "condition": "real",
+  "output_dir": "runs"
+}

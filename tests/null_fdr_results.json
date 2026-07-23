@@ -1,0 +1,25 @@
+{
+  "config": {
+    "N": 300,
+    "K": 40,
+    "B": 2000,
+    "q": 0.05,
+    "reps": 200,
+    "screen_thresh": 0.08
+  },
+  "corrected_no_screen": {
+    "P_any_false_discovery": 0.025,
+    "mean_false_discoveries": 0.025,
+    "max_false_discoveries": 1
+  },
+  "old_screened_path": {
+    "P_any_false_discovery": 0.135,
+    "mean_false_discoveries": 0.16,
+    "max_false_discoveries": 2,
+    "mean_screen_survivors": 12.54
+  },
+  "verdict": {
+    "threshold": 0.08020562861454798,
+    "corrected_path_controls_FDR": true
+  }
+}

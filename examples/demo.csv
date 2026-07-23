@@ -1,0 +1,401 @@
+id,group,text
+g1_40,1,handmade meal kit for everyday households
+g0_136,0,reinforced steel fittings for workshop use
+g0_111,0,machined fastener set built to industrial spec
+g1_38,1,seasonal coffee roast from a family kitchen
+g1_130,1,fresh snack box delivered fresh daily
+g0_82,0,industrial bearing assembly for the construction trade
+g1_197,1,homemade tea selection packaged to order
+g1_185,1,local spice mix made in small batches
+g0_11,0,heavy-duty steel fittings shipped by the pallet
+g0_80,0,reinforced hardware kit shipped by the pallet
+g1_192,1,organic cheese board delivered fresh daily
+g1_45,1,organic cheese board packaged to order
+g1_48,1,small-batch produce stand sold at the weekend market
+g0_168,0,welded electrical conduit rated for heavy loads
+g0_54,0,industrial electrical conduit built to industrial spec
+g0_133,0,reinforced cutting blades built to industrial spec
+g0_8,0,welded power tools for the construction trade
+g1_95,1,small-batch juice blend from a family kitchen
+g0_69,0,mixed inventory for local shops
+g1_24,1,small-batch produce stand sold at the weekend market
+g0_144,0,machined hardware kit built to industrial spec
+g0_156,0,industrial pipe fixtures for workshop use
+g1_28,1,small-batch bakery goods delivered fresh daily
+g0_198,0,industrial engine parts sold to contractors
+g1_141,1,homemade bakery goods from a family kitchen
+g0_41,0,general goods and supplies
+g1_191,1,artisan juice blend sold at the weekend market
+g0_118,0,precision steel fittings for the construction trade
+g1_1,1,seasonal specials and gifts
+g1_108,1,homemade meal kit sold at the weekend market
+g0_17,0,welded engine parts built to industrial spec
+g0_167,0,galvanized bearing assembly sold to contractors
+g1_34,1,assorted retail items
+g1_193,1,artisan bakery goods from a family kitchen
+g0_199,0,mixed inventory for local shops
+g0_88,0,welded bearing assembly built to industrial spec
+g0_113,0,industrial hardware kit sold to contractors
+g0_187,0,machined pipe fixtures shipped by the pallet
+g1_101,1,fresh meal kit made in small batches
+g0_95,0,modular hardware kit shipped by the pallet
+g0_63,0,modular engine parts sold to contractors
+g0_39,0,machined steel fittings for workshop use
+g0_73,0,galvanized power tools sold to contractors
+g1_73,1,organic tea selection from a family kitchen
+g1_110,1,assorted retail items
+g0_155,0,welded cutting blades built to industrial spec
+g1_66,1,artisan snack box delivered fresh daily
+g1_106,1,local meal kit delivered fresh daily
+g1_13,1,small-batch tea selection for everyday households
+g0_6,0,heavy-duty steel fittings built to industrial spec
+g0_150,0,galvanized hardware kit for the construction trade
+g1_125,1,homemade meal kit made in small batches
+g0_25,0,seasonal specials and gifts
+g0_169,0,heavy-duty steel fittings rated for heavy loads
+g1_150,1,organic tea selection sold at the weekend market
+g1_114,1,assorted retail items
+g0_44,0,heavy-duty pipe fixtures for workshop use
+g1_22,1,small-batch jam and preserves for everyday households
+g1_99,1,seasonal produce stand from a family kitchen
+g0_148,0,heavy-duty electrical conduit sold to contractors
+g0_135,0,heavy-duty pipe fixtures shipped by the pallet
+g0_12,0,machined pipe fixtures sold to contractors
+g0_183,0,precision power tools for workshop use
+g0_53,0,reinforced fastener set sold to contractors
+g0_64,0,galvanized fastener set built to industrial spec
+g1_188,1,homemade coffee roast sold at the weekend market
+g0_125,0,galvanized engine parts sold to contractors
+g0_49,0,welded pipe fixtures rated for heavy loads
+g1_26,1,local meal kit from a family kitchen
+g1_129,1,local jam and preserves delivered fresh daily
+g1_174,1,mixed inventory for local shops
+g1_74,1,handmade juice blend delivered fresh daily
+g0_194,0,precision fastener set shipped by the pallet
+g1_161,1,organic snack box sold at the weekend market
+g1_43,1,seasonal specials and gifts
+g1_16,1,organic jam and preserves made in small batches
+g0_26,0,welded steel fittings built to industrial spec
+g0_29,0,reinforced power tools for the construction trade
+g1_4,1,organic meal kit for everyday households
+g0_99,0,mixed inventory for local shops
+g0_105,0,galvanized steel fittings shipped by the pallet
+g0_86,0,reinforced bearing assembly rated for heavy loads
+g1_65,1,general goods and supplies
+g0_195,0,modular cutting blades built to industrial spec
+g1_139,1,homemade jam and preserves for everyday households
+g0_78,0,heavy-duty cutting blades for workshop use
+g1_78,1,seasonal snack box from a family kitchen
+g0_192,0,modular steel fittings for the construction trade
+g1_156,1,local spice mix packaged to order
+g1_176,1,fresh spice mix sold at the weekend market
+g1_169,1,small-batch meal kit made in small batches
+g1_46,1,assorted retail items
+g1_81,1,homemade coffee roast delivered fresh daily
+g1_138,1,artisan produce stand packaged to order
+g1_9,1,local meal kit delivered fresh daily
+g0_166,0,galvanized hardware kit for workshop use
+g1_142,1,handmade tea selection delivered fresh daily
+g0_164,0,galvanized power tools shipped by the pallet
+g1_146,1,handmade snack box packaged to order
+g0_58,0,industrial pipe fixtures shipped by the pallet
+g0_128,0,modular power tools shipped by the pallet
+g1_85,1,organic tea selection for everyday households
+g0_115,0,heavy-duty steel fittings for workshop use
+g0_110,0,precision steel fittings for the construction trade
+g1_116,1,local spice mix packaged to order
+g0_55,0,precision metal brackets rated for heavy loads
+g1_41,1,small-batch meal kit sold at the weekend market
+g0_180,0,assorted retail items
+g1_182,1,handmade snack box packaged to order
+g0_114,0,industrial fastener set shipped by the pallet
+g1_137,1,fresh meal kit sold at the weekend market
+g1_69,1,homemade bakery goods delivered fresh daily
+g0_158,0,heavy-duty bearing assembly rated for heavy loads
+g1_183,1,local snack box sold at the weekend market
+g0_51,0,wholesale and resale
+g1_179,1,seasonal juice blend made in small batches
+g1_89,1,local tea selection delivered fresh daily
+g1_153,1,small-batch snack box for everyday households
+g1_145,1,wholesale and resale
+g1_127,1,local meal kit delivered fresh daily
+g1_61,1,seasonal cheese board sold at the weekend market
+g1_7,1,fresh jam and preserves packaged to order
+g1_181,1,artisan produce stand sold at the weekend market
+g0_174,0,precision engine parts built to industrial spec
+g1_60,1,artisan jam and preserves made in small batches
+g0_102,0,galvanized fastener set built to industrial spec
+g0_1,0,mixed inventory for local shops
+g1_147,1,general goods and supplies
+g0_157,0,mixed inventory for local shops
+g0_170,0,galvanized cutting blades sold to contractors
+g1_30,1,small-batch produce stand delivered fresh daily
+g1_29,1,homemade juice blend for everyday households
+g1_112,1,seasonal tea selection for everyday households
+g1_20,1,organic tea selection packaged to order
+g0_190,0,galvanized power tools shipped by the pallet
+g0_147,0,modular bearing assembly sold to contractors
+g0_92,0,heavy-duty electrical conduit built to industrial spec
+g1_76,1,artisan jam and preserves made in small batches
+g1_23,1,general goods and supplies
+g0_18,0,reinforced bearing assembly sold to contractors
+g0_163,0,welded electrical conduit sold to contractors
+g1_103,1,assorted retail items
+g0_177,0,seasonal specials and gifts
+g0_112,0,machined hardware kit rated for heavy loads
+g1_158,1,organic juice blend from a family kitchen
+g1_115,1,homemade spice mix sold at the weekend market
+g0_91,0,reinforced fastener set built to industrial spec
+g1_59,1,fresh bakery goods made in small batches
+g1_36,1,homemade spice mix made in small batches
+g0_31,0,machined steel fittings sold to contractors
+g1_25,1,local jam and preserves from a family kitchen
+g1_187,1,small-batch tea selection from a family kitchen
+g0_77,0,precision steel fittings built to industrial spec
+g1_18,1,organic produce stand packaged to order
+g1_53,1,fresh tea selection made in small batches
+g0_107,0,machined electrical conduit for workshop use
+g0_40,0,welded steel fittings rated for heavy loads
+g1_149,1,general goods and supplies
+g1_88,1,small-batch tea selection delivered fresh daily
+g1_135,1,artisan juice blend packaged to order
+g1_35,1,artisan bakery goods for everyday households
+g1_83,1,small-batch produce stand packaged to order
+g1_144,1,artisan produce stand sold at the weekend market
+g0_3,0,machined fastener set built to industrial spec
+g0_46,0,seasonal specials and gifts
+g0_153,0,heavy-duty power tools for the construction trade
+g1_177,1,wholesale and resale
+g1_39,1,fresh snack box from a family kitchen
+g0_103,0,heavy-duty bearing assembly shipped by the pallet
+g1_168,1,general goods and supplies
+g1_21,1,seasonal cheese board from a family kitchen
+g0_2,0,machined steel fittings for the construction trade
+g1_159,1,local snack box for everyday households
+g0_76,0,reinforced metal brackets for the construction trade
+g0_90,0,general goods and supplies
+g1_122,1,handmade snack box packaged to order
+g0_71,0,wholesale and resale
+g0_27,0,seasonal specials and gifts
+g0_189,0,industrial engine parts rated for heavy loads
+g1_62,1,artisan snack box delivered fresh daily
+g0_48,0,mixed inventory for local shops
+g1_71,1,small-batch cheese board delivered fresh daily
+g1_0,1,homemade meal kit from a family kitchen
+g1_123,1,handmade tea selection made in small batches
+g1_47,1,homemade spice mix made in small batches
+g1_173,1,local spice mix made in small batches
+g1_109,1,fresh produce stand made in small batches
+g0_45,0,reinforced pipe fixtures sold to contractors
+g0_60,0,machined hardware kit built to industrial spec
+g0_139,0,heavy-duty hardware kit rated for heavy loads
+g1_180,1,handmade bakery goods from a family kitchen
+g1_68,1,handmade produce stand from a family kitchen
+g1_58,1,artisan juice blend packaged to order
+g0_13,0,galvanized fastener set shipped by the pallet
+g0_154,0,galvanized hardware kit rated for heavy loads
+g1_32,1,local meal kit made in small batches
+g1_166,1,local produce stand from a family kitchen
+g0_127,0,modular engine parts rated for heavy loads
+g0_186,0,wholesale and resale
+g0_131,0,industrial pipe fixtures shipped by the pallet
+g0_184,0,reinforced engine parts rated for heavy loads
+g0_185,0,reinforced pipe fixtures sold to contractors
+g0_85,0,modular bearing assembly for the construction trade
+g1_170,1,handmade cheese board for everyday households
+g0_161,0,heavy-duty power tools sold to contractors
+g1_37,1,mixed inventory for local shops
+g0_28,0,heavy-duty steel fittings built to industrial spec
+g1_184,1,homemade coffee roast for everyday households
+g0_123,0,modular fastener set built to industrial spec
+g1_164,1,general goods and supplies
+g0_141,0,wholesale and resale
+g1_49,1,small-batch snack box for everyday households
+g1_162,1,organic tea selection for everyday households
+g0_89,0,welded hardware kit rated for heavy loads
+g0_145,0,assorted retail items
+g0_119,0,industrial metal brackets built to industrial spec
+g0_121,0,galvanized power tools sold to contractors
+g1_33,1,handmade juice blend delivered fresh daily
+g1_42,1,artisan snack box delivered fresh daily
+g0_75,0,heavy-duty power tools for workshop use
+g0_160,0,precision metal brackets for the construction trade
+g0_126,0,assorted retail items
+g0_5,0,industrial fastener set for the construction trade
+g1_56,1,seasonal juice blend packaged to order
+g0_191,0,precision bearing assembly for the construction trade
+g0_42,0,heavy-duty pipe fixtures built to industrial spec
+g0_61,0,machined cutting blades for workshop use
+g0_132,0,welded engine parts sold to contractors
+g1_57,1,artisan juice blend for everyday households
+g1_27,1,small-batch cheese board delivered fresh daily
+g1_67,1,seasonal produce stand from a family kitchen
+g1_148,1,artisan snack box made in small batches
+g1_90,1,homemade meal kit sold at the weekend market
+g1_172,1,handmade produce stand delivered fresh daily
+g0_68,0,industrial fastener set for the construction trade
+g0_94,0,reinforced electrical conduit built to industrial spec
+g0_52,0,precision cutting blades built to industrial spec
+g0_34,0,reinforced bearing assembly for the construction trade
+g0_57,0,reinforced hardware kit rated for heavy loads
+g0_74,0,precision fastener set shipped by the pallet
+g1_3,1,seasonal specials and gifts
+g1_15,1,artisan coffee roast from a family kitchen
+g0_70,0,galvanized fastener set sold to contractors
+g1_97,1,artisan coffee roast from a family kitchen
+g1_70,1,small-batch coffee roast packaged to order
+g0_159,0,machined power tools for workshop use
+g1_14,1,small-batch jam and preserves for everyday households
+g1_163,1,handmade juice blend delivered fresh daily
+g1_91,1,seasonal produce stand from a family kitchen
+g1_157,1,fresh snack box sold at the weekend market
+g1_186,1,local meal kit from a family kitchen
+g1_31,1,local coffee roast for everyday households
+g0_38,0,machined metal brackets sold to contractors
+g1_195,1,handmade spice mix made in small batches
+g0_178,0,galvanized electrical conduit for workshop use
+g0_0,0,modular steel fittings built to industrial spec
+g1_94,1,seasonal coffee roast made in small batches
+g1_107,1,small-batch cheese board sold at the weekend market
+g0_66,0,galvanized engine parts for the construction trade
+g0_10,0,galvanized bearing assembly sold to contractors
+g1_175,1,organic cheese board for everyday households
+g1_189,1,small-batch tea selection delivered fresh daily
+g1_8,1,artisan bakery goods packaged to order
+g0_62,0,industrial pipe fixtures sold to contractors
+g0_43,0,reinforced engine parts sold to contractors
+g1_104,1,organic produce stand made in small batches
+g0_84,0,welded pipe fixtures rated for heavy loads
+g1_51,1,local snack box from a family kitchen
+g0_143,0,modular cutting blades built to industrial spec
+g0_81,0,galvanized steel fittings rated for heavy loads
+g1_102,1,local tea selection sold at the weekend market
+g0_142,0,reinforced electrical conduit built to industrial spec
+g1_111,1,general goods and supplies
+g0_87,0,wholesale and resale
+g1_19,1,seasonal coffee roast for everyday households
+g0_124,0,machined metal brackets shipped by the pallet
+g0_50,0,precision fastener set built to industrial spec
+g1_199,1,handmade meal kit from a family kitchen
+g1_5,1,general goods and supplies
+g0_140,0,heavy-duty steel fittings for the construction trade
+g1_93,1,organic coffee roast from a family kitchen
+g0_65,0,galvanized hardware kit sold to contractors
+g0_9,0,seasonal specials and gifts
+g1_10,1,local tea selection from a family kitchen
+g0_33,0,industrial steel fittings for the construction trade
+g0_47,0,industrial steel fittings built to industrial spec
+g0_197,0,industrial fastener set for workshop use
+g1_128,1,mixed inventory for local shops
+g1_80,1,fresh snack box delivered fresh daily
+g0_117,0,seasonal specials and gifts
+g0_106,0,heavy-duty engine parts for the construction trade
+g0_14,0,galvanized steel fittings rated for heavy loads
+g1_50,1,homemade produce stand from a family kitchen
+g1_133,1,local juice blend made in small batches
+g1_160,1,organic tea selection delivered fresh daily
+g0_21,0,modular metal brackets built to industrial spec
+g0_32,0,welded engine parts sold to contractors
+g1_63,1,small-batch jam and preserves packaged to order
+g1_92,1,organic juice blend from a family kitchen
+g0_101,0,precision metal brackets shipped by the pallet
+g0_98,0,heavy-duty fastener set sold to contractors
+g1_117,1,local snack box packaged to order
+g0_15,0,modular steel fittings for the construction trade
+g0_100,0,seasonal specials and gifts
+g0_93,0,welded power tools shipped by the pallet
+g0_20,0,industrial metal brackets rated for heavy loads
+g1_124,1,artisan cheese board delivered fresh daily
+g1_2,1,seasonal specials and gifts
+g0_7,0,heavy-duty pipe fixtures built to industrial spec
+g0_162,0,modular steel fittings sold to contractors
+g1_72,1,homemade bakery goods sold at the weekend market
+g1_11,1,artisan cheese board sold at the weekend market
+g0_120,0,machined pipe fixtures built to industrial spec
+g1_151,1,small-batch spice mix sold at the weekend market
+g0_188,0,welded steel fittings rated for heavy loads
+g1_113,1,local jam and preserves delivered fresh daily
+g0_23,0,machined cutting blades built to industrial spec
+g0_4,0,galvanized hardware kit built to industrial spec
+g1_6,1,fresh jam and preserves sold at the weekend market
+g0_176,0,heavy-duty power tools for workshop use
+g0_165,0,wholesale and resale
+g1_198,1,artisan produce stand made in small batches
+g0_193,0,industrial fastener set for workshop use
+g1_143,1,fresh jam and preserves from a family kitchen
+g1_54,1,organic spice mix packaged to order
+g1_55,1,homemade cheese board delivered fresh daily
+g0_134,0,industrial fastener set built to industrial spec
+g1_140,1,small-batch coffee roast made in small batches
+g0_22,0,modular pipe fixtures for the construction trade
+g1_152,1,artisan juice blend delivered fresh daily
+g0_151,0,seasonal specials and gifts
+g1_75,1,assorted retail items
+g1_77,1,handmade coffee roast sold at the weekend market
+g1_196,1,small-batch spice mix packaged to order
+g1_100,1,seasonal tea selection for everyday households
+g0_137,0,assorted retail items
+g1_84,1,assorted retail items
+g1_52,1,fresh juice blend packaged to order
+g1_132,1,seasonal tea selection made in small batches
+g1_96,1,handmade snack box delivered fresh daily
+g0_146,0,machined power tools for the construction trade
+g1_120,1,artisan tea selection for everyday households
+g1_82,1,organic tea selection sold at the weekend market
+g0_175,0,heavy-duty steel fittings built to industrial spec
+g0_172,0,assorted retail items
+g0_108,0,welded pipe fixtures shipped by the pallet
+g0_173,0,heavy-duty power tools for the construction trade
+g1_126,1,homemade bakery goods sold at the weekend market
+g0_149,0,machined cutting blades shipped by the pallet
+g0_171,0,welded cutting blades shipped by the pallet
+g0_116,0,reinforced electrical conduit for the construction trade
+g1_154,1,wholesale and resale
+g1_136,1,organic spice mix sold at the weekend market
+g1_98,1,handmade cheese board for everyday households
+g0_59,0,general goods and supplies
+g1_121,1,small-batch produce stand from a family kitchen
+g0_129,0,wholesale and resale
+g0_36,0,modular bearing assembly for the construction trade
+g1_171,1,seasonal bakery goods made in small batches
+g0_182,0,wholesale and resale
+g1_118,1,local cheese board sold at the weekend market
+g0_96,0,industrial power tools rated for heavy loads
+g1_131,1,small-batch bakery goods made in small batches
+g0_179,0,mixed inventory for local shops
+g0_24,0,machined bearing assembly for workshop use
+g0_37,0,mixed inventory for local shops
+g1_86,1,organic snack box made in small batches
+g1_165,1,local cheese board delivered fresh daily
+g0_83,0,precision electrical conduit for the construction trade
+g0_138,0,welded bearing assembly shipped by the pallet
+g0_30,0,reinforced metal brackets built to industrial spec
+g1_79,1,handmade tea selection delivered fresh daily
+g0_67,0,galvanized electrical conduit shipped by the pallet
+g1_167,1,small-batch snack box for everyday households
+g0_97,0,galvanized pipe fixtures built to industrial spec
+g1_178,1,homemade juice blend made in small batches
+g1_17,1,seasonal snack box made in small batches
+g0_196,0,galvanized metal brackets rated for heavy loads
+g0_109,0,welded engine parts rated for heavy loads
+g0_152,0,assorted retail items
+g0_104,0,reinforced power tools built to industrial spec
+g0_72,0,heavy-duty metal brackets shipped by the pallet
+g1_64,1,small-batch cheese board from a family kitchen
+g0_35,0,galvanized bearing assembly sold to contractors
+g1_119,1,fresh bakery goods sold at the weekend market
+g0_122,0,modular hardware kit sold to contractors
+g1_194,1,handmade meal kit from a family kitchen
+g1_87,1,artisan spice mix for everyday households
+g0_56,0,general goods and supplies
+g0_79,0,galvanized steel fittings sold to contractors
+g0_19,0,galvanized steel fittings sold to contractors
+g1_134,1,seasonal meal kit sold at the weekend market
+g1_155,1,artisan produce stand packaged to order
+g1_105,1,homemade spice mix delivered fresh daily
+g1_190,1,seasonal snack box for everyday households
+g1_12,1,organic jam and preserves sold at the weekend market
+g0_130,0,machined electrical conduit shipped by the pallet
+g0_16,0,welded power tools sold to contractors
+g1_44,1,general goods and supplies
+g0_181,0,heavy-duty steel fittings for workshop use

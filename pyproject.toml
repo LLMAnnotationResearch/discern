@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "discern"
+version = "0.1.0"
+description = "Find and validate the text features that distinguish two groups, with blinded LLM discovery and held-out multi-model measurement."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Borchhardt & Carlson" }]
+keywords = ["llm", "text-analysis", "feature-discovery", "social-science", "nlp"]
+dependencies = [
+    "openai>=1.0",
+    "anthropic>=0.30",
+    "numpy>=1.23",
+    "pandas>=1.5",
+    "openpyxl>=3.0",   # read .xlsx datasets directly
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+discern = "discern.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+discern = ["py.typed"]

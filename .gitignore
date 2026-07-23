@@ -1,0 +1,29 @@
+# never commit secrets or run outputs
+.env
+*.env
+runs/
+**/runs/
+class_cache.json
+**/class_cache.json
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+
+# demo artifacts
+examples/runs/
+examples/demo_run.log
+
+# private test datasets (never commit)
+test datasets*/

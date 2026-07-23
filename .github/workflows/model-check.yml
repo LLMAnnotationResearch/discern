@@ -1,0 +1,32 @@
+name: model-id-check
+
+# Auto-check for deprecated models: fails if a built-in model_id has disappeared from its provider's
+# catalog (and, for aliases, also fails a live call). Runs weekly, on demand, and whenever the model
+# registry changes. Provider keys are optional — without them the job still verifies OpenRouter (its
+# model list is public) and skips the rest; add repo secrets to check the keyed providers too.
+on:
+  schedule:
+    - cron: "0 9 * * 1"          # Mondays, 09:00 UTC
+  workflow_dispatch: {}
+  push:
+    paths:
+      - "src/discern/core.py"     # re-check when the registry itself changes
+      - "scripts/check_model_ids.py"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e .
+      - name: Check model IDs against provider catalogs
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python scripts/check_model_ids.py
