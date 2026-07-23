@@ -123,6 +123,14 @@ discern run --config config.real.json          # discover + validate the contras
 discern run --config config.placebo.json       # the null: same data, labels permuted (should find ~nothing)
 ```
 
+### Sample output on real data
+
+Curious what a real run looks like? Here's `discern` distinguishing the abstracts of two
+management journals — **Organization Science** vs. the **Strategic Management Journal** —
+from ~650 abstracts down to **26 statistically validated features**:
+
+**→ [See the full sample output](examples/sample-output/orgsci-vs-smj.md)** (feature summary + themes)
+
 ## 3. Run on your own data
 
 You give `discern` a table with a **text column** and a **binary group column**. It discovers candidate
