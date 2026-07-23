@@ -47,7 +47,8 @@ def p1_prompt(variant: str, unit_label: str, group_a_items: str, group_b_items: 
     return P1_TEMPLATE.format(unit_label=unit_label, group_a_items=group_a_items,
                               group_b_items=group_b_items, instruction=instr)
 
-# Prompt 2 — Within-split consolidation (Stage 3a). Single pinned model, temp 0.2.
+# Prompt 2 — Within-split consolidation (Stage 3a). Single pinned model, temp 0.0
+# (deterministic; see config.consolidation_temperature). Retry-jitter still fires on malformed JSON.
 P2 = (
     "I have a list of hypotheses about how Group A differs from Group B, generated across many "
     "independent comparisons of samples from the same population. Many hypotheses restate the same "
