@@ -1,30 +1,23 @@
 # Sample output — Quarterly Journal of Economics vs. Journal of Political Economy
 
-A real `discern` run distinguishing the abstracts of two top general-interest economics journals,
-the **Quarterly Journal of Economics** (QJE) and the **Journal of Political Economy** (JPE), for
-articles published since 2020. Abstracts were pulled from [OpenAlex](https://openalex.org) (open
-scholarly metadata); the raw abstract text is **not** included here — this page shows only
+A real `discern` run distinguishing the abstracts of two economics journals,
+the **Quarterly Journal of Economics** (QJE) and the **Journal of Political Economy** (JPE).
+Abstracts were pulled from [OpenAlex](https://openalex.org) (open scholarly
+metadata); the raw abstract text is **not** included here — this page shows only
 `discern`'s output.
 
-- **Input:** 734 published abstracts (314 QJE, 420 JPE), one text column, one binary group label, matched 2020-onward window.
+- **Input:** 734 published abstracts (314 QJE, 420 JPE), one text column, one binary group label.
 - **Discovery:** 276 blinded hypotheses → 35 candidates.
 - **Measurement:** every candidate scored on a held-out sample of 300 abstracts (150/group), 2000-permutation null.
 - **Result:** **21 features validated** at FDR 0.05 (+ 1 suggestive at FDR 0.1), grouped into 5 navigation themes.
 
-The contrast is a clean, legible one: **QJE** skews empirical — quasi-experimental and experimental
-methods, novel and large-scale administrative data, and a focus on inequality, labor, and
-distributional questions — while **JPE** skews theoretical, with structural estimation, formal
-modeling, and an efficiency/equilibrium/mechanism-design orientation.
+Discovery never saw the measurement sample. The gate requires same-sign replication
+across two independent data halves, a permutation null, and Benjamini–Hochberg FDR
+correction — so what survives is a genuine, held-out contrast, not a plausible-sounding guess.
 
-Crucially, these features are *measured* on individual held-out abstracts by classifiers that see only
-the text — never the journal name. Discovery never saw the measurement sample, and the gate requires
-same-sign replication across two independent data halves, a permutation null, and Benjamini–Hochberg
-FDR correction. (Rerun on the same abstracts with the group labels permuted, and nothing validates —
-so a real result cannot be the model merely repeating what it "knows" about these journals.)
-
-The two sections below are exactly what the tool writes: first the **feature summary** (every validated
-feature with its effect size and direction), then the **themes** (a temperature-0 presentation layer
-that only groups the features — it changes no statistic).
+The two sections below are exactly what the tool writes: first the **feature summary**
+(every validated feature with its effect size and direction), then the **themes**
+(a temperature-0 presentation layer that only groups the features — it changes no statistic).
 
 ---
 
