@@ -53,6 +53,9 @@ class RunConfig:
     #   your domain is broad; a cycling/no-reuse sampler shows fresh examples each call.
     items_per_group: int = 15                 # units shown per group per discovery call
     discovery_temperature: float = 0.7
+    discovery_max_tokens: int = 4000          # per discovery call; too low -> truncated JSON (a
+    #   verbose model enumerating many hypotheses can exceed a stingy cap). On a truncation the call
+    #   grows this automatically (see core.llm_json_call), but a sane floor avoids needless retries.
 
     # --- consolidation (Stage 3) ---
     consolidation_model: str = "gpt-4.1"      # capable generation model — gpt-4o-mini under-merged

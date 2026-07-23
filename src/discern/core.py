@@ -324,6 +324,12 @@ def _classify_prompt(question: str, desc: str, definition: str = "",
             f'enough information to tell, answer 0.\n\nReturn only JSON: {{"answer": 1 or 0}}')
 
 
+# Ceiling for the on-truncation max_tokens growth in llm_json_call. 16000 comfortably fits any
+# generation stage's real output while staying within the output limits of the default model pool
+# (never grows below a caller's own max_tokens, so a large caller budget is preserved, not shrunk).
+_TRUNCATION_TOKEN_CAP = 16000
+
+
 def llm_json_call(prompt: str, model: str, key: str, temperature: float = 0.2,
                   max_tokens: int = 16000, max_retries: int = 6,
                   system: str = "Return only valid JSON.", required: list | None = None) -> list:
@@ -333,37 +339,49 @@ def llm_json_call(prompt: str, model: str, key: str, temperature: float = 0.2,
     output hitting max_tokens) is diagnosable rather than an opaque JSON delimiter error."""
     provider, mid = MODELS[model]
     last = None
+    # Two retry remedies for two DISTINCT failure modes, tracked independently:
+    #  - temperature jitter breaks DETERMINISTIC malformed JSON: a low-temp model can re-emit the same
+    #    bad bytes on a complete-but-unparseable response, so perturbing temperature breaks the loop.
+    #  - growing max_tokens fixes TRUNCATION (finish_reason=length): the output simply didn't fit. Here
+    #    jitter is worse than useless (higher temperature tends to make output LONGER), so a truncation
+    #    doubles the token budget and leaves temperature alone. Cap keeps us within model output limits.
+    cur_max = max_tokens
+    cap = max(_TRUNCATION_TOKEN_CAP, max_tokens)
+    jitter = 0
     for attempt in range(max_retries):
         finish = None
         txt = None
-        # Temperature jitter on retry: a low-temp model can DETERMINISTICALLY emit malformed JSON
-        # on long structured outputs, so identical retries reproduce the same bad bytes. Bumping
-        # temperature after the first failure breaks that determinism (verified on real_r1 P3).
-        temp = temperature if attempt == 0 else min(0.9, temperature + 0.25 * attempt)
+        temp = min(0.9, temperature + 0.25 * jitter)
+        used_max = cur_max
         try:
             if PROVIDERS[provider].kind == "openai":
                 r = _client(provider).chat.completions.create(
                     model=mid, messages=[{"role": "system", "content": system},
                                          {"role": "user", "content": prompt}],
-                    temperature=temp, max_tokens=max_tokens, **_json_kwargs(provider))
+                    temperature=temp, max_tokens=used_max, **_json_kwargs(provider))
                 txt = r.choices[0].message.content
                 finish = r.choices[0].finish_reason
             else:
                 r = _client(provider).messages.create(
-                    model=mid, max_tokens=max_tokens, temperature=temp, system=system,
+                    model=mid, max_tokens=used_max, temperature=temp, system=system,
                     messages=[{"role": "user", "content": prompt}])
                 txt = r.content[0].text
                 finish = r.stop_reason
             items = parse_json_list(txt, key)
             # Fail-closed on SCHEMA too: an object missing a required field must not be silently
             # dropped (that would turn a malformed response into a false "no results"). A violation
-            # raises here, retries with temp jitter, then RAISES after max_retries like any failure.
+            # raises here, retries like any failure, then RAISES after max_retries.
             return check_required(items, required)
         except Exception as ex:  # noqa: BLE001
             trunc = finish in ("length", "max_tokens")
+            if trunc:
+                cur_max = min(cur_max * 2, cap)   # size problem: give the next attempt more room
+            else:
+                jitter += 1                       # determinism problem: perturb temperature
             tail = f" raw_tail={txt[-160:]!r}" if txt else ""
             last = RuntimeError(f"{ex} [finish_reason={finish}"
-                                f"{'; TRUNCATED at max_tokens' if trunc else ''}; temp={temp}]{tail}")
+                                f"{'; TRUNCATED at max_tokens' if trunc else ''}; "
+                                f"temp={temp}; max_tokens={used_max}]{tail}")
             time.sleep(_retry_wait(ex, attempt))
     raise RuntimeError(f"llm_json_call failed after {max_retries} retries ({model}): {last}")
 

@@ -54,6 +54,7 @@ def run_discovery(cfg, data, audit) -> dict:
     pool_text = pool["text"].tolist()
     out = {"split1": [], "split2": [], "calls": []}
     call_i = [0]
+    n_failed = [0]
 
     for split_name, rows in halves.items():
         sub_labels = labels[rows]
@@ -97,11 +98,19 @@ def run_discovery(cfg, data, audit) -> dict:
             audit.event("discovery", "request", **call_rec)
             try:
                 hyps = llm_json_call(prompt, model, "hypotheses",
-                                     temperature=cfg.discovery_temperature, max_tokens=2000,
+                                     temperature=cfg.discovery_temperature,
+                                     max_tokens=cfg.discovery_max_tokens,
                                      required=["hypothesis"])
             except Exception as ex:  # noqa: BLE001
-                audit.event("discovery", "failure", call=call_i[0], error=str(ex))
-                raise
+                # Discovery is deliberately generous and redundant (n_iterations x 2 splits x pool),
+                # so one flaky call must not abort the run: log it and move on. The fail-closed floor
+                # after the loops still raises if the failures are systematic (an outage) rather than
+                # isolated, so an outage can never masquerade as thin-but-valid discovery.
+                audit.event("discovery", "failure", call=call_i[0], model=model,
+                            split=split_name, error=str(ex))
+                n_failed[0] += 1
+                call_i[0] += 1
+                continue
             audit.event("discovery", "response", call=call_i[0], n_hypotheses=len(hyps))
             for h in hyps:   # every h is a dict with a non-empty "hypothesis" (validated in the call)
                 h = dict(h)
@@ -114,4 +123,17 @@ def run_discovery(cfg, data, audit) -> dict:
                 out[split_name].append(h)
             out["calls"].append(call_rec)
             call_i[0] += 1
+
+    # Fail-closed floor: isolated call failures are tolerated above, but a wholesale failure (e.g. a
+    # provider outage or a mispriced/unavailable model) must never masquerade as thin-but-valid
+    # discovery. Raise if either split produced zero hypotheses, or if a majority of calls failed.
+    n_calls = call_i[0]
+    for sp in ("split1", "split2"):
+        if not out[sp]:
+            raise RuntimeError(f"discovery produced zero hypotheses for {sp} "
+                               f"({n_failed[0]}/{n_calls} calls failed) — treating this as a systematic "
+                               f"failure rather than a valid empty result")
+    if n_calls and n_failed[0] > n_calls / 2:
+        raise RuntimeError(f"{n_failed[0]}/{n_calls} discovery calls failed (>50%) — treating this as a "
+                           f"systematic failure rather than a valid result")
     return out

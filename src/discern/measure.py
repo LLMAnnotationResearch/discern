@@ -61,27 +61,48 @@ class Cache:
 
 
 def _measure_units(question, uids, texts, models, defn, cache, audit, cid, workers,
-                   unit_label="business description"):
-    """Classify the given units, each with its assigned model. Returns 0/1 array. Cache-aware;
-    audits every fresh call."""
+                   unit_label="business description", fallback_pool=None):
+    """Classify the given units, each with its assigned model. Returns (y, actual_models): the 0/1
+    array and the model that actually produced each answer. Cache-aware; audits every fresh call.
+
+    If fallback_pool is given, a unit whose assigned model fails after its own retries is re-measured
+    on the other pool models (first success wins) rather than failing the whole candidate — the
+    rotation pool is interchangeable by design, so one flaky model must not drop a validated feature.
+    Only if EVERY pool model fails for a unit does it raise (a genuine, non-recoverable failure)."""
+    actual = list(models)
     need = [(j, uids[j], models[j]) for j in range(len(uids))
             if cache.get(uids[j], models[j], question, defn) is None]
     if need:
         def one(t):
-            j, uid, model = t
-            audit.event("measure", "request", candidate_id=cid, uid=uid, model=model)
-            try:
-                v = classify_one(question, texts[j], model=model, definition=defn,
-                                 unit_label=unit_label)
-            except Exception as ex:  # noqa: BLE001
-                audit.event("measure", "failure", candidate_id=cid, uid=uid, model=model, error=str(ex))
-                raise
-            audit.event("measure", "response", candidate_id=cid, uid=uid, model=model, answer=v)
-            return (uid, model, question, defn, v)
+            j, uid, primary = t
+            tried = [primary] + [m for m in (fallback_pool or []) if m != primary]
+            last_ex = None
+            for model in tried:
+                cached = cache.get(uid, model, question, defn)
+                if cached is not None:
+                    return (j, uid, model, question, defn, cached)
+                audit.event("measure", "request", candidate_id=cid, uid=uid, model=model)
+                try:
+                    v = classify_one(question, texts[j], model=model, definition=defn,
+                                     unit_label=unit_label)
+                except Exception as ex:  # noqa: BLE001
+                    audit.event("measure", "failure", candidate_id=cid, uid=uid, model=model,
+                                error=str(ex))
+                    last_ex = ex
+                    continue
+                audit.event("measure", "response", candidate_id=cid, uid=uid, model=model, answer=v)
+                if model != primary:
+                    audit.event("measure", "fallback", candidate_id=cid, uid=uid,
+                                primary=primary, used=model)
+                return (j, uid, model, question, defn, v)
+            raise last_ex   # every model in the pool failed for this unit -> non-recoverable
         with ThreadPoolExecutor(max_workers=workers) as ex:
             results = list(ex.map(one, need))
-        cache.put_many(results)
-    return np.array([cache.get(uids[j], models[j], question, defn) for j in range(len(uids))])
+        cache.put_many([(uid, model, q, d, v) for (_j, uid, model, q, d, v) in results])
+        for (_j, _uid, model, _q, _d, _v) in results:
+            actual[_j] = model
+    y = np.array([cache.get(uids[j], actual[j], question, defn) for j in range(len(uids))])
+    return y, actual
 
 
 def run_measurement(cfg, data, candidates, cache, audit) -> dict:
@@ -104,15 +125,20 @@ def run_measurement(cfg, data, candidates, cache, audit) -> dict:
         # raises via the guard below, so an outage never masquerades as a small result set.
         try:
             if cfg.measurement_design == "rotate":
-                y = _measure_units(q, uids, texts, assign, defn, cache, audit, cid,
-                                   cfg.classify_workers, unit_label=cfg.unit_label)
-                C[cid] = {"y": [int(v) for v in y], "model_assignment": assign}
-            else:  # ensemble: average across the pool
+                # fallback_pool: a unit whose rotated model flakes is re-measured on another pool
+                # model rather than dropping the whole candidate. model_assignment records what was
+                # ACTUALLY used per unit (fallbacks included), so the audit trail stays honest.
+                y, used = _measure_units(q, uids, texts, assign, defn, cache, audit, cid,
+                                         cfg.classify_workers, unit_label=cfg.unit_label,
+                                         fallback_pool=cfg.rotation_pool)
+                C[cid] = {"y": [int(v) for v in y], "model_assignment": used}
+            else:  # ensemble: average across the pool (each model's independent judgment; no fallback)
                 cols = []
                 for m in cfg.ensemble_pool:
                     models = [m] * len(uids)
-                    cols.append(_measure_units(q, uids, texts, models, defn, cache, audit, cid,
-                                               cfg.classify_workers, unit_label=cfg.unit_label))
+                    col, _used = _measure_units(q, uids, texts, models, defn, cache, audit, cid,
+                                                cfg.classify_workers, unit_label=cfg.unit_label)
+                    cols.append(col)
                 y = np.mean(cols, axis=0)
                 C[cid] = {"y": [float(v) for v in y], "model_assignment": cfg.ensemble_pool}
         except Exception as ex:  # noqa: BLE001
