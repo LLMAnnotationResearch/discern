@@ -65,6 +65,18 @@ listing/description text across two categories, or posts/bios across two communi
 
 ---
 
+## See it in action
+
+Here's `discern` on real data, distinguishing the abstracts of two management journals —
+**Organization Science** vs. the **Strategic Management Journal** — narrowing ~650 abstracts
+down to **26 statistically validated features**, grouped into readable themes:
+
+**→ [Organization Science vs. Strategic Management Journal](examples/sample-output/orgsci-vs-smj.md)** (feature summary + themes)
+
+Only the tool's output is shown; the raw abstracts (public metadata from OpenAlex) aren't redistributed.
+
+---
+
 ## Install
 
 You need Python 3.10 or newer. In a terminal, download the code and install it:
@@ -122,14 +134,6 @@ python make_demo_data.py                       # writes demo.csv (400 toy produc
 discern run --config config.real.json          # discover + validate the contrast
 discern run --config config.placebo.json       # the null: same data, labels permuted (should find ~nothing)
 ```
-
-### Sample output on real data
-
-Curious what a real run looks like? Here's `discern` distinguishing the abstracts of two
-management journals — **Organization Science** vs. the **Strategic Management Journal** —
-from ~650 abstracts down to **26 statistically validated features**:
-
-**→ [See the full sample output](examples/sample-output/orgsci-vs-smj.md)** (feature summary + themes)
 
 ## 3. Run on your own data
 
