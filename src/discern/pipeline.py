@@ -148,7 +148,7 @@ def _write_summary(run_dir, cfg, run_name, n_hyps, sel):
     head = f"-> **{sel['n_validated']} validated** (FDR {cfg.fdr_q})"
     if q_exp:
         head += f" + **{n_sug} suggestive** (exploratory FDR {q_exp})"
-    L = [f"# v2 run: {run_name}  ({cfg.condition})", "",
+    L = [f"# discern run: {run_name}  ({cfg.condition})", "",
          f"- prompt_version: {cfg.prompt_version}",
          f"- measurement: {cfg.measurement_design}, n={2*cfg.n_per_group} "
          f"({cfg.n_per_group}/group), permutations={cfg.permutations}, FDR={cfg.fdr_q}",

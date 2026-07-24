@@ -191,7 +191,7 @@ def _json_kwargs(provider: str) -> dict:
 
 def probe_model_version(model: str) -> dict:
     """One tiny call recording the runtime-RESOLVED model version + fingerprint — provenance for
-    unpinned aliases (e.g. deepseek-chat) whose backing snapshot can drift. Best-effort: never
+    unpinned aliases (e.g. deepseek-v4-flash) whose backing snapshot can drift. Best-effort: never
     raises (returns an error field instead), so it can't break a run."""
     provider, mid = MODELS[model]
     try:

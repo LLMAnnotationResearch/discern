@@ -22,7 +22,7 @@ The two sections below are exactly what the tool writes: first the **feature sum
 
 ---
 
-# v2 run: real_r0  (real)
+# discern run: real_r0  (real)
 
 - prompt_version: discern-1
 - measurement: rotate, n=300 (150/group), permutations=2000, FDR=0.05

@@ -8,8 +8,8 @@ provider used by the registry it fetches the provider's model list and checks me
   * key'd providers     — /models listed via the provider's endpoint IF its api_key_env is set.
   * no key / `local`    — SKIPPED (can't verify without a key / a running local server).
 
-A model absent from its provider's catalog might still be a working, unlisted ALIAS (e.g. DeepSeek's
-`deepseek-chat` routes to a V4 model). Only two things count as DEPRECATED: an id absent from an
+A model absent from its provider's catalog might still be a working, unlisted ALIAS (e.g. a provider's
+floating model alias). Only two things count as DEPRECATED: an id absent from an
 *authoritative* public catalog (OpenRouter), or one absent from a catalog whose live probe returns an
 unambiguous "model not found". An id that is absent but merely *unconfirmable* — no key to probe, or a
 transient error / rate limit — is reported as UNVERIFIED (warn), never dead, so the weekly action
@@ -80,8 +80,8 @@ def provider_model_ids(provider: str) -> tuple[set[str] | None, str]:
 
 
 # Providers whose /models listing is complete and public, so ABSENCE is authoritative (a model not
-# listed is genuinely gone) even without a probe. Other providers may omit working aliases (e.g.
-# DeepSeek's deepseek-chat), so absence there must be confirmed with a live call.
+# listed is genuinely gone) even without a probe. Other providers may omit working aliases, so absence
+# there must be confirmed with a live call.
 AUTHORITATIVE_CATALOG = {"openrouter"}
 
 # error fragments that unambiguously mean "this model does not exist" (-> retired), as opposed to a
