@@ -8,8 +8,8 @@ sample with a rotating pool of models and keeps only the ones that survive a str
 (same-sign replication across two data halves + a permutation null + Benjamini–Hochberg FDR). Nothing
 in the method is specific to any dataset or domain — you supply the data and the labels.
 
-It follows a **generate-then-measure** design: discovery proposes candidates, and independent,
-held-out measurement determines which are retained. Discovery never sees the measurement sample.
+It is a generate-then-measure design: discovery is generous and only proposes; an independent,
+held-out measurement decides what is real. Discovery never sees the measurement sample.
 
 ---
 
@@ -28,15 +28,15 @@ groups and want to know, systematically, how they differ. For example:
 It is aimed at **quantitative researchers** working with medium-to-large N and short-to-medium texts,
 and it is deliberately narrow about what it does:
 
-- **It finds the differences *between* groups — not the general themes.** Topic modeling surfaces what
-  a corpus is about; `discern` surfaces what separates group A from group B, as yes/no properties.
-- **It is generative, not confirmatory.** It proposes and statistically validates *tendencies for
-  further investigation*. It is **not** a replacement for qualitative inductive work, and it is
-  atheoretical and agnostic to causal structure — it says nothing about causal direction. Findings
-  therefore need to be situated in their empirical setting and theory. (It can be preregistered as an
-  exploratory analysis — e.g. for text collected as part of an experiment.)
-- **Unlike classification** (via LLMs, keywords, or ML), it does **not** require you to name the
-  constructs of interest in advance — discovery proposes them, and measurement validates them.
+- It finds the differences between groups, not the general themes. Topic modeling surfaces what a
+  corpus is about; `discern` surfaces what separates group A from group B, as yes/no properties.
+- It is generative, not confirmatory. It proposes and statistically validates tendencies worth
+  investigating. It is not a replacement for qualitative inductive work, and it is atheoretical and
+  agnostic to causal structure; it says nothing about causal direction, so it is on you to situate a
+  finding in your setting and theory. (It can, however, be pre-registered as an exploratory analysis —
+  e.g. for text collected as part of an experiment.)
+- Unlike classification (via LLMs, keywords, or ML), it does not require you to name the constructs of
+  interest in advance; discovery proposes them, and measurement validates them.
 
 ---
 
@@ -67,17 +67,18 @@ listing/description text across two categories, or posts/bios across two communi
 
 ## See it in action
 
-This example applies `discern` to abstracts from two management journals — **Organization Science**
-and the **Strategic Management Journal**, since 2023 — and identifies **26 statistically validated
-features** among roughly 650 abstracts:
+Here's `discern` on real data, distinguishing the abstracts of two management journals:
+**Organization Science** vs. the **Strategic Management Journal**, since 2023, narrowing ~650
+abstracts down to **26 statistically validated features**:
 
 **→ [Organization Science vs. Strategic Management Journal](examples/sample-output/orgsci-vs-smj.md)** (feature summary + themes)
 
-*Placebo test:* rerunning the same abstracts with randomly permuted group labels yielded **0 validated
-features out of 50 candidates**. The pipeline measures held-out abstracts rather than journal names.
+Placebo test: rerun the same abstracts with the group labels randomly permuted and **0 of 50 candidate
+features validate**. The pipeline measures text on held-out abstracts (never the journal name), so a real
+result can't be the model just parroting what it "knows" about the journals.
 
-A second example applies `discern` to abstracts from the **QJE and JPE** since 2020, identifying
-**21 validated features** among 734 abstracts.
+**For the economists** — here's `discern` run on the abstracts of **QJE vs. JPE** since 2020, narrowing
+734 abstracts to **21 validated features**.
 
 **→ [Quarterly Journal of Economics vs. Journal of Political Economy](examples/sample-output/qje-vs-jpe.md)** (feature summary + themes)
 
@@ -96,8 +97,9 @@ cd discern
 pip install -e .
 ```
 
-You can now run `discern` from any folder. The `-e` installs it "linked" to this folder, so later
-updates obtained with `git pull` take effect without reinstalling.
+That's it. You can now run `discern` from any folder. (The `-e` installs it "linked" to
+this folder, so if you later download updates with `git pull`, they take effect without
+reinstalling.)
 
 Required Python packages (`openai`, `anthropic`, `numpy`, `pandas`, `openpyxl`) install
 automatically. Your datasets may be `.csv`, `.tsv`, or Excel (`.xlsx`/`.xls`).
@@ -144,8 +146,8 @@ discern run --config config.placebo.json       # the null: same data, labels per
 
 You give `discern` a table with a **text column** and a **binary group column**. It discovers candidate
 features that might distinguish the groups, measures each one on a held-out sample, keeps only those
-that survive the statistical gate, and writes them to a run folder. Invoke it with command-line flags
-or a configuration file that you can save and rerun:
+that survive the statistical gate, and writes them to a run folder. Invoke it two ways: quick flags,
+or a config file you save and re-run:
 
 ```bash
 # flags: point at your CSV, name the text column and the binary group column
@@ -170,17 +172,18 @@ The real run already guards against false positives on its own: a feature is kep
 in **both** independent data halves *and* beats a **permutation null** at a controlled false-discovery
 rate. So your results are valid from a single real run — the placebo is **not** a prerequisite.
 
-The placebo provides an **end-to-end check on your specific data**. It randomly permutes the group
-labels and runs the identical pipeline, so there is no real difference to find; a well-calibrated
-pipeline should validate few or no features. It needs no hand-labeling:
+What the placebo adds is an end-to-end sanity check on your specific data. It randomly permutes the
+group labels and runs the identical pipeline, so there is no real difference to find; a well-behaved
+placebo therefore validates ~nothing. It needs no hand-labeling:
 
 ```bash
 discern run --dataset mydata.csv --text-col description --group-col treated \
     --condition placebo --fresh-reservation
 ```
 
-It is especially useful for public or possibly memorized text (e.g. published abstracts), small
-samples, and robustness checks. Treat it as a confidence check, not a required calibration step.
+It's worth running, especially for public or possibly-memorized text (e.g. published abstracts), for
+small samples, or to show a skeptical reader that the method isn't manufacturing signal. Treat it as a
+confidence check, not a required calibration step.
 
 ### Choosing models
 
@@ -250,18 +253,21 @@ overhead — on the order of **10k–20k classification calls** for a typical ru
 and ~$3** in API spend; cost scales with candidates × N × text length, which is why the pool leans on
 the cheap classifiers (`gpt-4o-mini`, `deepseek`, `gemini-flash`).
 
-**A standard paid API tier is generally sufficient.** Two features help keep runs workable without
-special access:
+Do you need a high API tier? No — a standard paid account is enough. Two things keep entry tiers
+workable without special access:
 
 - **Automatic retries with backoff that honors `Retry-After`** — a rate-limited (429) call waits as
   long as the provider asks and retries, so hitting a limit *slows* a run, it doesn't fail it.
 - **The rotating pool spreads load** across providers, so each sees only ~1/N of the calls.
 
-Constraints arise when a provider's entry tier has a low requests-per-minute limit. A large run that
-includes a tightly limited provider may therefore take substantially longer. A fully exhausted quota
-causes the run to fail loudly rather than silently under-measuring.
+Where an entry tier pinches: providers whose first tier caps requests-per-minute low. Among the
+defaults, **Anthropic's entry tier is the tightest**, so a large run *including Claude* on a brand-new
+account will crawl on the Claude share (a small deposit auto-upgrades the tier and removes it). OpenAI
+and DeepSeek entry tiers are comfortable, and DeepSeek barely rate-limits. The only thing that *fails* a
+run is a fully **exhausted daily quota** (a free-tier phenomenon) — and it fails loudly rather than
+silently under-measuring.
 
-If rate limits are binding:
+If you do hit limits:
 
 - **`--classify-workers N`** (default 24) — lower it to ease pressure on a tight tier.
 - Keep a tight-limit provider a small share of a large run, or bump your API tier.
