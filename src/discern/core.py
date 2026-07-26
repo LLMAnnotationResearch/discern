@@ -61,7 +61,11 @@ MODELS: dict[str, tuple[str, str]] = {
     "gpt-4.1-mini": ("openai",    "gpt-4.1-mini-2025-04-14"),
     "gpt-4.1":      ("openai",    "gpt-4.1-2025-04-14"),        # default CONSOLIDATION model (generation, not classifier)
     # unpinned aliases — usable; runtime-resolved version recorded per run (probe_model_version -> 00_runspec)
-    "deepseek":       ("deepseek",   "deepseek-v4-flash"),
+    # NB: request "deepseek-chat", NOT "deepseek-v4-flash". Both resolve to the same snapshot (same
+    # system_fingerprint), but the -v4-flash alias enables reasoning: the reply arrives in
+    # reasoning_content and `content` comes back EMPTY under a classifier's small max_tokens, so every
+    # measurement call fails ("no JSON object in response: ''") and falls back after ~67s of retries.
+    "deepseek":       ("deepseek",   "deepseek-chat"),
     "gemini-flash":   ("gemini",     "gemini-2.5-flash"),
     "llama-3.3-70b":  ("openrouter", "meta-llama/llama-3.3-70b-instruct"),   # open-weight, via OpenRouter
     "qwen-2.5-72b":   ("openrouter", "qwen/qwen-2.5-72b-instruct"),          # open-weight, via OpenRouter
@@ -191,7 +195,7 @@ def _json_kwargs(provider: str) -> dict:
 
 def probe_model_version(model: str) -> dict:
     """One tiny call recording the runtime-RESOLVED model version + fingerprint — provenance for
-    unpinned aliases (e.g. deepseek-v4-flash) whose backing snapshot can drift. Best-effort: never
+    unpinned aliases (e.g. deepseek-chat) whose backing snapshot can drift. Best-effort: never
     raises (returns an error field instead), so it can't break a run."""
     provider, mid = MODELS[model]
     try:

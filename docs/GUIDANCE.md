@@ -69,7 +69,7 @@ Each run stores everything it did (config, partition, every discovery call, ever
 audit log), so a completed run's conclusions are reproducible from its artifacts. LLMs are not
 bit-for-bit deterministic even at temperature 0; the design targets **conclusion-level**
 reproducibility. Pinned model snapshots name a fixed model version (they do not guarantee
-byte-identical outputs); unpinned aliases (e.g. `deepseek-v4-flash`) record their runtime-resolved
+byte-identical outputs); unpinned aliases (e.g. `deepseek-chat`) record their runtime-resolved
 version per run in `00_runspec`.
 
 ## Cost & runtime
