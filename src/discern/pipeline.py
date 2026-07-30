@@ -110,6 +110,18 @@ def run_pipeline(cfg: RunConfig, base_dir: Path, run_name: str | None = None,
     # --- Stage 5: selection ---
     sel = run_selection(cfg, data, C, candidates)
     sel["n_skipped_unmeasurable"] = n_skipped
+    # the permutation grid is auto-scaled to the multiplicity being corrected for — say so when it
+    # was raised above the configured floor, and warn if the cap left the p-floor still binding.
+    if sel["permutations"] > cfg.permutations:
+        log(f"[{run_name}] permutations raised {cfg.permutations} -> {sel['permutations']} so the "
+            f"p-value floor ({sel['p_floor']:.2}) clears the strictest BH threshold "
+            f"({sel['bh_strictest_threshold']:.2}) over {sel['n_tested']} tested candidates")
+    if sel.get("permutations_capped"):
+        log(f"[{run_name}] WARNING: permutations capped at {sel['permutations']}, so the p-value "
+            f"floor ({sel['p_floor']:.2}) still exceeds the strictest BH threshold "
+            f"({sel['bh_strictest_threshold']:.2}) over {sel['n_tested']} candidates — the strongest "
+            f"single feature can be blocked by resolution alone. Reduce the candidate count "
+            f"(max_candidates / n_iterations) or loosen fdr_q.")
     audit.write_stage("04_selected", sel)
     _write_summary(run_dir, cfg, run_name, n_hyps, sel)
     _sug = f" (+{sel.get('n_suggestive', 0)} suggestive)" if sel.get("fdr_q_exploratory") else ""
@@ -151,8 +163,12 @@ def _write_summary(run_dir, cfg, run_name, n_hyps, sel):
     L = [f"# discern run: {run_name}  ({cfg.condition})", "",
          f"- prompt_version: {cfg.prompt_version}",
          f"- measurement: {cfg.measurement_design}, n={2*cfg.n_per_group} "
-         f"({cfg.n_per_group}/group), permutations={cfg.permutations}, FDR={cfg.fdr_q}",
+         f"({cfg.n_per_group}/group), permutations={sel['permutations']}, FDR={cfg.fdr_q}",
          f"- discovery: {n_hyps} hypotheses -> {sel['n_candidates']} candidates {head}"]
+    if sel.get("permutations_capped"):
+        L.append(f"- **warning:** permutations capped at {sel['permutations']} (p-value floor "
+                 f"{sel['p_floor']:.2}); with this many candidates the floor can itself block BH, "
+                 f"so a null result here is not evidence of absence.")
     if sel.get("n_skipped_unmeasurable"):
         L.append(f"- note: {sel['n_skipped_unmeasurable']} candidate(s) dropped as unmeasurable "
                  f"(a persistently malformed classifier answer); see events.jsonl `candidate_skipped`.")

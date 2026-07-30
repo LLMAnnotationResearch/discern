@@ -4,16 +4,45 @@ domain-specific effect-size floor may be layered on top and is reported separate
 """
 from __future__ import annotations
 
+import math
+
 import numpy as np
 
 from .core import stage5, bh_pass
+
+# Ceiling on the auto-scaled permutation count. Runtime is linear in B x n_candidates (~42 ms per
+# candidate per 2000 permutations), so this bounds the selection stage at a few minutes even in the
+# worst case. If the cap binds, we say so rather than silently testing at insufficient resolution.
+MAX_PERMUTATIONS = 50_000
+
+
+def _required_permutations(n_candidates: int, q_min: float, floor: int) -> tuple[int, bool]:
+    """Permutation count B such that the p-value floor cannot itself block BH.
+
+    A permutation p-value cannot go below 1/(B+1). Benjamini-Hochberg accepts the rank-i candidate
+    when p <= q*i/n, so the STRICTEST threshold any candidate faces is q/n (rank 1). If the floor
+    exceeds it, a single genuinely strong feature can never validate no matter how large its effect
+    — with B=2000 and q=0.05 that bites at n > 100 candidates, and n can reach max_candidates=400.
+
+    Solving 1/(B+1) <= q_min/n gives B >= n/q_min - 1; we use ceil(n/q_min) for margin. Returns
+    (B, capped) where `capped` is True if MAX_PERMUTATIONS clipped the requirement.
+    """
+    if n_candidates <= 0 or not q_min or q_min <= 0:
+        return floor, False
+    need = math.ceil(n_candidates / q_min)
+    B = max(floor, need)
+    return (MAX_PERMUTATIONS, True) if B > MAX_PERMUTATIONS else (B, False)
 
 
 def run_selection(cfg, data, C, candidates) -> dict:
     labels = data.measurement_labels().astype(int)
     split = data.m_split
     arrays = {cid: np.array(v["y"], dtype=float) for cid, v in C.items()}
-    r5 = stage5(labels.copy(), split, arrays, B=cfg.permutations)  # cid -> (d1, d2, perm_p)
+    # Auto-scale B to the multiplicity actually being corrected for, so the permutation grid is never
+    # the binding constraint on what can validate. cfg.permutations acts as the FLOOR, not the value.
+    q_min = min([cfg.fdr_q] + ([cfg.fdr_q_exploratory] if cfg.fdr_q_exploratory else []))
+    B, B_capped = _required_permutations(len(arrays), q_min, cfg.permutations)
+    r5 = stage5(labels.copy(), split, arrays, B=B)  # cid -> (d1, d2, perm_p)
     pmap = {cid: v[2] for cid, v in r5.items()}
     passed = bh_pass(pmap, q=cfg.fdr_q) if pmap else set()
     # secondary "suggestive" tier at a looser FDR (surfaces real-but-marginal effects rather than
@@ -57,6 +86,12 @@ def run_selection(cfg, data, C, candidates) -> dict:
             "n_candidates": len(candidates),
             "n_validated": sum(r["validated"] for r in results),
             "n_suggestive": sum(r["validated_exploratory"] for r in results),
+            "permutations": B,                      # ACTUAL B used (auto-scaled; >= cfg.permutations)
+            "permutations_configured": cfg.permutations,
+            "permutations_capped": B_capped,        # True -> p-floor may still bind BH; see note
+            "p_floor": 1.0 / (B + 1),
+            "bh_strictest_threshold": (q_min / len(arrays)) if arrays else None,  # the rank-1 bar
+            "n_tested": len(arrays),                # candidates actually entering BH (excl. skipped)
             "effect_floor": cfg.effect_floor, "fdr_q": cfg.fdr_q,
             "fdr_q_exploratory": q_exp,
             "direction_legend": cfg.direction_legend(),

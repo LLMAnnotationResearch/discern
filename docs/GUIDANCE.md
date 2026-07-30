@@ -70,6 +70,29 @@ all-pairs) — but then you have a larger family of tests, and per-run FDR does 
 across all of them. Pre-specify a global correction (e.g. Benjamini–Hochberg over the pooled p-values
 of every contrast) before interpreting.
 
+## Multiplicity and permutation resolution
+
+Every candidate is tested, so a run with many candidates is correcting for many tests. Two limits are
+worth understanding.
+
+**The permutation grid must be fine enough for the correction.** A permutation p-value can never go
+below `1/(B+1)`, where `B` is the number of permutations. Benjamini–Hochberg accepts the rank-*i*
+candidate when `p ≤ q·i/n`, so the strictest threshold any candidate faces is `q/n` — the rank-1
+case. If the p-value floor sits above it, a single genuinely strong feature can never validate no
+matter how large its effect. At the old fixed `B = 2000` and `q = 0.05` that bites above **100
+candidates**, which is well inside the range `max_candidates` allows.
+
+`discern` now sets `B` automatically from `n_candidates / q` (with `permutations` as a floor, not a
+fixed value), so the grid always clears the threshold; the run log and `05_summary.md` report the `B`
+actually used. You only see a warning if the internal cap (50,000) binds — which needs an unusually
+strict `fdr_q` — and in that case a null result is not evidence of absence.
+
+**Power falls as the candidate count rises**, independently of the above: `q·i/n` shrinks in `n`, so
+a broad, unfocused discovery run makes each individual feature harder to validate. If you are finding
+fewer features than you expect, look at `n_candidates` in the summary before raising `n_iterations` —
+more discovery means more candidates means a stiffer correction. The narrower your contrast, the more
+each feature has to work with.
+
 ## Reproducibility
 
 Each run stores everything it did (config, partition, every discovery call, every measurement, the

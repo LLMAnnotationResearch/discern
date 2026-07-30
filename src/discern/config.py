@@ -72,7 +72,10 @@ class RunConfig:
     classify_workers: int = 24
 
     # --- selection (Stage 5) ---
-    permutations: int = 2000
+    permutations: int = 2000                  # FLOOR, not a fixed count. A permutation p can never
+    #   fall below 1/(B+1), and BH's strictest threshold is fdr_q/n_candidates — so selection raises B
+    #   to ceil(n_candidates/fdr_q) when needed (capped at select.MAX_PERMUTATIONS) and records the
+    #   value actually used. Otherwise a lone strong feature cannot validate past ~100 candidates.
     fdr_q: float = 0.05                        # primary ("confirmed") FDR level — the headline table
     fdr_q_exploratory: float | None = 0.10    # secondary ("suggestive") tier reported ALONGSIDE the
     #   primary set (None disables). Surfaces real-but-marginal effects instead of hiding them below a

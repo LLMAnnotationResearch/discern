@@ -323,17 +323,20 @@ distinguishes them; the true group behind "A" is randomized per call and remappe
 afterward, so wording can't leak the hypothesis. Candidates are consolidated within and across two
 data splits, then **every** candidate is turned into a yes/no classification question and measured on a
 held-out reservation (250/group by default) by a balanced rotation of models. A feature is kept only if
-its effect **replicates with the same sign in both halves** and beats a permutation null at 5% FDR. See
-`docs/GUIDANCE.md` for sample-size, long-text, and multilingual guidance.
+its effect **replicates with the same sign in both halves** and beats a permutation null at 5% FDR
+(the permutation count scales automatically with the number of candidates, so the p-value grid is
+never coarser than the multiplicity correction needs). See `docs/GUIDANCE.md` for sample-size,
+long-text, multilingual, and multiplicity guidance.
 
 ## Tests
 
 All offline (no API). Run the fast suites with pytest, or any file directly:
 
 ```bash
-pytest tests/                     # test_core + test_pipeline (fast, mocked)
+pytest tests/                     # test_core + test_pipeline + friends (fast, mocked)
 python tests/test_pipeline.py     # offline end-to-end (mocked classifier)
 python tests/test_core.py         # fail-closed parsing/schema, cache-key, ID, rotation
+python tests/test_encoding_resume.py   # UTF-8 I/O, resume identity, permutation auto-scaling
 python tests/test_null_fdr.py     # all-null FDR simulation (≤ 5%); heavy — run directly, not via pytest
 ```
 
