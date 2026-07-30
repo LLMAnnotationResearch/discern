@@ -4,6 +4,8 @@ explicitly, check minimum group sizes, and keep discovery strictly disjoint from
 """
 from __future__ import annotations
 
+import warnings
+
 import numpy as np
 import pandas as pd
 
@@ -99,17 +101,29 @@ class Dataset:
 
 def read_table(path):
     """Load a tabular dataset into a DataFrame by extension: .xlsx/.xls via Excel, .tsv/.tab as
-    tab-separated, everything else as CSV. Lets researchers point discern straight at survey exports."""
+    tab-separated, everything else as CSV. Lets researchers point discern straight at survey exports.
+
+    Text encoding: delimited files are read as utf-8-sig first — that covers plain UTF-8 AND strips
+    the byte-order mark Excel writes on "CSV UTF-8" export (otherwise the first column name silently
+    becomes "\\ufeffid", and text_col/group_col lookups fail with a confusing "not a column" error).
+    Falls back to cp1252 for legacy Windows exports, which are common enough in survey data that
+    failing outright would be unhelpful — but a wrong codepage yields garbled glyphs rather than a
+    crash, so the fallback warns instead of guessing silently."""
     p = str(path).lower()
     if p.endswith((".xlsx", ".xls")):
         try:
-            return pd.read_excel(path)
+            return pd.read_excel(path)      # openpyxl/xlrd handle encoding internally
         except ImportError as e:  # openpyxl (.xlsx) / xlrd (.xls) not installed
             raise SystemExit(f"reading {path} needs an Excel engine: pip install openpyxl "
                              f"(.xlsx) or xlrd (.xls). [{e}]")
-    if p.endswith((".tsv", ".tab")):
-        return pd.read_csv(path, sep="\t")
-    return pd.read_csv(path)
+    sep = "\t" if p.endswith((".tsv", ".tab")) else ","
+    try:
+        return pd.read_csv(path, sep=sep, encoding="utf-8-sig")
+    except UnicodeDecodeError:
+        warnings.warn(f"{path} is not valid UTF-8; falling back to cp1252 (legacy Windows). If "
+                      f"non-ASCII characters look wrong in the output, re-save the file as UTF-8.",
+                      stacklevel=2)
+        return pd.read_csv(path, sep=sep, encoding="cp1252")
 
 
 def _load_and_filter(cfg: RunConfig):

@@ -21,7 +21,7 @@ class Audit:
         # continue the event counter across a resume (don't restart at 0 -> duplicate IDs)
         self._counter = 0
         if self.events_path.exists():
-            with open(self.events_path) as f:
+            with open(self.events_path, encoding="utf-8") as f:
                 self._counter = sum(1 for _ in f)
 
     def event(self, stage: str, kind: str, **fields) -> None:
@@ -33,7 +33,7 @@ class Audit:
             rec.update(fields)
             line = json.dumps(rec, default=str) + "\n"
             # single append write; flush + fsync so an interruption keeps the line
-            with open(self.events_path, "a") as f:
+            with open(self.events_path, "a", encoding="utf-8") as f:
                 f.write(line)
                 f.flush()
                 os.fsync(f.fileno())
@@ -43,19 +43,19 @@ class Audit:
         A stage file only appears once fully written — a partial run never yields a truncated JSON."""
         path = self.run_dir / f"{name}.json"
         tmp = path.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(obj, indent=2, default=str))
+        tmp.write_text(json.dumps(obj, indent=2, default=str), encoding="utf-8")
         os.replace(tmp, path)
         # update the manifest of completed stages
         man_path = self.run_dir / "manifest.json"
-        man = json.loads(man_path.read_text()) if man_path.exists() else {"stages": []}
+        man = json.loads(man_path.read_text(encoding="utf-8")) if man_path.exists() else {"stages": []}
         man["stages"] = [s for s in man["stages"] if s["name"] != name]
         man["stages"].append({"name": name, "status": status, "wall": round(time.time(), 3)})
         man_tmp = man_path.with_suffix(".json.tmp")
-        man_tmp.write_text(json.dumps(man, indent=2, default=str))
+        man_tmp.write_text(json.dumps(man, indent=2, default=str), encoding="utf-8")
         os.replace(man_tmp, man_path)
         return path
 
     def load_stage(self, name: str):
         """Return a previously completed stage artifact, or None (used for resume)."""
         path = self.run_dir / f"{name}.json"
-        return json.loads(path.read_text()) if path.exists() else None
+        return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None

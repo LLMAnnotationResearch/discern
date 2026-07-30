@@ -231,7 +231,7 @@ class RunConfig:
     def from_file(cls, path: str | Path) -> tuple["RunConfig", Path]:
         """Load a JSON config; returns (resolved_config, base_dir). Paths resolve to the config's dir."""
         p = Path(path).resolve()
-        d = json.loads(p.read_text())
+        d = json.loads(p.read_text(encoding="utf-8"))
         cfg = cls(**d)
         # a base_dir in the config resolves relative to the CONFIG FILE (not the caller's CWD), so the
         # same config behaves identically no matter where `discern run --config ...` is invoked from.

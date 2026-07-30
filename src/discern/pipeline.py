@@ -188,4 +188,4 @@ def _write_summary(run_dir, cfg, run_name, n_hyps, sel):
         if r["tier"] == "not_validated":
             L.append(f"- {r['feature_name']}  (d1={r['d1']*100:+.0f} d2={r['d2']*100:+.0f} pp, "
                      f"p={r['perm_p']:.3f}, same_sign={r['same_sign']})")
-    (run_dir / "05_summary.md").write_text("\n".join(L))
+    (run_dir / "05_summary.md").write_text("\n".join(L), encoding="utf-8")

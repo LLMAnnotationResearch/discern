@@ -28,7 +28,7 @@ class Cache:
         self.pv = prompt_version
         self.cs = classifier_settings
         self.rev = dict(revisions or {})   # model_key -> user revision (identity for mutable backends)
-        self._d = json.loads(self.path.read_text()) if self.path.exists() else {}
+        self._d = json.loads(self.path.read_text(encoding="utf-8")) if self.path.exists() else {}
         self._lock = threading.Lock()
 
     def _model_identity(self, model) -> str:
@@ -56,7 +56,7 @@ class Cache:
             for uid, model, question, definition, val in items:
                 self._d[self.key(uid, model, question, definition)] = val
             tmp = self.path.with_suffix(".json.tmp")
-            tmp.write_text(json.dumps(self._d))
+            tmp.write_text(json.dumps(self._d), encoding="utf-8")
             tmp.replace(self.path)
 
 

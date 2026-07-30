@@ -35,16 +35,16 @@ def _load_questions(args) -> list[dict]:
         rd = Path(args.from_run)
         sel, con = rd / "04_selected.json", rd / "02_consolidated.json"
         if sel.exists():
-            res = json.loads(sel.read_text())["results"]
+            res = json.loads(sel.read_text(encoding="utf-8"))["results"]
             src = [r for r in res if r.get("validated")] or res
             return [{"question": r["classification_question"], "definition": r.get("definition", "")}
                     for r in src]
         if con.exists():
             return [{"question": c["classification_question"], "definition": c.get("definition", "")}
-                    for c in json.loads(con.read_text())["candidates"]]
+                    for c in json.loads(con.read_text(encoding="utf-8"))["candidates"]]
         raise SystemExit(f"--from-run: no 04_selected.json or 02_consolidated.json in {rd}")
     if args.questions:
-        txt = Path(args.questions).read_text()
+        txt = Path(args.questions).read_text(encoding="utf-8")
         try:
             data = json.loads(txt)
             return [{"question": d["question"], "definition": d.get("definition", "")}
@@ -167,7 +167,8 @@ def run_check(args) -> None:
           "consistently; low = ambiguous construct or a weak model. A confidence check, not a validity "
           "gate — the placebo run is what controls false positives.")
     if args.out:
-        Path(args.out).write_text(json.dumps({"overall": overall, "per_question": per_q}, indent=2))
+        Path(args.out).write_text(json.dumps({"overall": overall, "per_question": per_q}, indent=2),
+                                  encoding="utf-8")
         print(f"  wrote {args.out}")
 
 

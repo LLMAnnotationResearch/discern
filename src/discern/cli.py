@@ -84,7 +84,7 @@ def cmd_init(args) -> None:
         tmpl["text_col"] = args.text_col
     if args.group_col:
         tmpl["group_col"] = args.group_col
-    out.write_text(json.dumps(tmpl, indent=2))
+    out.write_text(json.dumps(tmpl, indent=2), encoding="utf-8")
     print(f"wrote {out}\n\nEdit the three required fields (dataset, text_col, group_col) and any "
           f"optional ones, then:\n    discern run --config {out}\n")
     # data-aware echo: if pointed at a real CSV, show group sizes and a scale-up tip at setup time

@@ -56,6 +56,13 @@ workflow — and don't mix languages in one run without a documented reason. The
 `discern check` (cross-model agreement) is a quick way to spot a construct your models read
 inconsistently.
 
+**Text encoding.** `discern` reads and writes UTF-8 throughout, so accented characters, curly
+quotes, em dashes, and non-Latin scripts pass through your data into `05_summary.md` intact. Two
+things to know if characters still look wrong: a CSV saved from Excel as plain "CSV" is often
+Windows cp1252, not UTF-8 — `discern` falls back to cp1252 and warns, but the clean fix is to
+re-save as **CSV UTF-8**; and a file that *looks* garbled in a viewer may just be the viewer
+guessing an encoding, so check it in an editor set to UTF-8 before assuming the data is damaged.
+
 ## More than two groups
 
 `discern` is fundamentally **pairwise**. For k > 2 groups, run it multiple times (one-vs-rest, or

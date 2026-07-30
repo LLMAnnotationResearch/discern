@@ -118,7 +118,7 @@ def write_run_themes(run_dir, records: list, audit=None, model: str = THEME_MODE
     run_dir = Path(run_dir)
     if not records:
         art = {"run": run_dir.name, "n_validated": 0, "n_themes": 0, "coverage_ok": True, "themes": []}
-        (run_dir / "06_themes.json").write_text(json.dumps(art, indent=2))
+        (run_dir / "06_themes.json").write_text(json.dumps(art, indent=2), encoding="utf-8")
         return art
     cross = organize_themes(records, model=model, audit=audit)
     summary = theme_summary(records, cross)
@@ -129,7 +129,7 @@ def write_run_themes(run_dir, records: list, audit=None, model: str = THEME_MODE
            "feature_themes": cross["feature_themes"],   # stable candidate_id -> theme_id crosswalk
            "themes": cross["themes"], "summary": summary,
            "model": cross["model"], "prompt": cross["prompt"]}
-    (run_dir / "06_themes.json").write_text(json.dumps(art, indent=2))
+    (run_dir / "06_themes.json").write_text(json.dumps(art, indent=2), encoding="utf-8")
 
     L = [f"# {run_dir.name} — validated features grouped into themes", "",
          f"{len(records)} validated features -> {len(cross['themes'])} navigation themes "
@@ -152,7 +152,7 @@ def write_run_themes(run_dir, records: list, audit=None, model: str = THEME_MODE
             grp = f" — more common among {r['higher_group']}" if r.get("higher_group") else ""
             L.append(f"- {r['feature_name']}  ({r['mean_effect']*100:+.0f}pp{grp}, p={r['perm_p']:.3f})")
         L.append("")
-    (run_dir / "06_themes.md").write_text("\n".join(L))
+    (run_dir / "06_themes.md").write_text("\n".join(L), encoding="utf-8")
     return art
 
 
