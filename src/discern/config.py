@@ -220,9 +220,12 @@ class RunConfig:
         location + the dataset fingerprint). Persisted in the manifest; on resume a mismatch means
         the run name was reused under a changed configuration -> raise instead of blending artifacts."""
         d = asdict(self)
-        # exclude output location + cosmetic-only fields (they don't affect any result, so changing
-        # a display label must not force a re-run or block a resume)
-        for k in ("base_dir", "output_dir", "focal_label", "reference_label"):
+        # exclude output location + cosmetic-only fields + purely OPERATIONAL knobs. None of these
+        # can change a result, so changing one must not force a re-run or block a resume. In
+        # particular classify_workers is request concurrency: a run interrupted by provider rate
+        # limits is normally resumed with a lower worker count, and that must stay the SAME run
+        # (otherwise discovery + consolidation are re-billed to rename the run).
+        for k in ("base_dir", "output_dir", "focal_label", "reference_label", "classify_workers"):
             d.pop(k, None)
         payload = json.dumps({"cfg": d, "dataset_fp": dataset_fp}, sort_keys=True, default=str)
         return hashlib.sha256(payload.encode()).hexdigest()[:16]

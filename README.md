@@ -282,6 +282,15 @@ If you do hit limits:
 - Keep a tight-limit provider a small share of a large run, or bump your API tier.
 - Run a **local** model (no rate limit; bounded by your own hardware) for a fully offline pass.
 
+**Nothing you already paid for is lost if a run dies.** Re-issue the same command and it resumes:
+completed stages are reloaded from the run folder, and every classification is served from a
+persistent cache (`output_dir/class_cache.json`) keyed by dataset + prompt version + model + unit +
+question. Since classification is ~99% of the spend, a resumed run re-bills only the calls that never
+completed. Changing `--classify-workers` between attempts is fine — it's request concurrency, not part
+of the run's identity, so the run resumes rather than starting over. (Changing something that *does*
+affect results — `n_per_group`, the model pool, `fdr_q` — correctly refuses to resume under the same
+run name, so old and new artifacts are never blended.)
+
 ## 4. (Optional) Classifier confidence check
 
 A quick, **label-free** look at whether the pool models actually read your constructs consistently —
