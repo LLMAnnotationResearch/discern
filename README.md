@@ -104,6 +104,15 @@ reinstalling.)
 Required Python packages (`openai`, `anthropic`, `numpy`, `pandas`, `openpyxl`) install
 automatically. Your datasets may be `.csv`, `.tsv`, or Excel (`.xlsx`/`.xls`).
 
+> **Don't run inside a cloud-synced folder** (Dropbox, OneDrive, iCloud Drive, Google Drive).
+> `discern` writes its audit log and classification cache continuously while a run is in progress,
+> and a sync client that grabs a file mid-write can make the run fail with a permission or
+> file-in-use error — on Windows especially. "Online-only" / placeholder files cause the same
+> problem on read. Clone to a normal local folder (e.g. `~/projects/discern`), or at minimum keep
+> the *outputs* out of the synced tree with `--output-dir ~/discern-runs`. On macOS you may also
+> need to grant your terminal access to the folder the first time
+> (System Settings → Privacy & Security → Files and Folders).
+
 ## 1. Store your API keys (once)
 
 `discern` reads one environment variable per provider and only the ones your chosen models need. Keys
