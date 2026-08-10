@@ -1,8 +1,8 @@
 # Guidance for using discern
 
-This document provides guidance for applying the method. The numerical recommendations are based on
-the validation study and should be treated as initial rules of thumb rather than universal constants.
-Power depends on effect sizes, prevalence, and model classification accuracy.
+This document provides guidance for applying the method to your data. The numerical recommendations
+are based on the validation study. Treat them as initial rules of thumb rather than universal
+constants. Power depends on effect sizes, prevalence, and model classification accuracy.
 
 ## Placebo runs
 
@@ -10,8 +10,8 @@ A single real run already controls false positives: a feature survives only if i
 data halves and beats a permutation null at a controlled FDR. A placebo is therefore not required for
 the validity of a single real run.
 
-A placebo provides an empirical, end-to-end check for a specific dataset. It permutes the group labels
-and reruns the same pipeline, so any detected structure is spurious by construction. A well-calibrated
+A placebo provides an empirical, end-to-end check for your dataset. It permutes the group labels and
+reruns the same pipeline, so any detected structure is spurious by construction. A well-calibrated
 placebo should validate approximately zero features. This label-free diagnostic is most informative
 for public or potentially memorized text, small samples, or applications that require additional
 evidence about the pipeline's false-positive behavior.
@@ -44,23 +44,24 @@ size.
 
 The method has been validated on text ranging from short phrases to documents of a few hundred words,
 provided that each text and classification question fit within the model's context window. Cost is
-approximately proportional to input tokens. Documents near or above the context limit require
-chunking. The package does not specify a default aggregation rule because maximum or any-positive
-aggregation changes the estimand and mechanically increases positive classifications for longer
-documents. Any chunking and aggregation rule should be prespecified and appropriate to the construct.
+approximately proportional to input tokens. If your documents are near or above the context limit,
+you must chunk them. The package does not specify a default aggregation rule because maximum or
+any-positive aggregation changes the estimand and mechanically increases positive classifications for
+longer documents. If you chunk, prespecify an aggregation rule appropriate to the construct.
 
 ## Non-English / translated text
 
 Specify one analysis language per run. In validation, classifiers achieved greater than 90% agreement
 across a machine translation, although agreement declined most for abstract constructs. Use a model
-with documented capability in the analysis language or a recorded and versioned translation workflow.
-Do not combine languages within a run without a documented methodological justification. The optional
-`discern check` command reports cross-model agreement and can identify inconsistently classified constructs.
+with documented capability in your analysis language or use a recorded and versioned translation
+workflow. Do not combine languages within a run without a documented methodological justification.
+The optional `discern check` command reports cross-model agreement and can identify inconsistently
+classified constructs.
 
 ### Text encoding
 
 `discern` reads and writes UTF-8 throughout, so accented characters, curly quotes, em dashes, and
-non-Latin scripts pass through the source data into `05_summary.md` intact. Two
+non-Latin scripts pass through your source data into `05_summary.md` intact. Two
 common sources of apparent encoding errors remain. A file saved from Excel as plain CSV often uses
 Windows cp1252 rather than UTF-8. `discern` falls back to cp1252 and issues a warning, but resaving the
 file as CSV UTF-8 is preferable. A viewer can also display valid text incorrectly if it infers the
@@ -68,10 +69,10 @@ wrong encoding. Verify the file in an editor configured for UTF-8 before conclud
 
 ## More than two groups
 
-`discern` is a pairwise method. For `k > 2` groups, conduct one-versus-rest or all-pairs comparisons.
-Multiple comparisons create a larger family of tests, and per-run FDR does not control error across
-that family. Prespecify a global correction, such as Benjamini–Hochberg applied to pooled p-values from
-all contrasts, before interpreting the results.
+`discern` is a pairwise method. If you have `k > 2` groups, conduct one-versus-rest or all-pairs
+comparisons. Multiple comparisons create a larger family of tests, and per-run FDR does not control
+error across that family. Prespecify a global correction, such as Benjamini–Hochberg applied to pooled
+p-values from all contrasts, before interpreting the results.
 
 ## Multiplicity and permutation resolution
 
@@ -92,7 +93,7 @@ typically under an unusually stringent `fdr_q`, a null result does not constitut
 
 Power decreases as the candidate count increases, independently of permutation resolution. Because
 `q·i/n` decreases with `n`, a broad discovery run reduces the probability that any individual feature
-validates. When the number of validated features is lower than expected, examine `n_candidates` before
+validates. If the number of validated features is lower than expected, examine `n_candidates` before
 increasing `n_iterations`. Additional discovery can increase the candidate count and make the
 multiplicity correction more stringent. A more narrowly specified contrast generally provides greater
 power for each candidate.
@@ -115,7 +116,7 @@ to token count. Use `--dry-run` to inspect the partition and verify the configur
 
 ## Classifier confidence (optional)
 
-A hand-labeled set is not required for the primary procedure. A placebo provides evidence about
-false-positive behavior. To assess whether models classify the constructs consistently, which is
-relevant to false negatives, the optional `discern check` reports label-free inter-model agreement.
-Low agreement may warrant revising the classification question or excluding a weak model.
+You do not need a hand-labeled set for the primary procedure. A placebo provides evidence about
+false-positive behavior. If you want to assess whether models classify your constructs consistently,
+which is relevant to false negatives, the optional `discern check` reports label-free inter-model
+agreement. Low agreement may warrant revising the classification question or excluding a weak model.

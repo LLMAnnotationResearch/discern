@@ -19,10 +19,10 @@ the measurement sample. An independent, held-out stage estimates and validates t
 mechanism discovery, and post hoc analysis of experiments. It applies when short texts are associated
 with two groups and the objective is to estimate systematic differences between them. For example:
 
-- An experiment collects open-ended survey responses from treatment and control participants, and the
-  analysis seeks systematic differences in those responses.
-- An exploratory dataset contains short texts associated with two groups, such as job descriptions
-  for fully remote and hybrid positions.
+- You ran an experiment and collected open-ended survey responses from treatment and control
+  participants, and want to estimate whether the responses differ systematically.
+- You have an exploratory dataset with short texts associated with two groups, such as job
+  descriptions for fully remote and hybrid positions, and want to identify differences between them.
 
 It is intended for quantitative researchers working with medium-to-large samples and
 short-to-medium texts, and has a deliberately narrow scope:
@@ -34,14 +34,14 @@ short-to-medium texts, and has a deliberately narrow scope:
   agnostic to causal structure. It provides no estimate of causal direction. Researchers must
   interpret findings within the relevant empirical setting and theory. It can be preregistered as an
   exploratory analysis, including for text collected as part of an experiment.
-- Unlike classification using LLMs, keywords, or machine learning, it does not require constructs to
-  be specified in advance. Discovery proposes them, and measurement validates them.
+- Unlike classification using LLMs, keywords, or machine learning, it does not require you to specify
+  constructs in advance. Discovery proposes them, and measurement validates them.
 
 ---
 
 ## Data requirements
 
-`discern` is designed for the following data structure:
+`discern` is appropriate when your data have the following structure:
 
 - Short-to-medium open-ended text: a phrase up to a few hundred words per row, such as open-ended survey
   responses, product or business descriptions, reviews, profiles, and abstracts. The method has also
@@ -52,13 +52,14 @@ short-to-medium texts, and has a deliberately narrow scope:
   so each group needs approximately 150–300 or more rows. Approximately 500 rows per group are
   preferable for recovery of the full feature set. Below 100 rows per group, the method has sufficient
   power only for relatively large effects.
-- Exactly two groups: a binary contrast (treated/control, A/B, or before/after). More than two
-  groups is a user-built extension (one-vs-rest or all-pairs) with a global multiplicity correction.
+- Exactly two groups: a binary contrast (treated/control, A/B, or before/after). If you have more than
+  two groups, you must construct one-vs-rest or all-pairs comparisons and apply a global multiplicity
+  correction.
 - Descriptive rather than causal: it identifies textual differences between the two groups, expressed
   as binary properties that a model can classify from the text. It does not identify causal mechanisms,
   and the resulting features may be correlated.
-- One language per run is recommended. If language correlates with group assignment, discovery can
-  identify language itself as a distinguishing feature, which introduces confounding.
+- Use one language per run. If language correlates with group assignment, discovery can identify
+  language itself as a distinguishing feature, which introduces confounding.
 
 Typical applications include open-ended survey responses from treatment and control groups, listing
 or description text from two categories, and posts or biographies from two communities.
@@ -88,7 +89,7 @@ to 21 validated features.
 
 ## Install
 
-Python 3.10 or newer is required. Download and install the package from a terminal:
+You need Python 3.10 or newer. Download and install the package from a terminal:
 
 ```bash
 # 1. Download the repository
@@ -99,8 +100,8 @@ cd discern
 pip install -e .
 ```
 
-The `-e` option installs the package in editable mode. Subsequent updates obtained with `git pull`
-therefore take effect without reinstallation, and the `discern` command is available from any folder.
+The `-e` option installs the package in editable mode and makes the `discern` command available from
+any folder. If you later obtain updates with `git pull`, they take effect without reinstallation.
 
 Required Python packages (`openai`, `anthropic`, `numpy`, `pandas`, `openpyxl`) install
 automatically. Your datasets may be `.csv`, `.tsv`, or Excel (`.xlsx`/`.xls`).
@@ -115,8 +116,9 @@ automatically. Your datasets may be `.csv`, `.tsv`, or Excel (`.xlsx`/`.xls`).
 
 ## 1. Configure API keys
 
-`discern` reads one environment variable per provider and requires variables only for the selected
-models. Store keys in the environment or in a `.env` file outside the repository. Do not commit them.
+`discern` reads one environment variable per provider and requires variables only for the models you
+select. Store your keys in the environment or in a `.env` file outside the repository. Do not commit
+them.
 
 ```bash
 discern setup-help        # prints step-by-step instructions
@@ -130,18 +132,18 @@ ANTHROPIC_API_KEY=sk-ant-...
 DEEPSEEK_API_KEY=sk-...
 ```
 
-Include only the providers used in the analysis. Set `DISCERN_ENV` to use another location:
+Include only the providers you use. Set `DISCERN_ENV` to use another location:
 `export DISCERN_ENV=/path/to/your.env`.
 
-> Privacy and data handling. By default, running `discern` sends text data to the selected third-party
-> model providers, including OpenAI, Anthropic, and DeepSeek, for discovery and classification. For
-> sensitive data, the entire pool can instead use a local model server (the `local` provider or a
-> custom server; see [Choosing models](#choosing-models)), which keeps text on the local machine. When
-> using commercial
-> APIs, do not run on data whose terms, consent, IRB approval, or regulations (e.g.
+> Privacy and data handling. By default, running `discern` sends your text data to the third-party
+> model providers you select, including OpenAI, Anthropic, and DeepSeek, for discovery and
+> classification. For
+> sensitive data, you can instead point the entire pool to a local model server (the `local` provider
+> or a custom server; see [Choosing models](#choosing-models)), which keeps text on your machine. When
+> using commercial APIs, do not run on data whose terms, consent, IRB approval, or regulations (e.g.
 > PII/PHI, FERPA, GDPR) prohibit third-party transmission; check each provider's data-use and
 > retention policy first, and consider de-identifying text beforehand. Run outputs under `output_dir/`
-> contain source text and model responses and should be stored according to their sensitivity. The
+> contain your source text and model responses and should be stored according to their sensitivity. The
 > bundled `.gitignore`
 > already keeps `runs/` and `.env` out of version control.
 
@@ -156,10 +158,9 @@ discern run --config config.placebo.json       # the null: same data, labels per
 
 ## 3. Run an analysis
 
-The input table must contain a text column and a binary group column. `discern` discovers candidate
-features, measures each candidate on a held-out sample, retains candidates that pass the statistical
-criteria, and writes the results to a run folder. The command accepts either direct flags or a saved
-configuration file:
+Give `discern` a table with a text column and a binary group column. It discovers candidate features,
+measures each candidate on a held-out sample, retains candidates that pass the statistical criteria,
+and writes the results to a run folder. You can use either direct flags or a saved configuration file:
 
 ```bash
 # flags: specify the CSV, text column, and binary group column
@@ -171,9 +172,9 @@ discern init --out myrun.json
 discern run --config myrun.json
 ```
 
-`focal_value` and `reference_value` select the two values of the group column to compare when the
-column is not already coded 0/1. The corresponding `*_label` and `--unit-label` settings affect only
-the output labels. Each run writes to `runs/<name>/`. The primary output, `05_summary.md`, reports the
+Use `focal_value` and `reference_value` to select the two values of the group column when it is not
+already coded 0/1. The corresponding `*_label` and `--unit-label` settings affect only the output
+labels. Each run writes to `runs/<name>/`. The primary output, `05_summary.md`, reports the
 validated features, effect sizes, classification questions, suggestive features, and features that did
 not validate. The `--dry-run` option checks the configuration and data partition without making API calls.
 
@@ -183,7 +184,7 @@ A real run controls false discoveries by retaining a feature only if it replicat
 data halves and passes a permutation test under a controlled FDR. A placebo is not a prerequisite for
 the validity of a real run.
 
-A placebo provides an end-to-end diagnostic for a specific dataset. It randomly permutes the group
+A placebo gives you an end-to-end diagnostic for a specific dataset. It randomly permutes the group
 labels and applies the same pipeline. Because the permutation removes systematic group differences, a
 well-calibrated placebo should validate approximately zero features. It requires no hand labeling:
 
@@ -198,13 +199,13 @@ than a required calibration step.
 
 ### Choosing models
 
-`--models` (or `discovery_models` and `rotation_pool` in a configuration file) accepts any
+With `--models`, or `discovery_models` and `rotation_pool` in a configuration file, you can select any
 comma-separated subset of the model registry. A rotation-based design requires at least two models;
 the default pool uses models from OpenAI, Anthropic, and DeepSeek. Balanced assignment, rather than
 pool size, prevents a single model from being confounded with the group contrast. This property holds
 with two models. A larger and more diverse pool provides a robustness or sensitivity check across
-classifiers, but does not strengthen the no-confounding property. Adding a low-quality model can reduce
-measurement quality.
+classifiers, but does not strengthen the no-confounding property. Adding a low-quality model to your
+pool can reduce measurement quality.
 
 ```bash
 discern models                       # list built-in models and providers, and configuration instructions
@@ -213,8 +214,8 @@ discern models --config myrun.json   # also show the custom models/providers a c
 
 In addition to the OpenAI, Anthropic, and DeepSeek models, the registry includes models available
 through OpenAI-compatible endpoints: `gemini-flash`, `llama-3.3-70b`, and `qwen-2.5-72b` through
-OpenRouter, and `local-llama` through a keyless local Ollama server. A configuration file can define
-additional models without code changes:
+OpenRouter, and `local-llama` through a keyless local Ollama server. You can define additional models
+in a configuration file without changing the code:
 
 ```json
 {
@@ -236,7 +237,7 @@ discovery or rotation pool. Additional requirements follow:
   with a built-in are rejected.
 - `json_mode` is `"json_object"` for hosted built-in models and `"prompt_only"` for local or custom
   endpoints. Many local servers reject `response_format`. Output is parsed strictly in either mode;
-  change the setting if the endpoint rejects or ignores JSON mode.
+  change the setting if your endpoint rejects or ignores JSON mode.
 - `local-llama` targets Ollama's default port (11434). For vLLM (`:8000`) or LM-Studio (`:1234`),
   or a remote box, define a custom provider with that `base_url` as shown above.
 - `discern` requires API keys only for providers represented in the selected pool. A fully local pool
@@ -282,17 +283,17 @@ If rate limits bind:
 - Assign a smaller share of a large run to a rate-limited provider, or increase the API tier.
 - Use a local model for an offline run subject to local hardware capacity rather than provider rate limits.
 
-An interrupted run can resume when the same command is issued again. Completed stages are loaded from
-the run folder, and classifications are retrieved from a persistent cache
+If a run is interrupted, issue the same command again to resume it. `discern` loads completed stages
+from the run folder and retrieves classifications from a persistent cache
 (`output_dir/class_cache.json`) keyed by dataset, prompt version, model, unit, and question. Because
 classification accounts for approximately 99% of API expenditure, a resumed run incurs charges only
 for calls that did not complete. `--classify-workers` controls request concurrency and is not part of
-the run identity, so it may change between attempts. Parameters that affect results, including
-`n_per_group`, the model pool, and `fdr_q`, cannot change when resuming under the same run name.
+the run identity, so you may change it between attempts. You cannot change parameters that affect
+results, including `n_per_group`, the model pool, and `fdr_q`, while resuming under the same run name.
 
 ## 4. Optional classifier agreement check
 
-This optional command provides a label-free measure of whether models classify the constructs
+Use this optional command to obtain a label-free measure of whether models classify your constructs
 consistently. It is separate from the primary run and is not a substitute for a hand-labeled
 validation set:
 
