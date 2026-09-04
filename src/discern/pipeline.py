@@ -125,7 +125,8 @@ def run_pipeline(cfg: RunConfig, base_dir: Path, run_name: str | None = None,
     audit.write_stage("04_selected", sel)
     _write_summary(run_dir, cfg, run_name, n_hyps, sel)
     _sug = f" (+{sel.get('n_suggestive', 0)} suggestive)" if sel.get("fdr_q_exploratory") else ""
-    log(f"[{run_name}] DONE: {sel['n_validated']}/{sel['n_candidates']} validated{_sug}{_sk} "
+    _unc = f" (+{sel.get('n_uncorrected', 0)} uncorrected directional)"
+    log(f"[{run_name}] DONE: {sel['n_validated']}/{sel['n_candidates']} validated{_sug}{_unc}{_sk} "
         f"-> {run_dir}")
 
     # --- Stage 6 (optional): post-validation theme grouping (navigation-only, non-selective) ---
@@ -155,11 +156,15 @@ def run_pipeline(cfg: RunConfig, base_dir: Path, run_name: str | None = None,
 def _write_summary(run_dir, cfg, run_name, n_hyps, sel):
     confirmed = [r for r in sel["results"] if r["tier"] == "confirmed"]
     suggestive = [r for r in sel["results"] if r["tier"] == "suggestive"]
+    uncorrected = [r for r in sel["results"] if r["tier"] == "uncorrected"]
     n_sug = sel.get("n_suggestive", 0)
+    n_unc = sel.get("n_uncorrected", 0)
     q_exp = sel.get("fdr_q_exploratory")
+    p_unc = sel.get("uncorrected_p_threshold", 0.05)
     head = f"-> **{sel['n_validated']} validated** (FDR {cfg.fdr_q})"
     if q_exp:
         head += f" + **{n_sug} suggestive** (exploratory FDR {q_exp})"
+    head += f" + **{n_unc} uncorrected directional** (p<{p_unc:g})"
     L = [f"# discern run: {run_name}  ({cfg.condition})", "",
          f"- prompt_version: {cfg.prompt_version}",
          f"- measurement: {cfg.measurement_design}, n={2*cfg.n_per_group} "
@@ -198,8 +203,15 @@ def _write_summary(run_dir, cfg, run_name, n_hyps, sel):
               "tier with a placebo run.", ""]
         for r in suggestive:
             L += _block(r)
+    L += ["", f"## Uncorrected directional tendencies (exploratory — unadjusted p < {p_unc:g})", "",
+          "These features have the same effect direction in both held-out halves and an unadjusted "
+          f"permutation p-value below {p_unc:g}, but do not pass either FDR tier. They are not "
+          "multiplicity-controlled: some are expected by chance when many candidates are tested. "
+          "Treat them as leads for future confirmation, not findings.", ""]
+    for r in uncorrected:
+        L += _block(r)
     n_none = sum(1 for r in sel["results"] if r["tier"] == "not_validated")
-    L.append(f"## Not validated ({n_none})")
+    L.append(f"## Remaining candidates (not validated) ({n_none})")
     for r in sel["results"]:
         if r["tier"] == "not_validated":
             L.append(f"- {r['feature_name']}  (d1={r['d1']*100:+.0f} d2={r['d2']*100:+.0f} pp, "

@@ -1,6 +1,7 @@
 """Stage 5: replication gate + permutation null + Benjamini-Hochberg FDR, applied to ALL candidates
-(no screen preselection). Direction is assigned by measurement. An optional, explicitly
-domain-specific effect-size floor may be layered on top and is reported separately.
+(no screen preselection). Direction is assigned by measurement. In addition to the two FDR tiers,
+the output surfaces a fixed, explicitly uncorrected tier for same-sign permutation p-values below
+0.05. An optional, domain-specific effect-size floor may be layered on top and reported separately.
 """
 from __future__ import annotations
 
@@ -14,6 +15,11 @@ from .core import stage5, bh_pass
 # candidate per 2000 permutations), so this bounds the selection stage at a few minutes even in the
 # worst case. If the cap binds, we say so rather than silently testing at insufficient resolution.
 MAX_PERMUTATIONS = 50_000
+
+# Reporting-only exploratory tier. This does NOT enter a multiplicity correction and must never be
+# described as validated or FDR-controlled. Keeping it fixed (rather than configurable) makes the
+# label comparable across runs and avoids changing existing run identity for a presentation choice.
+UNCORRECTED_P_THRESHOLD = 0.05
 
 
 def _required_permutations(n_candidates: int, q_min: float, floor: int) -> tuple[int, bool]:
@@ -56,9 +62,17 @@ def run_selection(cfg, data, C, candidates) -> dict:
         c = by_id[cid]
         mean_d = (d1 + d2) / 2
         floor_ok = True if cfg.effect_floor is None else abs(mean_d) >= cfg.effect_floor
+        same_sign = bool(np.sign(d1) == np.sign(d2) and np.sign(d1) != 0)
         confirmed = bool(cid in passed and floor_ok)                     # primary tier (fdr_q)
         suggestive = bool(cid in passed_exp and floor_ok and not confirmed)  # secondary tier
-        tier = "confirmed" if confirmed else ("suggestive" if suggestive else "not_validated")
+        directionally_replicated = bool(same_sign and p < UNCORRECTED_P_THRESHOLD and floor_ok)
+        # Exclusive third tier: nominally significant and same-sign, but outside BOTH FDR tiers.
+        # Check membership in passed_exp (not merely `suggestive`) so a feature blocked by an effect
+        # floor cannot be relabeled as uncorrected despite passing the statistical correction.
+        uncorrected = bool(directionally_replicated and cid not in passed_exp)
+        tier = ("confirmed" if confirmed else
+                ("suggestive" if suggestive else
+                 ("uncorrected" if uncorrected else "not_validated")))
         results.append({
             "candidate_id": cid,
             "feature_name": c["feature_name"],
@@ -69,23 +83,26 @@ def run_selection(cfg, data, C, candidates) -> dict:
             # explicit human-readable group so a sign is never ambiguous out of context
             "higher_group": cfg.focal_name() if mean_d >= 0 else cfg.reference_name(),
             "d1": d1, "d2": d2, "mean_effect": mean_d, "perm_p": p,
-            "same_sign": bool(np.sign(d1) == np.sign(d2) and np.sign(d1) != 0),
+            "same_sign": same_sign,
+            "directionally_replicated": directionally_replicated,
             "validated_fdr": bool(cid in passed),
             "validated": confirmed,                     # unchanged meaning: passes the PRIMARY tier
             "validated_exploratory": suggestive,        # passes the looser tier but not the primary
-            "tier": tier,                               # confirmed | suggestive | not_validated
+            "tier": tier,                 # confirmed | suggestive | uncorrected | not_validated
             "passes_effect_floor": floor_ok,
             "parent_theme": c.get("parent_theme"),
             "n_supporting_hypotheses": c.get("n_supporting_hypotheses"),
             "source_splits": c.get("source_splits"),
             "direction_conflict": c.get("direction_conflict"),
         })
-    _rank = {"confirmed": 0, "suggestive": 1, "not_validated": 2}
+    _rank = {"confirmed": 0, "suggestive": 1, "uncorrected": 2, "not_validated": 3}
     results.sort(key=lambda r: (_rank[r["tier"]], r["perm_p"], -abs(r["mean_effect"])))
     return {"results": results,
             "n_candidates": len(candidates),
             "n_validated": sum(r["validated"] for r in results),
             "n_suggestive": sum(r["validated_exploratory"] for r in results),
+            "n_uncorrected": sum(r["tier"] == "uncorrected" for r in results),
+            "uncorrected_p_threshold": UNCORRECTED_P_THRESHOLD,
             "permutations": B,                      # ACTUAL B used (auto-scaled; >= cfg.permutations)
             "permutations_configured": cfg.permutations,
             "permutations_capped": B_capped,        # True -> p-floor may still bind BH; see note

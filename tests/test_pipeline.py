@@ -472,12 +472,72 @@ def run_all():
         # counts + flags are internally consistent
         assert s["n_validated"] == sum(r["tier"] == "confirmed" for r in s["results"])
         assert s["n_suggestive"] == sum(r["tier"] == "suggestive" for r in s["results"])
+        assert s["n_uncorrected"] == sum(r["tier"] == "uncorrected" for r in s["results"])
         assert all((r["validated"]) == (r["tier"] == "confirmed") for r in s["results"])
-        assert all(r["tier"] in ("confirmed", "suggestive", "not_validated") for r in s["results"])
-        # disabling the tier collapses everything to confirmed / not_validated
+        assert all(r["tier"] in ("confirmed", "suggestive", "uncorrected", "not_validated")
+                   for r in s["results"])
+        # disabling the FDR-suggestive tier leaves confirmed / uncorrected / not-validated output
         s0 = sel(fdr_q=0.05, fdr_q_exploratory=None)
         assert s0["n_suggestive"] == 0 and not any(r["tier"] == "suggestive" for r in s0["results"])
-    check("select: tiered confirmed/suggestive tiers, counts consistent, disablable", t_tiered_selection)
+    check("select: FDR tiers and counts remain consistent and suggestive is disablable", t_tiered_selection)
+
+    def t_uncorrected_directional_tier():
+        # Pin exact p-values so the three exclusive tiers are deterministic. With m=10:
+        # BH(.05) accepts .001; BH(.10) additionally accepts .015; same-sign .040 is nominally
+        # significant but outside both FDR tiers and must therefore be labeled uncorrected.
+        from discern import select as selectmod
+        from discern.pipeline import _write_summary
+        import tempfile as _tf
+
+        ids = ["c_confirmed", "c_suggestive", "c_uncorrected", "c_edge"] + [f"c_null{i}" for i in range(6)]
+        exact = {
+            "c_confirmed": (0.40, 0.30, 0.001),
+            "c_suggestive": (0.20, 0.10, 0.015),
+            "c_uncorrected": (-0.12, -0.09, 0.040),
+            "c_edge": (0.10, 0.08, 0.050),       # strict p<.05: boundary is NOT uncorrected
+            **{f"c_null{i}": (0.02, -0.02, 1.0) for i in range(6)},
+        }
+        C = {cid: {"y": [0, 1]} for cid in ids}
+        cands = [{"candidate_id": cid, "feature_name": cid, "definition": "d",
+                  "classification_question": "q"} for cid in ids]
+
+        class FakeData:
+            m_split = np.array([1, 2])
+            def measurement_labels(self):
+                return np.array([0, 1])
+
+        original = selectmod.stage5
+        try:
+            selectmod.stage5 = lambda labels, split, arrays, B: exact
+            s = selectmod.run_selection(
+                base_cfg(permutations=1000, fdr_q=0.05, fdr_q_exploratory=0.10).resolve(BASE),
+                FakeData(), C, cands)
+        finally:
+            selectmod.stage5 = original
+
+        tiers = {r["candidate_id"]: r["tier"] for r in s["results"]}
+        assert tiers["c_confirmed"] == "confirmed", tiers
+        assert tiers["c_suggestive"] == "suggestive", tiers
+        assert tiers["c_uncorrected"] == "uncorrected", tiers
+        assert tiers["c_edge"] == "not_validated", tiers
+        assert s["n_validated"] == 1 and s["n_suggestive"] == 1 and s["n_uncorrected"] == 1
+        assert s["uncorrected_p_threshold"] == 0.05
+        by_id = {r["candidate_id"]: r for r in s["results"]}
+        assert by_id["c_confirmed"]["directionally_replicated"]
+        assert by_id["c_suggestive"]["directionally_replicated"]
+        assert by_id["c_uncorrected"]["directionally_replicated"]
+        assert not by_id["c_edge"]["directionally_replicated"]
+
+        out = Path(_tf.mkdtemp())
+        cfg = base_cfg(fdr_q=0.05, fdr_q_exploratory=0.10).resolve(BASE)
+        _write_summary(out, cfg, "tier_test", 10, s)
+        summary = (out / "05_summary.md").read_text()
+        assert "Uncorrected directional tendencies" in summary
+        assert "not multiplicity-controlled" in summary
+        assert "c_uncorrected" in summary
+        assert "Remaining candidates (not validated) (7)" in summary
+    check("select/output: fixed uncorrected directional tier is exclusive, strict, and documented",
+          t_uncorrected_directional_tier)
 
     def t_excel_input():
         # discern reads .xlsx/.tsv, not just .csv — same filtering + partition

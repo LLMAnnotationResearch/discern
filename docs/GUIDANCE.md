@@ -98,6 +98,16 @@ increasing `n_iterations`. Additional discovery can increase the candidate count
 multiplicity correction more stringent. A more narrowly specified contrast generally provides greater
 power for each candidate.
 
+### Uncorrected directional tendencies
+
+The summary separately reports candidates whose effects have the same sign in both held-out halves and
+whose unadjusted permutation p-value is below 0.05, but which do not pass either FDR tier. This category
+does not change the correction, reduce the number of tested hypotheses, or count as validation. It is an
+explicitly uncorrected list of leads: when many candidates are tested, some will enter it by chance even
+under a complete null. Report the full tested-candidate count with this tier, interpret it descriptively,
+and use new data for confirmation. A placebo run provides a useful dataset-specific illustration of the
+chance patterns that can appear in this tier.
+
 ## Reproducibility
 
 Each run stores its configuration, partition, discovery calls, measurements, and audit log. These

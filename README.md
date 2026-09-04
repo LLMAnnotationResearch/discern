@@ -175,8 +175,9 @@ discern run --config myrun.json
 Use `focal_value` and `reference_value` to select the two values of the group column when it is not
 already coded 0/1. The corresponding `*_label` and `--unit-label` settings affect only the output
 labels. Each run writes to `runs/<name>/`. The primary output, `05_summary.md`, reports the
-validated features, effect sizes, classification questions, suggestive features, and features that did
-not validate. The `--dry-run` option checks the configuration and data partition without making API calls.
+validated features, effect sizes, classification questions, suggestive features, uncorrected directional
+tendencies, and remaining candidates. The `--dry-run` option checks the configuration and data partition
+without making API calls.
 
 ### Placebo run
 
@@ -312,12 +313,17 @@ every discovery call (with the shown units and the blinded A/B mapping), the con
 the per-unit measurements, the feature table with signed effects and a direction legend, and an
 append-only `events.jsonl` audit of every LLM call. Runs resume if interrupted.
 
-Results are reported in two tiers. The primary Validated tier uses `fdr_q=0.05`. The exploratory
+Results are reported in three tiers. The primary Validated tier uses `fdr_q=0.05`. The exploratory
 Suggestive tier uses `fdr_q_exploratory=0.10` and should be interpreted as a set of candidates for
-subsequent confirmation rather than established findings. False-positive control also requires
-same-sign replication across two data halves. A placebo run can provide an additional diagnostic for
-the exploratory tier.
-Set `fdr_q_exploratory: null` to disable the second tier.
+subsequent confirmation rather than established findings. Both FDR tiers also require same-sign
+replication across two data halves. Set `fdr_q_exploratory: null` to disable the Suggestive tier.
+
+The third tier, Uncorrected directional tendencies, contains features outside the FDR tiers whose
+effects have the same sign in both halves and whose unadjusted permutation p-value is below 0.05. It is
+a reporting aid, not a validation threshold: it has no multiplicity control, and some tendencies are
+expected by chance when many candidates are tested. The threshold is fixed so this label has a
+consistent meaning across runs. Treat these features as leads for future confirmation. A placebo run
+is particularly useful for demonstrating how often this uncorrected tier can surface chance patterns.
 
 ## Method summary
 
