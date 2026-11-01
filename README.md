@@ -211,6 +211,9 @@ Changes that affect results require a new run name or output directory.
 
 ## Saved outputs and further checks
 
+The [research guide](docs/OS_SUBMISSION_GUIDE.md) connects the research question, pipeline,
+validation evidence, and relevant code, with instructions for reproducing the saved results.
+
 Every run saves its configuration (`00_config.json`), model IDs (`00_runspec.json`), partition
 (`00_partition.json`), discovery (`01_discovery.json`), consolidated candidates
 (`02_consolidated.json`), measurements (`03_measured.json`), selections (`04_selected.json`),
@@ -227,9 +230,10 @@ For research validation tools and conventional text-method comparisons, see
 
 ## Tests
 
-These checks make no API calls:
+Install the test and validation dependencies, then run these checks. The checks make no API calls:
 
 ```bash
+python -m pip install -e '.[dev,validation]'
 python -m pytest tests/
 python tests/test_pipeline.py
 python tests/test_core.py

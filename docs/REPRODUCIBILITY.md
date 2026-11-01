@@ -110,7 +110,8 @@ per group, and 5,000 permutations.
 The reference pool matches CampaignView's three-model pool. The default-pool comparison adds
 DeepSeek; OpenAI-only uses GPT-4o-mini and GPT-4.1-mini. Consolidation uses GPT-4.1. The default-pool
 run changed both discovery and measurement pools, so differences cannot be attributed to either
-stage alone. Its config retains the extra residual duplicate pass (`residual_dedup=true`).
+stage alone. All nine Hurst configurations use the extra pass to merge remaining duplicate
+candidates (`residual_dedup=true`), which is also the package default.
 
 The default-pool run resolved `deepseek-chat` to `deepseek-flash`, fingerprint
 `e72d3c7f663d3e1383b00b3884cb4501`. This is a recorded provider response, not a pinned model ID.
