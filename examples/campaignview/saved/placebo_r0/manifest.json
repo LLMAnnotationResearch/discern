@@ -1,0 +1,44 @@
+{
+  "stages": [
+    {
+      "name": "00_runspec",
+      "status": "complete",
+      "wall": 1793482835.9
+    },
+    {
+      "name": "00_config",
+      "status": "complete",
+      "wall": 1793482835.911
+    },
+    {
+      "name": "00_partition",
+      "status": "complete",
+      "wall": 1793482835.933
+    },
+    {
+      "name": "01_discovery",
+      "status": "complete",
+      "wall": 1793482967.159
+    },
+    {
+      "name": "02_consolidated",
+      "status": "complete",
+      "wall": 1793483053.801
+    },
+    {
+      "name": "03_measured",
+      "status": "complete",
+      "wall": 1793485106.669
+    },
+    {
+      "name": "04_selected",
+      "status": "complete",
+      "wall": 1793485109.915
+    },
+    {
+      "name": "07_timing",
+      "status": "complete",
+      "wall": 1793485109.93
+    }
+  ]
+}

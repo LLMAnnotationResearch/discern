@@ -1,0 +1,2 @@
+# Keep recorded artifacts byte-identical, including CSV record endings, on checkout.
+examples/campaignview/** -text

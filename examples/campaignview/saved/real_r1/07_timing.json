@@ -1,0 +1,10 @@
+{
+  "run": "real_r1",
+  "wall_seconds": 2599.8,
+  "minutes": 43.3,
+  "n_candidates": 65,
+  "n_units": 600,
+  "n_classifications": 39000,
+  "measurement_design": "rotate",
+  "resumed": true
+}

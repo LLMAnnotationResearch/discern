@@ -154,6 +154,34 @@ def run_all():
         assert len(ev) > 50, f"expected many audit events, got {len(ev)}"
     check("provenance: discovery disjoint from measurement, audit trail written", t_disjoint_audit)
 
+    def t_environment_resume():
+        from discern import pipeline as pipeline_module
+        run_dir = tmp / "runs" / "real_r0"
+        path = run_dir / "00_environment.json"
+        first = path.read_bytes()
+        first_models = (run_dir / "00_runspec.json").read_bytes()
+        assert json.loads(first)["capture_context"] == "new_run"
+        original = pipeline_module.software_environment
+        original_probe = core.probe_model_version
+        pipeline_module.software_environment = lambda: {"python": "test-resume-version"}
+        core.probe_model_version = lambda m: {"model": m, "resolved": "changed-on-resume"}
+        try:
+            run_pipeline(base_cfg(condition="real"), BASE, resume=True, log=lambda *a: None)
+            assert path.read_bytes() == first, "resume replaced the first execution environment"
+            assert (run_dir / "00_runspec.json").read_bytes() == first_models, "resume replaced original model versions"
+            events = [json.loads(line) for line in (run_dir / "events.jsonl").read_text().splitlines()]
+            latest = [e for e in events if e["kind"] == "execution_environment"][-1]
+            assert latest["environment"] == {"python": "test-resume-version", "capture_context": "resume"}
+            latest_models = [e for e in events if e["kind"] == "execution_models"][-1]
+            assert all(m["resolved"] == "changed-on-resume" for m in latest_models["model_versions"])
+            path.unlink()  # Simulate a legacy artifact with no original software record.
+            run_pipeline(base_cfg(condition="real"), BASE, resume=True, log=lambda *a: None)
+            assert json.loads(path.read_text())["capture_context"] == "resume"
+        finally:
+            pipeline_module.software_environment = original
+            core.probe_model_version = original_probe
+    check("provenance: resume preserves original versions and labels legacy captures", t_environment_resume)
+
     # --- cache key is reproducibility-complete ---
     def t_cache_key():
         c = measure.Cache(tmp / "c.json", "FP1", "PVER1", "design=rotate")

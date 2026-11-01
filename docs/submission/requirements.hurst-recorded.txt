@@ -1,0 +1,5 @@
+# Recorded direct dependencies for the October Hurst reruns; not a complete lockfile.
+numpy==2.3.5
+pandas==2.2.3
+openai==3.38.0
+anthropic==0.125.0

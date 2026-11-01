@@ -1,355 +1,246 @@
 # discern
 
-Identification and validation of text features that distinguish two groups.
+`discern` identifies interpretable features that distinguish texts associated with two groups.
+It takes a table with a text column and a group column, proposes candidate differences, and
+measures those candidates on data reserved before discovery. Each feature has a definition,
+a yes/no measurement question, and an estimated group difference.
 
-`discern` accepts a CSV or Excel file containing a text column and a binary group column. Blinded LLM
-discovery proposes candidate features that may distinguish the groups. A rotating pool of models then
-measures each candidate on a held-out sample. The procedure retains features that pass same-sign
-replication across two data halves, a permutation test, and Benjamini–Hochberg false discovery rate
-(FDR) control. The method is not specific to a particular dataset or domain.
+The language models generate candidates; held-out measurement and replication determine which
+features are retained. The researcher interprets the findings and decides which explanations
+or new questions warrant further study.
 
-The design separates generation from measurement. Discovery proposes features but does not observe
-the measurement sample. An independent, held-out stage estimates and validates the proposed features.
-
----
+The [CampaignView walkthrough](examples/campaignview/README.md) includes openly licensed data,
+complete saved real and placebo runs, and an offline check of the reported results.
 
 ## Intended use
 
-`discern` is intended for exploratory research, including hypothesis development, theory development,
-mechanism discovery, and post hoc analysis of experiments. It applies when short texts are associated
-with two groups and the objective is to estimate systematic differences between them. For example:
+Use `discern` when you have texts from two groups and want to learn how they differ without
+specifying all the relevant dimensions in advance. Examples include open-ended responses from
+treatment and control participants, job postings from two types of firms, and business descriptions.
+The procedure can be specified in advance as an exploratory analysis.
 
-- You ran an experiment and collected open-ended survey responses from treatment and control
-  participants, and want to estimate whether the responses differ systematically.
-- You have an exploratory dataset with short texts associated with two groups, such as job
-  descriptions for fully remote and hybrid positions, and want to identify differences between them.
+The output supports hypothesis development and interpretation. Statistical validation concerns
+measured differences in text. Explaining why those differences arise requires theory, context,
+and additional evidence. It does not establish a causal mechanism or agreement with human coding.
+Features can overlap and may need further work before becoming measures of theoretical constructs.
 
-It is intended for quantitative researchers working with medium-to-large samples and
-short-to-medium texts, and has a deliberately narrow scope:
-
-- It finds the differences between groups, not the general themes. Topic modeling surfaces what a
-  corpus is about; `discern` surfaces what separates group A from group B, as yes/no properties.
-- It is generative, not confirmatory. It proposes and statistically validates tendencies worth
-  investigating. It is not a replacement for qualitative inductive work, and it is atheoretical and
-  agnostic to causal structure. It provides no estimate of causal direction. Researchers must
-  interpret findings within the relevant empirical setting and theory. It can be preregistered as an
-  exploratory analysis, including for text collected as part of an experiment.
-- Unlike classification using LLMs, keywords, or machine learning, it does not require you to specify
-  constructs in advance. Discovery proposes them, and measurement validates them.
-
----
-
-## Data requirements
-
-`discern` is appropriate when your data have the following structure:
-
-- Short-to-medium open-ended text: a phrase up to a few hundred words per row, such as open-ended survey
-  responses, product or business descriptions, reviews, profiles, and abstracts. The method has also
-  been validated on stories of approximately 300 words. Cost increases with text length, and text that
-  exceeds a model's context window requires chunking (see `docs/GUIDANCE.md`). The method is not
-  intended for single words, categorical codes, or book-length documents without a chunking strategy.
-- Medium-to-large datasets: the held-out measurement sample and the discovery pool are disjoint,
-  so each group needs approximately 150–300 or more rows. Approximately 500 rows per group are
-  preferable for recovery of the full feature set. Below 100 rows per group, the method has sufficient
-  power only for relatively large effects.
-- Exactly two groups: a binary contrast (treated/control, A/B, or before/after). If you have more than
-  two groups, you must construct one-vs-rest or all-pairs comparisons and apply a global multiplicity
-  correction.
-- Descriptive rather than causal: it identifies textual differences between the two groups, expressed
-  as binary properties that a model can classify from the text. It does not identify causal mechanisms,
-  and the resulting features may be correlated.
-- Use one language per run. If language correlates with group assignment, discovery can identify
-  language itself as a distinguishing feature, which introduces confounding.
-
-Typical applications include open-ended survey responses from treatment and control groups, listing
-or description text from two categories, and posts or biographies from two communities.
-
----
-
-## Examples
-
-The following application compares abstracts published since 2023 in two management journals,
-Organization Science and the Strategic Management Journal. The analysis reduces approximately 650
-abstracts to 26 statistically validated features:
-
-[Organization Science vs. Strategic Management Journal](examples/sample-output/orgsci-vs-smj.md)
-(feature summary and themes)
-
-A placebo run on the same abstracts with randomly permuted group labels validated 0 of 50 candidate
-features. The pipeline measures held-out abstract text and does not observe journal names. The result
-therefore cannot be attributed directly to the model reproducing journal-name associations.
-
-The second application compares QJE and JPE abstracts published since 2020. It reduces 734 abstracts
-to 21 validated features.
-
-[Quarterly Journal of Economics vs. Journal of Political Economy](examples/sample-output/qje-vs-jpe.md)
-(feature summary and themes)
-
----
+Use one language per run and one observation per row. Each group needs enough observations for
+both discovery and measurement: the default reserves 250 per group, and each discovery half must
+still contain at least 15 texts per group. Sample size affects power; these are design settings,
+not a guarantee of recovery. Texts must fit the selected models' context windows. See
+[guidance](docs/GUIDANCE.md) for sample size, text length, and comparisons involving more than two groups.
 
 ## Install
 
-You need Python 3.10 or newer. Download and install the package from a terminal:
+Use Python 3.10 or newer. From a terminal:
 
 ```bash
-# 1. Download the repository
 git clone https://github.com/LLMAnnotationResearch/discern.git
 cd discern
-
-# 2. Install it; this makes the `discern` command available
-pip install -e .
+python -m pip install -e .
 ```
 
-The `-e` option installs the package in editable mode and makes the `discern` command available from
-any folder. If you later obtain updates with `git pull`, they take effect without reinstallation.
+If using a downloaded reviewer archive, extract it, enter its `discern-review` folder, and run
+the install command above. Required dependencies install automatically. CSV, TSV, and Excel
+files are accepted; older `.xls` files also require `xlrd`.
 
-Required Python packages (`openai`, `anthropic`, `numpy`, `pandas`, `openpyxl`) install
-automatically. Your datasets may be `.csv`, `.tsv`, or Excel (`.xlsx`/`.xls`).
+Use a local output folder while running. Cloud synchronization can interfere with the continuously
+updated cache and audit log. Set `output_dir` in a saved configuration or use
+`--output-dir /path/to/local/runs`.
 
-> Do not run `discern` inside a cloud-synced folder (Dropbox, OneDrive, iCloud Drive, or Google Drive).
-> `discern` writes its audit log and classification cache continuously while a run is in progress,
-> and concurrent access by a synchronization client can produce permission or file-in-use errors,
-> particularly on Windows. Online-only or placeholder files can also cause read errors. Clone the
-> repository to a local folder such as `~/projects/discern`, or place outputs outside the synchronized
-> directory with `--output-dir ~/discern-runs`. On macOS, the terminal may require access to the folder
-> (System Settings → Privacy & Security → Files and Folders).
+## Start with a saved example
 
-## 1. Configure API keys
-
-`discern` reads one environment variable per provider and requires variables only for the models you
-select. Store your keys in the environment or in a `.env` file outside the repository. Do not commit
-them.
+From the repository root, after installation:
 
 ```bash
-discern setup-help        # prints step-by-step instructions
+# Check both saved CampaignView runs without API keys or network access.
+python examples/campaignview/verify_saved_results.py
+
+# Check the configuration and data partition for a new run, without API calls.
+discern run --config examples/campaignview/config.real.json --dry-run
 ```
 
-The recommended location is `~/.config/discern/.env` (chmod 600), loaded automatically:
+The walkthrough explains the data, the full candidate list, and how to rerun discovery and
+measurement. The saved real run retained 47 of 65 candidates at 5% FDR, plus two suggestive
+features. The matching placebo retained zero of 77 candidates at either FDR threshold.
 
-```
-OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...
-DEEPSEEK_API_KEY=sk-...
-```
-
-Include only the providers you use. Set `DISCERN_ENV` to use another location:
-`export DISCERN_ENV=/path/to/your.env`.
-
-> Privacy and data handling. By default, running `discern` sends your text data to the third-party
-> model providers you select, including OpenAI, Anthropic, and DeepSeek, for discovery and
-> classification. For
-> sensitive data, you can instead point the entire pool to a local model server (the `local` provider
-> or a custom server; see [Choosing models](#choosing-models)), which keeps text on your machine. When
-> using commercial APIs, do not run on data whose terms, consent, IRB approval, or regulations (e.g.
-> PII/PHI, FERPA, GDPR) prohibit third-party transmission; check each provider's data-use and
-> retention policy first, and consider de-identifying text beforehand. Run outputs under `output_dir/`
-> contain your source text and model responses and should be stored according to their sensitivity. The
-> bundled `.gitignore`
-> already keeps `runs/` and `.env` out of version control.
-
-## 2. Try the demo (synthetic data)
+The smaller synthetic example is also available:
 
 ```bash
-cd examples
-python make_demo_data.py                       # writes demo.csv (400 toy product blurbs, 2 groups)
-discern run --config config.real.json          # discover + validate the contrast
-discern run --config config.placebo.json       # the null: same data, labels permuted (should find ~nothing)
+python examples/make_demo_data.py
+discern run --config examples/config.real.json --dry-run
+# The following commands use paid model APIs.
+discern run --config examples/config.real.json
+discern run --config examples/config.placebo.json
 ```
 
-## 3. Run an analysis
+Other saved illustrations compare [Organization Science and Strategic Management Journal
+abstracts](examples/sample-output/orgsci-vs-smj.md) and [QJE and JPE
+abstracts](examples/sample-output/qje-vs-jpe.md). They are reading examples; the CampaignView
+folder supplies the data and recorded classifications needed for reproduction.
 
-Give `discern` a table with a text column and a binary group column. It discovers candidate features,
-measures each candidate on a held-out sample, retains candidates that pass the statistical criteria,
-and writes the results to a run folder. You can use either direct flags or a saved configuration file:
+## Configure API keys for a new run
+
+Only a full model run requires credentials. Use keys for the providers selected in your
+configuration. `discern setup-help` prints instructions. The default location is
+`~/.config/discern/.env`, loaded automatically:
+
+```text
+OPENAI_API_KEY=your-key
+ANTHROPIC_API_KEY=your-key
+DEEPSEEK_API_KEY=your-key
+```
+
+Keep this file outside the repository and restrict its permissions (`chmod 600` on macOS/Linux).
+Set `DISCERN_ENV=/path/to/your.env` to use a different location. CampaignView uses only OpenAI
+and Anthropic. The package defaults also use DeepSeek.
+
+A model run sends texts to the selected providers. Use data you are permitted to send to those
+services. A fully local model pool can instead use a local server. Saved outputs include texts,
+identifiers, and model responses; store and share them according to the data's permissions.
+
+## Run your own analysis
 
 ```bash
-# flags: specify the CSV, text column, and binary group column
 discern run --dataset mydata.csv --text-col description --group-col treated \
-    --unit-label "product review" --focal-label treated --reference-label control
+    --unit-label "survey response" --focal-label treated --reference-label control
 
-# or generate a config, edit it, and run
+# Or save and edit a configuration:
 discern init --out myrun.json
+discern run --config myrun.json --dry-run
 discern run --config myrun.json
 ```
 
-Use `focal_value` and `reference_value` to select the two values of the group column when it is not
-already coded 0/1. The corresponding `*_label` and `--unit-label` settings affect only the output
-labels. Each run writes to `runs/<name>/`. The primary output, `05_summary.md`, reports the
-validated features, effect sizes, classification questions, suggestive features, uncorrected directional
-tendencies, and remaining candidates. The `--dry-run` option checks the configuration and data partition
-without making API calls.
+The group column defaults to 1 for the focal group and 0 for the reference group. Set
+`focal_value` and `reference_value` for other codes. Human-readable group labels affect the
+output, while `unit_label` enters the prompts and should describe what each row represents.
+Paths in a saved configuration resolve relative to that file.
 
-### Placebo run
+Read `runs/<run_name>/05_summary.md` first. A positive difference means greater prevalence in
+the focal group; a negative difference means greater prevalence in the reference group. Both
+half-specific differences and their mean are reported. Multiply a difference by 100 to express
+it in percentage points.
 
-A real run controls false discoveries by retaining a feature only if it replicates in both independent
-data halves and passes a permutation test under a controlled FDR. A placebo is not a prerequisite for
-the validity of a real run.
+### How features are selected
 
-A placebo gives you an end-to-end diagnostic for a specific dataset. It randomly permutes the group
-labels and applies the same pipeline. Because the permutation removes systematic group differences, a
-well-calibrated placebo should validate approximately zero features. It requires no hand labeling:
+1. Reserve the measurement sample before discovery. Divide the remaining texts into two
+   discovery halves and compare repeated balanced samples. Prompts call the groups A and B,
+   with the mapping randomized on each call. Group identity may still be evident in the texts.
+2. Merge overlapping proposals into distinct candidates, each with a definition and a binary
+   question. A candidate does not have to appear in both discovery halves to proceed.
+3. Measure each candidate on the reserved texts, one text per call, without supplying its group
+   label. Rotate models with assignments balanced within each group and measurement half.
+4. Require nonzero differences in the same direction in both measurement halves. Test a combined
+   statistic by permuting labels within halves, then apply Benjamini–Hochberg across all
+   successfully measured candidates. Neither half needs to be significant on its own.
+
+The primary tier uses `fdr_q=0.05`. An additional suggestive tier contains features passing
+`fdr_q_exploratory=0.10` only; set it to `null` to disable this tier. Uncorrected directional
+tendencies have same-sign effects and an unadjusted permutation p-value below 0.05 but pass
+neither FDR threshold. They are leads, with no multiple-testing control.
+
+The default permutation floor is 2,000. Selection increases it when needed to resolve the
+strictest multiple-testing threshold, up to 50,000. The saved results record the count actually
+used. Permutation inference assumes labels are exchangeable within each measurement half;
+repeated observations or clustered data need additional design decisions.
+
+### Placebo check
+
+Set `condition` to `"placebo"` in a copy of your saved configuration. This shuffles labels
+separately within the discovery pool and the measurement sample and reruns the full procedure.
+Keep the other settings fixed for a direct comparison. A placebo assesses false-positive behavior
+for that corpus and configuration. A single run may retain a chance feature; it does not establish
+calibration across all settings. Human coding is needed to assess classification accuracy.
+
+### Models and defaults
+
+The default discovery and measurement pool has four equally rotated models: `gpt-4o-mini`,
+`claude-haiku`, `gpt-4.1-mini`, and `deepseek`. Consolidation uses `gpt-4.1`. The three-model
+reference pool omits DeepSeek and is the pool used in the CampaignView walkthrough. The defaults
+use 15 discovery calls per half, 15 texts per group per call, and 250 reserved texts per group.
+Saved empirical configurations override those defaults. See the [settings and version
+record](docs/REPRODUCIBILITY.md) for the reported runs and exact model IDs.
 
 ```bash
-discern run --dataset mydata.csv --text-col description --group-col treated \
-    --condition placebo --fresh-reservation
+discern models                      # built-in models and providers
+discern models --config myrun.json  # include custom entries
 ```
 
-A placebo is particularly informative for public or potentially memorized text, small samples, and
-applications that require additional evidence about false-positive behavior. It is a diagnostic rather
-than a required calibration step.
+Set `discovery_models` and `rotation_pool` in JSON, or use `--models` to select a pool for both
+stages. Rotation requires at least two models. Balancing assignment prevents a systematic
+association between the assigned model and the group contrast; it does not remove classifier
+error. A larger pool is a sensitivity choice, not an accuracy guarantee. Gemini and the
+OpenRouter models are available options and are outside the default pool.
 
-### Choosing models
-
-With `--models`, or `discovery_models` and `rotation_pool` in a configuration file, you can select any
-comma-separated subset of the model registry. A rotation-based design requires at least two models;
-the default pool uses models from OpenAI, Anthropic, and DeepSeek. Balanced assignment, rather than
-pool size, prevents a single model from being confounded with the group contrast. This property holds
-with two models. A larger and more diverse pool provides a robustness or sensitivity check across
-classifiers, but does not strengthen the no-confounding property. Adding a low-quality model to your
-pool can reduce measurement quality.
-
-```bash
-discern models                       # list built-in models and providers, and configuration instructions
-discern models --config myrun.json   # also show the custom models/providers a config defines
-```
-
-In addition to the OpenAI, Anthropic, and DeepSeek models, the registry includes models available
-through OpenAI-compatible endpoints: `gemini-flash`, `llama-3.3-70b`, and `qwen-2.5-72b` through
-OpenRouter, and `local-llama` through a keyless local Ollama server. You can define additional models
-in a configuration file without changing the code:
+Additional models can use an OpenAI-compatible or Anthropic-compatible endpoint:
 
 ```json
 {
-  "providers": { "myhost": { "base_url": "http://localhost:8000/v1", "api_key_env": null, "json_mode": "prompt_only" } },
-  "models":    { "llama-8b": { "provider": "myhost", "model_id": "meta-llama/Llama-3.1-8B-Instruct" } },
-  "model_revision": { "llama-8b": "q4_K_M-2026-07" },
-  "discovery_models": ["gpt-4o-mini", "llama-8b"],
-  "rotation_pool":    ["gpt-4o-mini", "claude-haiku", "llama-8b"]
+  "providers": {"myhost": {"base_url": "http://localhost:8000/v1", "api_key_env": null, "json_mode": "prompt_only"}},
+  "models": {"local-a": {"provider": "myhost", "model_id": "your-first-model"},
+             "local-b": {"provider": "myhost", "model_id": "your-second-model"}},
+  "model_revision": {"local-a": "recorded-weights-and-server-version", "local-b": "recorded-weights-and-server-version"},
+  "discovery_models": ["local-a", "local-b"],
+  "rotation_pool": ["local-a", "local-b"],
+  "consolidation_model": "local-a"
 }
 ```
 
-The `providers` entry specifies an OpenAI-compatible endpoint, such as a gateway or local server. The
-`models` entry names a model available at that endpoint. The model key can then be included in the
-discovery or rotation pool. Additional requirements follow:
+Merge these entries into a complete run configuration. `api_key_env: null` permits a keyless
+server; a custom provider defaults to OpenAI-compatible calls. Set `kind: "anthropic"` for an
+Anthropic-compatible endpoint. `json_mode: "prompt_only"` supports servers that reject
+`response_format`. Responses must still pass strict parsing. Custom names cannot shadow built-ins.
+Record local weights, quantization, and serving software in `model_revision`; changing it also
+changes the classification cache key.
 
-- Config is strict JSON (no comments/trailing commas).
-- `kind` defaults to `"openai"` (chat completions). Set `"anthropic"` for a Claude-compatible endpoint;
-  its `base_url` is honored. `api_key_env: null` specifies a keyless local server. Names that conflict
-  with a built-in are rejected.
-- `json_mode` is `"json_object"` for hosted built-in models and `"prompt_only"` for local or custom
-  endpoints. Many local servers reject `response_format`. Output is parsed strictly in either mode;
-  change the setting if your endpoint rejects or ignores JSON mode.
-- `local-llama` targets Ollama's default port (11434). For vLLM (`:8000`) or LM-Studio (`:1234`),
-  or a remote box, define a custom provider with that `base_url` as shown above.
-- `discern` requires API keys only for providers represented in the selected pool. A fully local pool
-  requires no API key.
+Pinned model IDs identify a version but do not guarantee identical responses. Hosted aliases
+can change, and a provider may retire a model. Fresh runs can therefore produce different features
+or labels. The offline example reproduces statistics from the supplied classifications.
 
-Provenance and reproducibility. Pinned snapshots, including the default OpenAI and Anthropic
-classifiers, identify a fixed model version. They do not guarantee byte-identical API outputs. The
-design therefore targets conclusion-level reproducibility rather than identical responses. For
-floating hosted aliases and local models, `00_runspec` records the runtime-resolved identifier and
-system fingerprint as provenance. An OpenRouter route may not expose the exact backend build, and a
-local tag does not identify the quantization, weights, or serving engine. For these models, set
-`model_revision` to a user-controlled string. The value is recorded as provenance and included in the
-classification cache key, so a changed revision requires fresh classification.
+### Runtime and interrupted runs
 
-Provider catalogs change as models are retired. `python scripts/check_model_ids.py` verifies that each
-built-in `model_id` remains available from its provider and confirms unlisted aliases with a live call.
-A scheduled GitHub Action (`.github/workflows/model-check.yml`) runs this check weekly.
+Measurement requires approximately `candidates × 2 × n_per_group` classification calls, plus
+discovery, consolidation, and retries. The CampaignView real run required 39,000 measurement
+calls before retries. Cost depends on text length, model prices, and retries; runtime also depends
+on provider rate limits.
 
-### Cost & rate limits
+Repeat the same command to resume an interrupted run. Completed stages and classifications are
+cached. You may lower `--classify-workers` from its default of 24 to reduce concurrent requests.
+Changes that affect results require a new run name or output directory.
 
-A run makes one API call per candidate and held-out unit, plus a smaller number of discovery and
-consolidation calls. A typical run with 40–50 candidates and 500 held-out units requires approximately
-10,000–20,000 classification calls. A journal-abstract run with approximately 15,000 calls takes about
-30 minutes and costs about $3 with the cost-weighted default pool. Cost increases with the number of
-candidates, sample size, and text length. The default pool consequently assigns substantial weight to
-lower-cost classifiers (`gpt-4o-mini`, `deepseek`, and `gemini-flash`).
+## Saved outputs and further checks
 
-A standard paid API account is generally sufficient. Two features make entry-level tiers usable:
+Every run saves its configuration (`00_config.json`), model IDs (`00_runspec.json`), partition
+(`00_partition.json`), discovery (`01_discovery.json`), consolidated candidates
+(`02_consolidated.json`), measurements (`03_measured.json`), selections (`04_selected.json`),
+and summary (`05_summary.md`). `events.jsonl` records requests, responses, failures, and fallbacks.
+New executions also record software versions and source hashes in `00_environment.json`.
 
-- Automatic retries use backoff and honor `Retry-After`. A rate-limited (429) call waits for the
-  interval specified by the provider and then retries, which increases runtime without terminating the run.
-- The rotating pool spreads load across providers, so each sees only ~1/N of the calls.
+The optional `discern check --dataset mydata.csv --group-col treated --from-run runs/real_r0`
+reports inter-model agreement and Fleiss' κ. Agreement measures consistency, not correctness,
+and does not determine selection.
 
-Providers impose different request-per-minute limits on entry-level accounts. Among the default
-providers, Anthropic generally has the most restrictive entry tier. A large run that includes Claude
-may therefore take substantially longer on a new account. A small deposit may automatically raise the
-account tier. OpenAI and DeepSeek generally provide higher entry-tier limits. Exhausting a daily quota
-terminates the run with an explicit error rather than producing an incomplete measurement silently.
-
-If rate limits bind:
-
-- Reduce `--classify-workers N` from its default of 24 to lower concurrent request volume.
-- Assign a smaller share of a large run to a rate-limited provider, or increase the API tier.
-- Use a local model for an offline run subject to local hardware capacity rather than provider rate limits.
-
-If a run is interrupted, issue the same command again to resume it. `discern` loads completed stages
-from the run folder and retrieves classifications from a persistent cache
-(`output_dir/class_cache.json`) keyed by dataset, prompt version, model, unit, and question. Because
-classification accounts for approximately 99% of API expenditure, a resumed run incurs charges only
-for calls that did not complete. `--classify-workers` controls request concurrency and is not part of
-the run identity, so you may change it between attempts. You cannot change parameters that affect
-results, including `n_per_group`, the model pool, and `fdr_q`, while resuming under the same run name.
-
-## 4. Optional classifier agreement check
-
-Use this optional command to obtain a label-free measure of whether models classify your constructs
-consistently. It is separate from the primary run and is not a substitute for a hand-labeled
-validation set:
-
-```bash
-discern check --dataset mydata.csv --group-col treated --from-run runs/real_r0
-```
-
-It reports mean pairwise agreement and Fleiss' κ. High agreement indicates model concurrence. Low
-agreement may indicate an ambiguous construct or a weak classifier. Agreement measures consistency,
-not correctness, and does not determine feature validation.
-
-## Outputs
-
-Each run writes a self-contained folder under `output_dir/<run_name>/`: the config and data partition,
-every discovery call (with the shown units and the blinded A/B mapping), the consolidated candidates,
-the per-unit measurements, the feature table with signed effects and a direction legend, and an
-append-only `events.jsonl` audit of every LLM call. Runs resume if interrupted.
-
-Results are reported in three tiers. The primary Validated tier uses `fdr_q=0.05`. The exploratory
-Suggestive tier uses `fdr_q_exploratory=0.10` and should be interpreted as a set of candidates for
-subsequent confirmation rather than established findings. Both FDR tiers also require same-sign
-replication across two data halves. Set `fdr_q_exploratory: null` to disable the Suggestive tier.
-
-The third tier, Uncorrected directional tendencies, contains features outside the FDR tiers whose
-effects have the same sign in both halves and whose unadjusted permutation p-value is below 0.05. It is
-a reporting aid, not a validation threshold: it has no multiplicity control, and some tendencies are
-expected by chance when many candidates are tested. The threshold is fixed so this label has a
-consistent meaning across runs. Treat these features as leads for future confirmation. A placebo run
-is particularly useful for demonstrating how often this uncorrected tier can surface chance patterns.
-
-## Method summary
-
-During discovery, a model observes small, balanced, blinded samples of Group A and Group B and proposes
-distinguishing features. The true group represented by "A" is randomized for each call and subsequently
-mapped to a canonical label, which prevents the group wording from revealing the hypothesis. Candidates
-are consolidated within and across two data splits. Each candidate is then converted to a binary
-classification question and measured on a held-out reservation, with 250 observations per group by
-default, using a balanced rotation of models. A feature is retained only if
-its effect replicates with the same sign in both halves and beats a permutation null at 5% FDR
-(the permutation count scales automatically with the number of candidates, so the p-value grid is
-never coarser than the multiplicity correction needs). See `docs/GUIDANCE.md` for sample-size,
-long-text, multilingual, and multiplicity guidance.
+For research validation tools and conventional text-method comparisons, see
+[validation code](docs/SECTION_4_VALIDATION.md). Optional dependencies install with
+`python -m pip install -e '.[validation]'`.
 
 ## Tests
 
-All offline (no API). Run the fast suites with pytest, or any file directly:
+These checks make no API calls:
 
 ```bash
-pytest tests/                     # test_core + test_pipeline + friends (fast, mocked)
-python tests/test_pipeline.py     # offline end-to-end (mocked classifier)
-python tests/test_core.py         # fail-closed parsing/schema, cache-key, ID, rotation
-python tests/test_encoding_resume.py   # UTF-8 I/O, resume identity, permutation auto-scaling
-python tests/test_null_fdr.py     # all-null FDR simulation (≤ 5%); heavy; run directly, not via pytest
+python -m pytest tests/
+python tests/test_pipeline.py
+python tests/test_core.py
+python tests/test_encoding_resume.py
+# Longer null simulation, run separately:
+python tests/test_null_fdr.py
 ```
+
+Some older suites use standalone test runners; run the three direct commands above as well as
+pytest. The longer null simulation is separate from the saved empirical placebo evidence.
 
 ## License
 
-MIT (provisional; see `LICENSE`).
+Code: [MIT](LICENSE). CampaignView data: [CC0 1.0](examples/campaignview/DATA_SOURCE.md).
+Third-party notices are retained in [docs/licenses](docs/licenses/).

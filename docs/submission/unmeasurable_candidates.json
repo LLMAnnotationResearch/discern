@@ -1,0 +1,20 @@
+{
+  "P03": [
+    {
+      "feature_name": "Connotation of Tall Structure",
+      "definition": "Overall positive, negative, or neutral connotation associated with tall organizational structures.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the response associate a positive, negative, or neutral connotation with tall organizational structures?",
+      "parent_theme": "Emotional Valence",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_c75a733a0e89c6a3",
+      "_merged_from": [
+        "c_c75a733a0e89c6a3"
+      ]
+    }
+  ]
+}

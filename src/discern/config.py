@@ -1,12 +1,12 @@
-"""RunConfig — every knob of a discern run, explicit and reproducible.
+"""RunConfig — saved settings for a discern run.
 
 You must supply three things: the `dataset` CSV, the `text_col` holding the text, and the binary
 `group_col`. Everything else has a sensible default:
   * NO screen on the inference path (measure every candidate, Stage 5 on all).
-  * BALANCED ROTATION confirmatory measurement over the model pool.
+  * Model assignment balanced within group and measurement half.
   * Held-out reservation of 250 per group (n=500) by default — see docs/GUIDANCE for smaller samples.
   * Default rotation pool = 3 providers (gpt-4o-mini, claude-haiku, gpt-4.1-mini + DeepSeek) for
-    cross-provider variance; fully user-configurable. MAIN_POOL is the pinned-snapshot reference pool
+    cross-provider comparisons; fully user-configurable. MAIN_POOL is the pinned-snapshot reference pool
     (a fixed model version — not byte-identical outputs); unpinned models (DeepSeek) have their runtime
     version recorded per run.
 Paths resolve relative to the config file (or an explicit base_dir), never the caller's CWD.

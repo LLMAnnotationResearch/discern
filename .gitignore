@@ -27,3 +27,9 @@ examples/demo_run.log
 
 # private test datasets (never commit)
 test datasets*/
+
+# local manuscript work and assistant settings; excluded from reviewer releases
+output/
+.claude/
+.codex/
+.agents/

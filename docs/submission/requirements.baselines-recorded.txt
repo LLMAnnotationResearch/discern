@@ -1,0 +1,9 @@
+# Recorded conventional-method environment; not a complete lockfile.
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.9.1
+scipy==1.18.1
+vaderSentiment==3.3.2
+joblib==1.6.0
+empath==0.89
+requests==2.34.2

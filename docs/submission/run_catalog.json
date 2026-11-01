@@ -1,0 +1,177 @@
+[
+  {
+    "run": "A_MAIN",
+    "condition": "real",
+    "n_candidates": 35,
+    "n_tested": 35,
+    "n_validated": 11,
+    "n_suggestive": 0,
+    "n_uncorrected": 0,
+    "original_config_sha256": "a73d708f0c2d2ea79c31291c558fcb239b33fe9bcc835fc744b442ed1dbb7ffa",
+    "original_selection_sha256": "9e714cedad222a02533d152d00317dc4100688560e1a9b01ce5bd887e7957180",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": null,
+    "version_evidence": "Original run specification only; dependencies not recorded."
+  },
+  {
+    "run": "B_REPEAT",
+    "condition": "real",
+    "n_candidates": 34,
+    "n_tested": 34,
+    "n_validated": 13,
+    "n_suggestive": 0,
+    "n_uncorrected": 1,
+    "original_config_sha256": "0e020e1692c55b124069bd24976ea8abbee4d1c98b80d365a6bf38a6922283dc",
+    "original_selection_sha256": "f0db77c1066ba7995d3e799ae4c7cf25fe68abc7022d761f60ad1d58b3e66be9",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "C_DEFAULTS",
+    "condition": "real",
+    "n_candidates": 43,
+    "n_tested": 43,
+    "n_validated": 13,
+    "n_suggestive": 0,
+    "n_uncorrected": 3,
+    "original_config_sha256": "f15cead69343a94c06e4fd960d884bfe78bc47618c8f9b01c7bb728d9109c559",
+    "original_selection_sha256": "fa80dc9599890dca0e2f1136423afc3a44817a638101ec9e531fcdc15cbe1467",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "D_OPENAI",
+    "condition": "real",
+    "n_candidates": 24,
+    "n_tested": 24,
+    "n_validated": 12,
+    "n_suggestive": 4,
+    "n_uncorrected": 0,
+    "original_config_sha256": "287e0448d2edf31849a593f32bb7978dc52b99f30d440dfd7884d8baaf375064",
+    "original_selection_sha256": "6d180d8424a55a6d757dc72b9b73c3d8827a765d5a29df65d7f6ad497165ef53",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "P01",
+    "condition": "placebo",
+    "n_candidates": 36,
+    "n_tested": 36,
+    "n_validated": 0,
+    "n_suggestive": 0,
+    "n_uncorrected": 2,
+    "original_config_sha256": "5f4ebd718c44f572868fe250b12928c588acb2e5ad69e50bb5b21cc372c5aad7",
+    "original_selection_sha256": "767409d3186f196dc103f5f631a3a164474bd947aacc7b67e157bc470831a5f2",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "P02",
+    "condition": "placebo",
+    "n_candidates": 36,
+    "n_tested": 36,
+    "n_validated": 0,
+    "n_suggestive": 0,
+    "n_uncorrected": 3,
+    "original_config_sha256": "5354e2c7520dd7395370c38265504f5bbb2fbb99152f6f29ad5319b5baed88b3",
+    "original_selection_sha256": "f88b290e833ce60f74d51c0366e8ff9190f75825aaea31c89cc70aae6efd9f6b",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "P03",
+    "condition": "placebo",
+    "n_candidates": 42,
+    "n_tested": 41,
+    "n_validated": 0,
+    "n_suggestive": 0,
+    "n_uncorrected": 0,
+    "original_config_sha256": "d333fd02b9663914daec6bb14a1eae9b112fb524c25d53c6ad63ff9099a04ac4",
+    "original_selection_sha256": "e3f3dce33abcb7d9776561c5e0804a295d9d1db7a73f66c6e042f5062c4d69eb",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "P04",
+    "condition": "placebo",
+    "n_candidates": 35,
+    "n_tested": 35,
+    "n_validated": 0,
+    "n_suggestive": 0,
+    "n_uncorrected": 0,
+    "original_config_sha256": "61961ce6444e09ed89dc4b79850fc41a8033e173e066e130013c63fa5a6457fe",
+    "original_selection_sha256": "3821e48b040fac282abe3e1830fec267ef78d7f597c1987da34c47eb73bda618",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  },
+  {
+    "run": "P05",
+    "condition": "placebo",
+    "n_candidates": 32,
+    "n_tested": 32,
+    "n_validated": 0,
+    "n_suggestive": 0,
+    "n_uncorrected": 0,
+    "original_config_sha256": "4b5990b20f70e541a40211ec6be259f202350a973860b18a764d78d456c9deb4",
+    "original_selection_sha256": "7ba732b75bafdb1769283898a18bb637eac1271867979b4a22732bd6ec34e8ea",
+    "package_version": "0.1.0",
+    "python_version": null,
+    "dependency_versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "openai": "3.38.0",
+      "anthropic": "0.125.0"
+    },
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+  }
+]

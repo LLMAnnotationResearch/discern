@@ -14,6 +14,7 @@ from .consolidate import run_consolidation
 from .data import Dataset
 from .discovery import run_discovery
 from .measure import Cache, run_measurement
+from .provenance import software_environment
 from .select import run_selection
 
 
@@ -43,6 +44,13 @@ def run_pipeline(cfg: RunConfig, base_dir: Path, run_name: str | None = None,
             f"run '{run_name}' already exists under a DIFFERENT configuration "
             f"(stored spec {prev.get('spec_hash')} != current {spec}). Use a new run name, or delete "
             f"{run_dir} to restart fresh — refusing to blend artifacts across configs.")
+    # Keep each execution's environment, including resumes, without attributing
+    # today's software versions to an older run. Preserve the first record.
+    environment = software_environment()
+    environment["capture_context"] = "resume" if resume and prev is not None else "new_run"
+    if not (run_dir / "00_environment.json").exists() or not resume:
+        audit.write_stage("00_environment", environment)
+    audit.event("pipeline", "execution_environment", environment=environment)
     from . import __version__ as pkg_version   # release identifier: config hash alone can't
     # record the runtime-resolved version of every model this run will use — provenance for the
     # unpinned aliases (whose snapshot can drift) so a completed run is fully auditable. cfg.active_models()
@@ -51,12 +59,18 @@ def run_pipeline(cfg: RunConfig, base_dir: Path, run_name: str | None = None,
     # we never probe a model the run won't call, or omit one it will.
     used_models = sorted(cfg.active_models())
     model_versions = [core.probe_model_version(m) for m in used_models]
-    audit.write_stage("00_runspec", {"spec_hash": spec, "dataset_fingerprint": data.fingerprint,
-                                     "prompt_version": cfg.prompt_version,
-                                     "package_version": pkg_version,  # ...identify code changes
-                                     "discovery_prompt_variant": cfg.discovery_prompt_variant,
-                                     "model_versions": model_versions,
-                                     "unpinned_pool_note": note})
+    audit.event("pipeline", "execution_models", model_versions=model_versions)
+    # A resume can encounter a changed hosted alias. Keep the original model
+    # record and append the new observation to the audit, rather than replacing it.
+    if not resume or prev is None:
+        audit.write_stage("00_runspec", {
+            "spec_hash": spec,
+            "dataset_fingerprint": data.fingerprint,
+            "prompt_version": cfg.prompt_version,
+            "package_version": pkg_version,
+            "discovery_prompt_variant": cfg.discovery_prompt_variant,
+            "model_versions": model_versions,
+            "unpinned_pool_note": note})
     audit.write_stage("00_config", {"config": cfg.to_json(), "unpinned_pool_note": note})
     audit.write_stage("00_partition", {
         "dataset_fingerprint": data.fingerprint,

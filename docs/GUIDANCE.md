@@ -1,14 +1,14 @@
 # Guidance for using discern
 
-This document provides guidance for applying the method to your data. The numerical recommendations
-are based on the validation study. Treat them as initial rules of thumb rather than universal
-constants. Power depends on effect sizes, prevalence, and model classification accuracy.
+This document provides guidance for applying the method to your data. The numerical suggestions
+are starting points for planning rather than universal thresholds. Power depends on effect sizes, prevalence, and model classification accuracy.
 
 ## Placebo runs
 
-A single real run already controls false positives: a feature survives only if it replicates in both
-data halves and beats a permutation null at a controlled FDR. A placebo is therefore not required for
-the validity of a single real run.
+A real run applies the same-sign replication rule, a within-half permutation test, and
+Benjamini–Hochberg correction. Its interpretation depends on exchangeable labels and the quality
+of the measured features. A placebo is an additional diagnostic, not a prerequisite for running
+the procedure or a guarantee that its assumptions hold.
 
 A placebo provides an empirical, end-to-end check for your dataset. It permutes the group labels and
 reruns the same pipeline, so any detected structure is spurious by construction. A well-calibrated
@@ -20,14 +20,15 @@ evidence about the pipeline's false-positive behavior.
 discern run --dataset mydata.csv --text-col text --group-col g --condition placebo --fresh-reservation
 ```
 
-A single placebo may produce an FDR-permitted false positive. Repeated placebo survivors indicate a
-potential problem, such as a confounded design, label leakage, or an insufficient sample size.
+A single placebo may retain a chance feature. Assess repeated placebo selection with its sampling
+uncertainty and compare it with the nominal threshold. Investigate systematic excess, including
+label leakage, dependence, and classifier behavior.
 
 ## Sample size
 
 `discern` splits each group's data into a held-out measurement reservation (`n_per_group`, default
 250) and a disjoint discovery pool containing the remaining observations. Each group therefore needs
-approximately `n_per_group` plus a discovery pool. Rules of thumb from the validation study:
+approximately `n_per_group` plus a discovery pool. Illustrative planning ranges, rather than validated recovery thresholds:
 
 | goal | measurement / group | total / group (incl. discovery) |
 |---|---|---|
@@ -42,8 +43,9 @@ size.
 
 ## Text length
 
-The method has been validated on text ranging from short phrases to documents of a few hundred words,
-provided that each text and classification question fit within the model's context window. Cost is
+The examples include short survey responses and longer campaign biographies. Each discovery
+sample and classification prompt must fit within the selected model's context window. These
+examples do not establish accuracy at every text length. Cost is
 approximately proportional to input tokens. If your documents are near or above the context limit,
 you must chunk them. The package does not specify a default aggregation rule because maximum or
 any-positive aggregation changes the estimand and mechanically increases positive classifications for
@@ -51,8 +53,7 @@ longer documents. If you chunk, prespecify an aggregation rule appropriate to th
 
 ## Non-English / translated text
 
-Specify one analysis language per run. In validation, classifiers achieved greater than 90% agreement
-across a machine translation, although agreement declined most for abstract constructs. Use a model
+Specify one analysis language per run. Use a model
 with documented capability in your analysis language or use a recorded and versioned translation
 workflow. Do not combine languages within a run without a documented methodological justification.
 The optional `discern check` command reports cross-model agreement and can identify inconsistently
@@ -120,13 +121,14 @@ version per run in `00_runspec`.
 ## Cost & runtime
 
 Measurement accounts for most computation: approximately `#candidates × 2 × n_per_group`
-classification calls per run. For short text and small models, a run typically requires several
-minutes and costs approximately one to two dollars. Cost for longer documents increases in proportion
-to token count. Use `--dry-run` to inspect the partition and verify the configuration without API use.
+classification calls per run, plus retries. Cost depends on model prices and token counts; runtime
+also depends on provider rate limits and concurrency. Use `--dry-run` to inspect the partition and verify the configuration without API use.
 
 ## Classifier confidence (optional)
 
-You do not need a hand-labeled set for the primary procedure. A placebo provides evidence about
-false-positive behavior. If you want to assess whether models classify your constructs consistently,
+The primary selection procedure does not require a hand-labeled set. Human labels are needed
+to assess classification accuracy. A placebo provides different evidence about false-positive behavior. If you want to assess whether models classify your constructs consistently,
 which is relevant to false negatives, the optional `discern check` reports label-free inter-model
-agreement. Low agreement may warrant revising the classification question or excluding a weak model.
+agreement. Low agreement can motivate a revised question or model sensitivity analysis. Treat such a
+revision as a new analysis and report the original result; do not tune against held-out results
+and present the revision as the original validation.

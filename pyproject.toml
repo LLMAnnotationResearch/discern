@@ -9,11 +9,11 @@ description = "Find and validate the text features that distinguish two groups, 
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Borchhardt & Carlson" }]
+authors = [{ name = "discern contributors" }]
 keywords = ["llm", "text-analysis", "feature-discovery", "social-science", "nlp"]
 dependencies = [
     "openai>=1.0",
-    "anthropic>=0.30",
+    "anthropic>=0.30,<1",  # current calls use temperature, removed from the v2 SDK signature
     "numpy>=1.23",
     "pandas>=1.5",
     "openpyxl>=3.0",   # read .xlsx datasets directly
@@ -21,6 +21,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
+validation = ["scikit-learn>=1.3", "vaderSentiment>=3.3.2", "empath==0.89", "reportlab>=4"]
+bertopic = ["bertopic==0.17.4", "sentence-transformers==6.2.0", "umap-learn==0.5.12", "hdbscan==0.8.44"]
 
 [project.scripts]
 discern = "discern.cli:main"

@@ -1,0 +1,19 @@
+{
+  "dataset_doi": "10.7910/DVN/JIEAPT",
+  "version": "1.1",
+  "release_time_utc": "2025-08-19T12:00:38Z",
+  "verified_on": "2026-11-01",
+  "metadata_url": "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/JIEAPT",
+  "license": {
+    "name": "CC0 1.0",
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "file": {
+    "id": 11595284,
+    "filename": "biographical_narratives.csv",
+    "bytes": 15750112,
+    "md5": "a2e9c25cb793d39b9b72c08c21759ea5",
+    "sha256": "01102ada3304a3b9e7d5dced47a980cb9d3bc7b4cf876ec8ea42c9585c6f80eb"
+  }
+}

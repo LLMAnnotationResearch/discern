@@ -1,0 +1,10 @@
+{
+  "run": "placebo_r0",
+  "wall_seconds": 2288.5,
+  "minutes": 38.1,
+  "n_candidates": 77,
+  "n_units": 600,
+  "n_classifications": 46200,
+  "measurement_design": "rotate",
+  "resumed": true
+}
