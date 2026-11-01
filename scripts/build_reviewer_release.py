@@ -6,7 +6,9 @@ build metadata are included. The archive is checked before it is written.
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
+import io
 import json
 from pathlib import Path
 import re
@@ -26,6 +28,7 @@ SKIP_PARTS = {"__pycache__", ".pytest_cache", "runs", "fresh_runs", ".git", ".DS
 # Contributor checks still apply to the code, configs, and output metadata.
 PUBLIC_SUBJECT_TEXT = {
     "examples/campaignview/data/bio_party.csv",
+    "examples/campaignview/data/bio_party_unique.csv",
     "examples/campaignview/data/source/biographical_narratives.csv",
 }
 PATTERNS = {
@@ -50,7 +53,39 @@ def public_files(root=ROOT):
     return sorted(paths)
 
 
-def findings_for(name, content, identities=()):
+def attribution_text(name, text, public_subject_uids):
+    """Ignore verified dataset IDs only in the saved artifacts' unit-ID fields.
+
+    This changes the view used for attribution checks, never the archived bytes.
+    An author field or an unrecognized ID still receives the full identity check.
+    """
+    if not public_subject_uids or not name.startswith(("examples/campaignview/saved/",
+                                                      "examples/campaignview/saved_unique/")):
+        return text
+
+    def inspect(value, field=None):
+        if field == "uid" and isinstance(value, str) and value in public_subject_uids:
+            return "[public dataset unit]"
+        if field in {"measurement_uids", "slotA_uids", "slotB_uids"} and isinstance(value, list):
+            return ["[public dataset unit]" if isinstance(v, str) and v in public_subject_uids else inspect(v)
+                    for v in value]
+        if isinstance(value, dict):
+            return {key: inspect(item, key) for key, item in value.items()}
+        if isinstance(value, list):
+            return [inspect(item) for item in value]
+        return value
+
+    try:
+        if name.endswith(".jsonl"):
+            return "\n".join(json.dumps(inspect(json.loads(line)), ensure_ascii=False) for line in text.splitlines() if line.strip())
+        if name.endswith(".json"):
+            return json.dumps(inspect(json.loads(text)), ensure_ascii=False)
+    except (ValueError, TypeError):
+        pass
+    return text
+
+
+def findings_for(name, content, identities=(), public_subject_uids=()):
     if name in PUBLIC_SUBJECT_TEXT:
         return []
     # Inspect text only; public_files excludes binary documents and images.
@@ -61,8 +96,9 @@ def findings_for(name, content, identities=()):
             findings.append({"file": name, "kind": kind})
     # Preserve third-party notices, which name upstream copyright holders.
     if not name.startswith("docs/licenses/"):
+        attribution = attribution_text(name, text, public_subject_uids)
         for identity in identities:
-            if identity.casefold() in text.casefold():
+            if identity.casefold() in attribution.casefold():
                 findings.append({"file": name, "kind": "contributor_identity"})
                 break
     return findings
@@ -73,8 +109,12 @@ def build_release(out, identities=(), root=ROOT):
     if out.exists():
         raise ValueError("Choose a new archive path; existing archives are not overwritten.")
     files = {p.relative_to(root).as_posix(): p.read_bytes() for p in public_files(root)}
+    public_subject_uids = set()
+    for name in ("examples/campaignview/data/bio_party.csv", "examples/campaignview/data/bio_party_unique.csv"):
+        if name in files:
+            public_subject_uids.update(row["id"] for row in csv.DictReader(io.StringIO(files[name].decode("utf-8"))))
     findings = [f for name, content in files.items()
-                for f in findings_for(name, content, identities)]
+                for f in findings_for(name, content, identities, public_subject_uids)]
     if findings:
         raise ValueError("Review-copy scan failed:\n" + json.dumps(findings, indent=2))
     manifest = {name: hashlib.sha256(data).hexdigest() for name, data in files.items()}

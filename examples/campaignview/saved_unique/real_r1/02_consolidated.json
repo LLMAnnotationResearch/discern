@@ -1,0 +1,2201 @@
+{
+  "split1_features": [
+    {
+      "feature_name": "Emphasis on Personal Struggle or Adversity",
+      "definition": "The narrative emphasizes the candidate's personal struggles, hardships, or experiences of overcoming adversity.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize the candidate's personal struggles, hardships, or experiences of overcoming adversity?",
+      "parent_theme": "Narrative Style",
+      "n_supporting_hypotheses": 8,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Professional Credentials or Achievements",
+      "definition": "The narrative highlights the candidate's professional credentials, achievements, or prior political experience as central to their identity.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight the candidate's professional credentials, achievements, or prior political experience as central to their identity?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 7,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Explicit Mention of Identity Categories",
+      "definition": "The narrative explicitly references the candidate's identity categories (e.g., race, gender, LGBTQ status, disability, immigrant background) as central to their story.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography explicitly reference the candidate's identity categories (e.g., race, gender, LGBTQ status, disability, immigrant background) as central to their story?",
+      "parent_theme": "Identity and Diversity Emphasis",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Community Service or Grassroots Engagement",
+      "definition": "The narrative emphasizes community service, grassroots organizing, or engagement with local organizations as a core part of the candidate's background.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize community service, grassroots organizing, or engagement with local organizations as a core part of the candidate's background?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 8,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business Ownership or Entrepreneurship",
+      "definition": "The narrative highlights business ownership, entrepreneurship, or private sector leadership as a core qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business ownership, entrepreneurship, or private sector leadership as a core qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 5,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Military Service",
+      "definition": "The narrative highlights military service or veteran status as a significant part of the candidate's identity or qualifications.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight military service or veteran status as a significant part of the candidate's identity or qualifications?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Social Justice or Progressive Values",
+      "definition": "The narrative expresses a commitment to social justice, progressive values, or advocacy for marginalized groups.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography express a commitment to social justice, progressive values, or advocacy for marginalized groups?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 7,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Conservative or Traditional Values",
+      "definition": "The narrative expresses a commitment to conservative, traditional, or libertarian values (e.g., limited government, individual responsibility, constitutional rights).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography express a commitment to conservative, traditional, or libertarian values (e.g., limited government, individual responsibility, constitutional rights)?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 6,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Explicit Partisan Identification",
+      "definition": "The narrative explicitly identifies the candidate's political party affiliation or alignment with partisan values.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography explicitly identify the candidate's political party affiliation or alignment with partisan values?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Expertise or Specific Policy Positions",
+      "definition": "The narrative highlights the candidate's policy expertise, specific policy positions, or technical knowledge as a core qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight the candidate's policy expertise, specific policy positions, or technical knowledge as a core qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Systemic or Structural Issues",
+      "definition": "The narrative frames problems as systemic or structural (e.g., inequality, discrimination) and emphasizes the need for systemic change.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography frame problems as systemic or structural (e.g., inequality, discrimination) and emphasize the need for systemic change?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 5,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Individual Achievement and Self-Made Success",
+      "definition": "The narrative emphasizes individual achievement, self-made success, or upward mobility through personal effort.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize individual achievement, self-made success, or upward mobility through personal effort?",
+      "parent_theme": "Achievement Framing",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Collective Action or Community Relationships",
+      "definition": "The narrative emphasizes collective action, collaboration, or strong community relationships as central to the candidate's approach.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize collective action, collaboration, or strong community relationships as central to the candidate's approach?",
+      "parent_theme": "Achievement Framing",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Family Background of Hardship or Marginalization",
+      "definition": "The narrative describes the candidate's family background as involving hardship, poverty, working-class roots, or experiences of marginalization.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe the candidate's family background as involving hardship, poverty, working-class roots, or experiences of marginalization?",
+      "parent_theme": "Family Narrative",
+      "n_supporting_hypotheses": 5,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Family Background of Professional or Military Success",
+      "definition": "The narrative describes the candidate's family background as involving professional, business, or military success and stability.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography describe the candidate's family background as involving professional, business, or military success and stability?",
+      "parent_theme": "Family Narrative",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Education as Personal Transformation",
+      "definition": "The narrative presents education as a tool for personal transformation or overcoming obstacles, rather than as a standard credential.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography present education as a tool for personal transformation or overcoming obstacles, rather than as a standard credential?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Prestigious or Multiple Academic Credentials",
+      "definition": "The narrative highlights prestigious academic credentials, multiple degrees, or academic roles as a core part of the candidate's qualifications.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight prestigious academic credentials, multiple degrees, or academic roles as a core part of the candidate's qualifications?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business or Military Credentials over Academic Credentials",
+      "definition": "The narrative highlights business or military credentials as more important than academic credentials.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business or military credentials as more important than academic credentials?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Direct Service to Vulnerable or Marginalized Populations",
+      "definition": "The narrative describes direct service, advocacy, or work with vulnerable or marginalized populations as a core part of the candidate's background.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe direct service, advocacy, or work with vulnerable or marginalized populations as a core part of the candidate's background?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Leadership, Management, or Command Experience",
+      "definition": "The narrative highlights leadership, management, or command experience as a core qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight leadership, management, or command experience as a core qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Political Outsider or Newcomer Status",
+      "definition": "The narrative presents the candidate as a political outsider, newcomer, or someone challenging the political establishment.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography present the candidate as a political outsider, newcomer, or someone challenging the political establishment?",
+      "parent_theme": "Political Establishment Alignment",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Political Insider or Established Professional Status",
+      "definition": "The narrative presents the candidate as an experienced political insider or established professional within political networks.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography present the candidate as an experienced political insider or established professional within political networks?",
+      "parent_theme": "Political Establishment Alignment",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Local Community Rootedness",
+      "definition": "The narrative emphasizes the candidate's deep roots, long-term commitment, or strong connections to a specific local community or district.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize the candidate's deep roots, long-term commitment, or strong connections to a specific local community or district?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on National or Global Experience",
+      "definition": "The narrative emphasizes the candidate's national or global experience, accomplishments, or deployments over local community ties.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize the candidate's national or global experience, accomplishments, or deployments over local community ties?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Priorities: Social Equity, Healthcare, Education, Environment",
+      "definition": "The narrative highlights policy priorities such as social equity, healthcare access, education, or environmental protection.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight policy priorities such as social equity, healthcare access, education, or environmental protection?",
+      "parent_theme": "Policy Issue Priorities",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Priorities: Economic Growth, Security, Deregulation",
+      "definition": "The narrative highlights policy priorities such as economic growth, job creation, border security, or deregulation.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight policy priorities such as economic growth, job creation, border security, or deregulation?",
+      "parent_theme": "Policy Issue Priorities",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Systemic Issues",
+      "definition": "The narrative critiques systemic issues or policies in general, rather than focusing critique on a specific party or ideology.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography critique systemic issues or policies in general, rather than focusing critique on a specific party or ideology?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Progressive or Democratic Policies",
+      "definition": "The narrative critiques progressive or Democratic policies specifically.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography critique progressive or Democratic policies specifically?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Awards, Honors, or Formal Recognition",
+      "definition": "The narrative mentions awards, recognitions, or formal honors as part of the candidate's credentials.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography mention awards, recognitions, or formal honors as part of the candidate's credentials?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Emotional, Personal, or First-Person Storytelling",
+      "definition": "The narrative uses emotional, personal, or first-person storytelling to connect with readers.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography use emotional, personal, or first-person storytelling to connect with readers?",
+      "parent_theme": "Narrative Style",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Structured, Fact-Driven, or Formal Narrative",
+      "definition": "The narrative is structured, fact-driven, or formal, focusing on policy and governance rather than personal storytelling.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Is the biography structured, fact-driven, or formal, focusing on policy and governance rather than personal storytelling?",
+      "parent_theme": "Narrative Style",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Direct Personal Experience with Policy Problems",
+      "definition": "The narrative emphasizes the candidate's direct personal experience with the problems they seek to address (e.g., healthcare, housing, gun violence).",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize the candidate's direct personal experience with the problems they seek to address (e.g., healthcare, housing, gun violence)?",
+      "parent_theme": "Problem Knowledge Source",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Professional or Technical Expertise about Policy Problems",
+      "definition": "The narrative emphasizes the candidate's professional expertise or technical knowledge about the problems they seek to address.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize the candidate's professional expertise or technical knowledge about the problems they seek to address?",
+      "parent_theme": "Problem Knowledge Source",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Working-Class or Marginalized Class Origin",
+      "definition": "The narrative describes the candidate as coming from a working-class or marginalized background.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe the candidate as coming from a working-class or marginalized background?",
+      "parent_theme": "Class Origin",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Middle-Class or Professional Class Origin",
+      "definition": "The narrative describes the candidate as coming from a middle-class or professional background.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography describe the candidate as coming from a middle-class or professional background?",
+      "parent_theme": "Class Origin",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Experience with Poverty, Homelessness, or Economic Insecurity",
+      "definition": "The narrative references personal or family experiences with poverty, homelessness, or economic insecurity.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography reference personal or family experiences with poverty, homelessness, or economic insecurity?",
+      "parent_theme": "Family Narrative",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Simultaneous Work and Study",
+      "definition": "The narrative describes the candidate working while studying or managing multiple responsibilities simultaneously.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe the candidate working while studying or managing multiple responsibilities simultaneously?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Sequential Education and Career Phases",
+      "definition": "The narrative presents education and career as sequential, non-overlapping phases.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography present education and career as sequential, non-overlapping phases?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Mentorship or Inspiration from Community Members",
+      "definition": "The narrative references mentorship, role models, or inspiration from community members or everyday people.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography reference mentorship, role models, or inspiration from community members or everyday people?",
+      "parent_theme": "Inspiration Source",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Inspiration from Institutional Credentials or Elite Networks",
+      "definition": "The narrative references institutional credentials, elite education, or professional networks as sources of inspiration.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography reference institutional credentials, elite education, or professional networks as sources of inspiration?",
+      "parent_theme": "Inspiration Source",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Teaching, Mentoring, or Direct Service Work",
+      "definition": "The narrative describes teaching, mentoring, or direct service work with vulnerable populations.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe teaching, mentoring, or direct service work with vulnerable populations?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Management or Command Experience",
+      "definition": "The narrative describes leadership, management, or command experience as a core qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography describe leadership, management, or command experience as a core qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Government Regulation or Overreach",
+      "definition": "The narrative includes critique or opposition to government regulation, big government, or perceived government overreach.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography include critique or opposition to government regulation, big government, or perceived government overreach?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Collaboration and Bipartisan Coalition Building",
+      "definition": "The narrative describes working across party lines or building bipartisan coalitions on specific issues.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe working across party lines or building bipartisan coalitions on specific issues?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Specific Political Figures or Movements",
+      "definition": "The narrative includes explicit mention of opposition to specific political figures or movements (e.g., Trump, calls for impeachment).",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography include explicit mention of opposition to specific political figures or movements (e.g., Trump, calls for impeachment)?",
+      "parent_theme": "Political Alignment and Opposition",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Support for Conservative Political Figures or Movements",
+      "definition": "The narrative includes explicit mention of support for conservative political figures or movements (e.g., Trump-era policies).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography include explicit mention of support for conservative political figures or movements (e.g., Trump-era policies)?",
+      "parent_theme": "Political Alignment and Opposition",
+      "n_supporting_hypotheses": 1,
+      "direction_conflict": false,
+      "source_splits": [
+        "split1"
+      ]
+    }
+  ],
+  "split2_features": [
+    {
+      "feature_name": "Emphasis on Conservative vs. Progressive Political Values",
+      "definition": "The biography predominantly emphasizes conservative political values (e.g., limited government, patriotism, law-and-order, opposition to government expansion) or progressive values (e.g., social justice, inclusivity, government intervention in social and economic issues).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography predominantly emphasize conservative political values over progressive values?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 8,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Individual Achievement vs. Community Engagement",
+      "definition": "The biography focuses on individual achievements (business success, military service, personal accomplishments) rather than community organizing, collective action, or advocacy.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography focus more on individual achievements than on community engagement or collective action?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 7,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Military or Law Enforcement Background",
+      "definition": "The biography highlights military service or law enforcement experience as a significant credential or identity.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight military or law enforcement experience as a significant credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 7,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business Ownership or Entrepreneurship",
+      "definition": "The biography highlights business ownership, entrepreneurship, or private sector leadership as a primary credential.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business ownership or entrepreneurship as a primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 6,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Public Service, Healthcare, Education, or Social Justice Background",
+      "definition": "The biography highlights experience in public service, healthcare, education, activism, or social justice as a primary credential.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight public service, healthcare, education, activism, or social justice as a primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 7,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Traditional Family Structure and Heritage",
+      "definition": "The biography highlights traditional family structures (spouse, children), generational family presence, or ancestral heritage as part of the candidate's identity.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight traditional family structure or generational family heritage as part of the candidate's identity?",
+      "parent_theme": "Family and Identity",
+      "n_supporting_hypotheses": 5,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Diverse, Non-Traditional, or Immigrant Family Background",
+      "definition": "The biography highlights diverse, non-traditional, immigrant, or multicultural family backgrounds as part of the candidate's identity.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight diverse, non-traditional, immigrant, or multicultural family backgrounds?",
+      "parent_theme": "Family and Identity",
+      "n_supporting_hypotheses": 5,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Religious Faith or Affiliation",
+      "definition": "The biography explicitly mentions religious faith, religious affiliation, or involvement in faith-based activities as a key part of identity or motivation.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography explicitly mention religious faith or affiliation as a key part of identity or motivation?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 5,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Secular Community Engagement and Social Justice",
+      "definition": "The biography emphasizes secular community engagement and social justice activism, with little or no mention of religion.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize secular community engagement and social justice activism, with little or no mention of religion?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Achievements Related to Fiscal Responsibility and Government Reform",
+      "definition": "The biography highlights specific legislative or policy achievements related to fiscal responsibility, tax reduction, government reform, or opposition to government expansion.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight policy achievements related to fiscal responsibility, tax reduction, or government reform?",
+      "parent_theme": "Policy Achievements",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Advocacy for Marginalized Communities and Structural Reform",
+      "definition": "The biography highlights advocacy for marginalized communities, social justice, or structural reforms such as healthcare or criminal justice reform.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight advocacy for marginalized communities or structural reforms?",
+      "parent_theme": "Policy Achievements",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business, Military, or Local Government as Primary Credential",
+      "definition": "The biography highlights business, military, or local government experience as the candidate's primary credential.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business, military, or local government experience as the primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Activism, Education, or Social Justice as Primary Credential",
+      "definition": "The biography highlights activism, education, or professional roles connected to social justice, public service, or community work as the primary credential.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight activism, education, or social justice as the primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Formal, Traditional, and Achievement-Focused Tone",
+      "definition": "The biography uses formal, traditional language and focuses on measurable achievements (e.g., legislation passed, awards won, business growth).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography use formal, traditional language and focus on measurable achievements?",
+      "parent_theme": "Tone and Style",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Personal Stories, Emotional Appeals, and Lived Experience with Systemic Issues",
+      "definition": "The biography includes personal stories, emotional appeals, and discussions of lived experience with systemic issues.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography include personal stories, emotional appeals, and lived experience with systemic issues?",
+      "parent_theme": "Tone and Style",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Specific Conservative Policy Positions",
+      "definition": "The biography identifies strongly with conservative policy positions such as Second Amendment rights, opposition to Obamacare, tax reduction, pro-life stances, and opposition to government mandates.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography identify strongly with specific conservative policy positions?",
+      "parent_theme": "Policy Position Emphasis",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Progressive Policy Positions",
+      "definition": "The biography emphasizes progressive policy positions such as healthcare access, environmental protection, civil rights expansion, and social equity.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize progressive policy positions such as healthcare access, environmental protection, or civil rights expansion?",
+      "parent_theme": "Policy Position Emphasis",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Narrative of Fighting Government Overreach vs. Advocating for Expanded Social Programs",
+      "definition": "The biography frames the candidate as fighting against government overreach and bureaucracy, or as advocating for expanded social programs and government accountability.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography frame the candidate as fighting against government overreach and bureaucracy?",
+      "parent_theme": "Narrative Framing of Government Role",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Narrative of Advocating for Expanded Social Programs and Government Accountability",
+      "definition": "The biography frames the candidate as advocating for expanded social programs, government accountability, and addressing inequality.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography frame the candidate as advocating for expanded social programs and government accountability?",
+      "parent_theme": "Narrative Framing of Government Role",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Traditional American Values and Patriotism",
+      "definition": "The biography emphasizes traditional American values, patriotism, and the 'American Dream.'",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize traditional American values and patriotism?",
+      "parent_theme": "Value Orientation",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Social Equity, Diversity, and Inclusion",
+      "definition": "The biography emphasizes social equity, diversity, and inclusion as core values.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize social equity, diversity, and inclusion as core values?",
+      "parent_theme": "Value Orientation",
+      "n_supporting_hypotheses": 4,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Overcoming Adversity in Professional Context",
+      "definition": "The biography uses personal anecdotes of overcoming adversity, particularly in a professional or military context.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography use personal anecdotes of overcoming adversity in a professional or military context?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Overcoming Adversity Related to Social or Systemic Issues",
+      "definition": "The biography uses personal stories to highlight overcoming adversity related to social or systemic issues, such as poverty, discrimination, or healthcare access.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography use personal stories to highlight overcoming adversity related to social or systemic issues?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Credentials: Business/Entrepreneurship vs. Advanced Degrees/Professional Expertise",
+      "definition": "The biography emphasizes business ownership and entrepreneurial experience as credentials, or emphasizes advanced degrees and professional expertise (e.g., MD, PhD, law, engineering).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize business ownership or entrepreneurial experience as a credential over advanced degrees or professional expertise?",
+      "parent_theme": "Credentials",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Credentials: Advanced Degrees/Professional Expertise",
+      "definition": "The biography emphasizes advanced degrees and professional expertise (e.g., MD, PhD, law, engineering) as credentials.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize advanced degrees or professional expertise as a credential?",
+      "parent_theme": "Credentials",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Incumbency and Established Government Service",
+      "definition": "The biography indicates that the candidate is a current officeholder or has established government service.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography indicate that the candidate is a current officeholder or has established government service?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Challenger or First-Time Candidate Status",
+      "definition": "The biography indicates that the candidate is a non-incumbent challenger or first-time candidate.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography indicate that the candidate is a non-incumbent challenger or first-time candidate?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Individual Responsibility and Private Sector Solutions",
+      "definition": "The biography emphasizes individual responsibility and private sector solutions to problems, rather than collective or government-led solutions.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize individual responsibility and private sector solutions to problems?",
+      "parent_theme": "Solution Locus",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Collective Solutions and Government's Role",
+      "definition": "The biography emphasizes collective solutions and the government's role in addressing problems.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize collective solutions and the government's role in addressing problems?",
+      "parent_theme": "Solution Locus",
+      "n_supporting_hypotheses": 3,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Financial Metrics and Fundraising Success",
+      "definition": "The biography references financial metrics or fundraising success as evidence of effectiveness.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography reference financial metrics or fundraising success as evidence of effectiveness?",
+      "parent_theme": "Metrics of Success",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Social Metrics such as Community Engagement and Educational Outcomes",
+      "definition": "The biography references social metrics such as community engagement or educational outcomes as evidence of effectiveness.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography reference social metrics such as community engagement or educational outcomes as evidence of effectiveness?",
+      "parent_theme": "Metrics of Success",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Bipartisan Cooperation and Working Across Party Lines",
+      "definition": "The biography highlights bipartisan cooperation or working across party lines.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight bipartisan cooperation or working across party lines?",
+      "parent_theme": "Partisan Positioning",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Party Ideology and Leadership Alignment",
+      "definition": "The biography emphasizes alignment with the candidate's party ideology and leadership.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize alignment with the candidate's party ideology and leadership?",
+      "parent_theme": "Partisan Positioning",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Personal Experiences with Policy Consequences",
+      "definition": "The biography describes personal experiences with the consequences of policy (e.g., witnessing suffering, treating patients, experiencing discrimination).",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe personal experiences with the consequences of policy?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Personal Experiences with Economic Success or Overcoming Obstacles",
+      "definition": "The biography describes personal experiences with economic success or overcoming personal obstacles.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography describe personal experiences with economic success or overcoming personal obstacles?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Listening to Community Members and Centering Their Voices",
+      "definition": "The biography emphasizes listening to community members and centering their voices in problem-solving.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize listening to community members and centering their voices in problem-solving?",
+      "parent_theme": "Problem-Solving Approach",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Solving Problems Through Expertise and Decisive Action",
+      "definition": "The biography emphasizes solving problems through the candidate's expertise and decisive action.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize solving problems through the candidate's expertise and decisive action?",
+      "parent_theme": "Problem-Solving Approach",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Emotional Language and Personal Pronouns",
+      "definition": "The biography uses emotional language and personal pronouns when describing motivation.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography use emotional language and personal pronouns when describing motivation?",
+      "parent_theme": "Narrative Tone",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Abstract Principles and Duty-Based Language",
+      "definition": "The biography uses abstract principles and duty-based language when describing motivation.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography use abstract principles and duty-based language when describing motivation?",
+      "parent_theme": "Narrative Tone",
+      "n_supporting_hypotheses": 2,
+      "direction_conflict": false,
+      "source_splits": [
+        "split2"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "feature_name": "Emphasis on Personal Struggle or Adversity",
+      "definition": "The biography emphasizes the candidate's personal struggles, hardships, or experiences of overcoming adversity, including stories related to social or systemic issues such as poverty, discrimination, or healthcare access.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize the candidate's personal struggles, hardships, or experiences of overcoming adversity, including stories related to social or systemic issues?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 14,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_e729cf32031b31db",
+      "_merged_from": [
+        "c_e729cf32031b31db"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Professional Credentials or Achievements",
+      "definition": "The biography highlights the candidate's professional credentials, achievements, or prior political experience as central to their identity.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight the candidate's professional credentials, achievements, or prior political experience as central to their identity?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 7,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_c3cecad2761add2a",
+      "_merged_from": [
+        "c_c3cecad2761add2a"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business Ownership or Entrepreneurship",
+      "definition": "The biography highlights business ownership, entrepreneurship, or private sector leadership as a core or primary qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business ownership, entrepreneurship, or private sector leadership as a core or primary qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 11,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_0312baade9584bf8",
+      "_merged_from": [
+        "c_0312baade9584bf8"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Military or Law Enforcement Background",
+      "definition": "The biography highlights military service or law enforcement experience as a significant credential or identity.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight military service or law enforcement experience as a significant credential or identity?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 11,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_59600fb045ec3cbf",
+      "_merged_from": [
+        "c_59600fb045ec3cbf"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Public Service, Healthcare, Education, or Social Justice Background",
+      "definition": "The biography highlights experience in public service, healthcare, education, activism, or social justice as a primary credential.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight public service, healthcare, education, activism, or social justice as a primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 7,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_f862bd10c3a02575",
+      "_merged_from": [
+        "c_f862bd10c3a02575"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Community Service or Grassroots Engagement",
+      "definition": "The biography emphasizes community service, grassroots organizing, or engagement with local organizations as a core part of the candidate's background.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize community service, grassroots organizing, or engagement with local organizations as a core part of the candidate's background?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 8,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_af8369eca7a18595",
+      "_merged_from": [
+        "c_af8369eca7a18595"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Traditional Family Structure and Heritage",
+      "definition": "The biography highlights traditional family structures (spouse, children), generational family presence, or ancestral heritage as part of the candidate's identity.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight traditional family structure or generational family heritage as part of the candidate's identity?",
+      "parent_theme": "Family and Identity",
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_d90809ce153e789a",
+      "_merged_from": [
+        "c_d90809ce153e789a"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Diverse, Non-Traditional, or Immigrant Family Background",
+      "definition": "The biography highlights diverse, non-traditional, immigrant, or multicultural family backgrounds as part of the candidate's identity.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight diverse, non-traditional, immigrant, or multicultural family backgrounds?",
+      "parent_theme": "Family and Identity",
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_21bea577c710dc67",
+      "_merged_from": [
+        "c_21bea577c710dc67"
+      ]
+    },
+    {
+      "feature_name": "Explicit Mention of Identity Categories",
+      "definition": "The biography explicitly references the candidate's identity categories (e.g., race, gender, LGBTQ status, disability, immigrant background) as central to their story.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography explicitly reference the candidate's identity categories (e.g., race, gender, LGBTQ status, disability, immigrant background) as central to their story?",
+      "parent_theme": "Identity and Diversity Emphasis",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_1a3b56206d15988e",
+      "_merged_from": [
+        "c_1a3b56206d15988e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Religious Faith or Affiliation",
+      "definition": "The biography explicitly mentions religious faith, religious affiliation, or involvement in faith-based activities as a key part of identity or motivation.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography explicitly mention religious faith or affiliation as a key part of identity or motivation?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_e97cd0417bff17d7",
+      "_merged_from": [
+        "c_e97cd0417bff17d7"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Secular Community Engagement and Social Justice",
+      "definition": "The biography emphasizes secular community engagement and social justice activism, with little or no mention of religion.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize secular community engagement and social justice activism, with little or no mention of religion?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_07b2b5f4644d6ddf",
+      "_merged_from": [
+        "c_07b2b5f4644d6ddf"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Expertise or Specific Policy Positions",
+      "definition": "The biography highlights the candidate's policy expertise, specific policy positions, or technical knowledge as a core qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight the candidate's policy expertise, specific policy positions, or technical knowledge as a core qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_437250f5be2cb860",
+      "_merged_from": [
+        "c_437250f5be2cb860"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Achievements Related to Fiscal Responsibility and Government Reform",
+      "definition": "The biography highlights specific legislative or policy achievements related to fiscal responsibility, tax reduction, government reform, or opposition to government expansion.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight policy achievements related to fiscal responsibility, tax reduction, or government reform?",
+      "parent_theme": "Policy Achievements",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_dc2d25ec55b6d88d",
+      "_merged_from": [
+        "c_dc2d25ec55b6d88d"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Advocacy for Marginalized Communities and Structural Reform",
+      "definition": "The biography highlights advocacy for marginalized communities, social justice, or structural reforms such as healthcare or criminal justice reform.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight advocacy for marginalized communities or structural reforms?",
+      "parent_theme": "Policy Achievements",
+      "n_supporting_hypotheses": 11,
+      "source_splits": [
+        "split2",
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_342dd7059c8aba6b",
+      "_merged_from": [
+        "c_342dd7059c8aba6b",
+        "c_8ca3a73723149cf6"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Conservative or Traditional Values",
+      "definition": "The biography expresses a commitment to conservative, traditional, or libertarian values (e.g., limited government, individual responsibility, constitutional rights).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography express a commitment to conservative, traditional, or libertarian values (e.g., limited government, individual responsibility, constitutional rights)?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 6,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_43560849237d4065",
+      "_merged_from": [
+        "c_43560849237d4065"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Explicit Partisan Identification or Party Ideology Alignment",
+      "definition": "The biography explicitly identifies the candidate's political party affiliation or emphasizes alignment with the candidate's party ideology and leadership.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography explicitly identify the candidate's political party affiliation or emphasize alignment with the candidate's party ideology and leadership?",
+      "parent_theme": "Partisan Positioning",
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_2b38421ec2bd48af",
+      "_merged_from": [
+        "c_2b38421ec2bd48af"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Bipartisan Cooperation and Working Across Party Lines",
+      "definition": "The biography highlights bipartisan cooperation or working across party lines.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight bipartisan cooperation or working across party lines?",
+      "parent_theme": "Partisan Positioning",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_794542301324c224",
+      "_merged_from": [
+        "c_794542301324c224"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Systemic or Structural Issues",
+      "definition": "The biography frames problems as systemic or structural (e.g., inequality, discrimination) and emphasizes the need for systemic change.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography frame problems as systemic or structural (e.g., inequality, discrimination) and emphasize the need for systemic change?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_55f2c5c7b7c7b175",
+      "_merged_from": [
+        "c_55f2c5c7b7c7b175"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Individual Achievement and Self-Made Success",
+      "definition": "The biography emphasizes individual achievement, self-made success, or upward mobility through personal effort.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize individual achievement, self-made success, or upward mobility through personal effort?",
+      "parent_theme": "Achievement Framing",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_7119fc41529d0c93",
+      "_merged_from": [
+        "c_7119fc41529d0c93"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Collective Action or Community Relationships",
+      "definition": "The biography emphasizes collective action, collaboration, or strong community relationships as central to the candidate's approach.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize collective action, collaboration, or strong community relationships as central to the candidate's approach?",
+      "parent_theme": "Achievement Framing",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_b06095d2a670989e",
+      "_merged_from": [
+        "c_b06095d2a670989e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Family Background of Hardship or Marginalization",
+      "definition": "The biography describes the candidate's family background as involving hardship, poverty, working-class roots, or experiences of marginalization.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe the candidate's family background as involving hardship, poverty, working-class roots, or experiences of marginalization?",
+      "parent_theme": "Family Narrative",
+      "n_supporting_hypotheses": 9,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_74a2cfc10517fbf8",
+      "_merged_from": [
+        "c_74a2cfc10517fbf8",
+        "c_355bafc7fa6009c5",
+        "c_f9dbd418c8a3e8e1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Family Background of Professional or Military Success",
+      "definition": "The biography describes the candidate's family background as involving professional, business, or military success and stability.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography describe the candidate's family background as involving professional, business, or military success and stability?",
+      "parent_theme": "Family Narrative",
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_ce8d40f87b3f7fb1",
+      "_merged_from": [
+        "c_ce8d40f87b3f7fb1",
+        "c_2fb072f06c945504"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Education as Personal Transformation",
+      "definition": "The biography presents education as a tool for personal transformation or overcoming obstacles, rather than as a standard credential.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography present education as a tool for personal transformation or overcoming obstacles, rather than as a standard credential?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_31bab6e5ee509d1b",
+      "_merged_from": [
+        "c_31bab6e5ee509d1b"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Prestigious or Multiple Academic Credentials",
+      "definition": "The biography highlights prestigious academic credentials, multiple degrees, or academic roles as a core part of the candidate's qualifications.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight prestigious academic credentials, multiple degrees, or academic roles as a core part of the candidate's qualifications?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_a23a8bd338b519bf",
+      "_merged_from": [
+        "c_a23a8bd338b519bf"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business or Military Credentials over Academic Credentials",
+      "definition": "The biography highlights business or military credentials as more important than academic credentials.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business or military credentials as more important than academic credentials?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_ff1b9a420ea67f08",
+      "_merged_from": [
+        "c_ff1b9a420ea67f08"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Direct Service to Vulnerable or Marginalized Populations",
+      "definition": "The biography describes direct service, advocacy, or work with vulnerable or marginalized populations as a core part of the candidate's background.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe direct service, advocacy, or work with vulnerable or marginalized populations as a core part of the candidate's background?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 5,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_097cd62f7563616a",
+      "_merged_from": [
+        "c_097cd62f7563616a",
+        "c_1e675f76ff6c2d2b"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Leadership, Management, or Command Experience",
+      "definition": "The biography highlights leadership, management, or command experience as a core qualification.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight leadership, management, or command experience as a core qualification?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_8c7e4d89d73f8211",
+      "_merged_from": [
+        "c_8c7e4d89d73f8211",
+        "c_3866a2caaf207a9c"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Political Outsider or Newcomer Status",
+      "definition": "The biography presents the candidate as a political outsider, newcomer, or someone challenging the political establishment.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography present the candidate as a political outsider, newcomer, or someone challenging the political establishment?",
+      "parent_theme": "Political Establishment Alignment",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_d745dc2784f1bf5e",
+      "_merged_from": [
+        "c_d745dc2784f1bf5e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Political Insider or Established Professional Status",
+      "definition": "The biography presents the candidate as an experienced political insider or established professional within political networks.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography present the candidate as an experienced political insider or established professional within political networks?",
+      "parent_theme": "Political Establishment Alignment",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_fb9ef785d0d8f7ca",
+      "_merged_from": [
+        "c_fb9ef785d0d8f7ca"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Local Community Rootedness",
+      "definition": "The biography emphasizes the candidate's deep roots, long-term commitment, or strong connections to a specific local community or district.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize the candidate's deep roots, long-term commitment, or strong connections to a specific local community or district?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_7a4e05a8a9a1dfa9",
+      "_merged_from": [
+        "c_7a4e05a8a9a1dfa9"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on National or Global Experience",
+      "definition": "The biography emphasizes the candidate's national or global experience, accomplishments, or deployments over local community ties.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize the candidate's national or global experience, accomplishments, or deployments over local community ties?",
+      "parent_theme": "Community Engagement",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_aa9ae19af2ee1ca3",
+      "_merged_from": [
+        "c_aa9ae19af2ee1ca3"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Priorities: Social Equity, Healthcare, Education, Environment",
+      "definition": "The biography highlights policy priorities such as social equity, healthcare access, education, or environmental protection.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight policy priorities such as social equity, healthcare access, education, or environmental protection?",
+      "parent_theme": "Policy Issue Priorities",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_81f3b7650404f703",
+      "_merged_from": [
+        "c_81f3b7650404f703"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Policy Priorities: Economic Growth, Security, Deregulation",
+      "definition": "The biography highlights policy priorities such as economic growth, job creation, border security, or deregulation.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight policy priorities such as economic growth, job creation, border security, or deregulation?",
+      "parent_theme": "Policy Issue Priorities",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_a612c7b4d8b6c902",
+      "_merged_from": [
+        "c_a612c7b4d8b6c902"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Systemic Issues",
+      "definition": "The biography critiques systemic issues or policies in general, rather than focusing critique on a specific party or ideology.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography critique systemic issues or policies in general, rather than focusing critique on a specific party or ideology?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_3fef54f15e32410f",
+      "_merged_from": [
+        "c_3fef54f15e32410f"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Progressive or Democratic Policies",
+      "definition": "The biography critiques progressive or Democratic policies specifically.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography critique progressive or Democratic policies specifically?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_d1754fcbe23c630e",
+      "_merged_from": [
+        "c_d1754fcbe23c630e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Awards, Honors, or Formal Recognition",
+      "definition": "The biography mentions awards, recognitions, or formal honors as part of the candidate's credentials.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography mention awards, recognitions, or formal honors as part of the candidate's credentials?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_af33ae295e21b223",
+      "_merged_from": [
+        "c_af33ae295e21b223"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Emotional, Personal, or First-Person Storytelling",
+      "definition": "The biography uses emotional, personal, or first-person storytelling to connect with readers.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography use emotional, personal, or first-person storytelling to connect with readers?",
+      "parent_theme": "Narrative Style",
+      "n_supporting_hypotheses": 6,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_bd7c34ce088d533a",
+      "_merged_from": [
+        "c_bd7c34ce088d533a",
+        "c_3b0850381fd00356"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Structured, Fact-Driven, or Formal Narrative",
+      "definition": "The biography is structured, fact-driven, or formal, focusing on policy and governance rather than personal storytelling.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Is the biography structured, fact-driven, or formal, focusing on policy and governance rather than personal storytelling?",
+      "parent_theme": "Narrative Style",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_55102b8c3df6491e",
+      "_merged_from": [
+        "c_55102b8c3df6491e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Direct Personal Experience with Policy Problems",
+      "definition": "The biography emphasizes the candidate's direct personal experience with the problems they seek to address (e.g., healthcare, housing, gun violence).",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize the candidate's direct personal experience with the problems they seek to address (e.g., healthcare, housing, gun violence)?",
+      "parent_theme": "Problem Knowledge Source",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split1",
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_b0a19dcff3d2c124",
+      "_merged_from": [
+        "c_b0a19dcff3d2c124",
+        "c_4a8c0162e08e9e1d"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Professional or Technical Expertise about Policy Problems",
+      "definition": "The biography emphasizes the candidate's professional expertise or technical knowledge about the problems they seek to address.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize the candidate's professional expertise or technical knowledge about the problems they seek to address?",
+      "parent_theme": "Problem Knowledge Source",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_25dbc95c2f9ff235",
+      "_merged_from": [
+        "c_25dbc95c2f9ff235"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Simultaneous Work and Study",
+      "definition": "The biography describes the candidate working while studying or managing multiple responsibilities simultaneously.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography describe the candidate working while studying or managing multiple responsibilities simultaneously?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_38270cd6bb4f162b",
+      "_merged_from": [
+        "c_38270cd6bb4f162b"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Sequential Education and Career Phases",
+      "definition": "The biography presents education and career as sequential, non-overlapping phases.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography present education and career as sequential, non-overlapping phases?",
+      "parent_theme": "Education Narrative",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_53f97fe7347ff161",
+      "_merged_from": [
+        "c_53f97fe7347ff161"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Mentorship or Inspiration from Community Members",
+      "definition": "The biography references mentorship, role models, or inspiration from community members or everyday people.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography reference mentorship, role models, or inspiration from community members or everyday people?",
+      "parent_theme": "Inspiration Source",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_6e873358f2a07e7d",
+      "_merged_from": [
+        "c_6e873358f2a07e7d"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Inspiration from Institutional Credentials or Elite Networks",
+      "definition": "The biography references institutional credentials, elite education, or professional networks as sources of inspiration.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography reference institutional credentials, elite education, or professional networks as sources of inspiration?",
+      "parent_theme": "Inspiration Source",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_726fc940097a3674",
+      "_merged_from": [
+        "c_726fc940097a3674"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Government Regulation or Overreach",
+      "definition": "The biography includes critique or opposition to government regulation, big government, or perceived government overreach.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography include critique or opposition to government regulation, big government, or perceived government overreach?",
+      "parent_theme": "Political Values Orientation",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_6c4158dd334bc8e1",
+      "_merged_from": [
+        "c_6c4158dd334bc8e1"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Critique of Specific Political Figures or Movements",
+      "definition": "The biography includes explicit mention of opposition to specific political figures or movements (e.g., Trump, calls for impeachment).",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography include explicit mention of opposition to specific political figures or movements (e.g., Trump, calls for impeachment)?",
+      "parent_theme": "Political Alignment and Opposition",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_1a91de167cec450e",
+      "_merged_from": [
+        "c_1a91de167cec450e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Support for Conservative Political Figures or Movements",
+      "definition": "The biography includes explicit mention of support for conservative political figures or movements (e.g., Trump-era policies).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography include explicit mention of support for conservative political figures or movements (e.g., Trump-era policies)?",
+      "parent_theme": "Political Alignment and Opposition",
+      "n_supporting_hypotheses": 1,
+      "source_splits": [
+        "split1"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_18f50b3fe4f9336a",
+      "_merged_from": [
+        "c_18f50b3fe4f9336a"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Conservative vs. Progressive Political Values",
+      "definition": "The biography predominantly emphasizes conservative political values (e.g., limited government, patriotism, law-and-order, opposition to government expansion) or progressive values (e.g., social justice, inclusivity, government intervention in social and economic issues).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography predominantly emphasize conservative political values over progressive values?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 8,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_0fce3e131147ebd6",
+      "_merged_from": [
+        "c_0fce3e131147ebd6"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Individual Achievement vs. Community Engagement",
+      "definition": "The biography focuses on individual achievements (business success, military service, personal accomplishments) rather than community organizing, collective action, or advocacy.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography focus more on individual achievements than on community engagement or collective action?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 7,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_ca6de4e54d99e711",
+      "_merged_from": [
+        "c_ca6de4e54d99e711"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Business, Military, or Local Government as Primary Credential",
+      "definition": "The biography highlights business, military, or local government experience as the candidate's primary credential.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography highlight business, military, or local government experience as the primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_27cc306a517b3775",
+      "_merged_from": [
+        "c_27cc306a517b3775"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Activism, Education, or Social Justice as Primary Credential",
+      "definition": "The biography highlights activism, education, or professional roles connected to social justice, public service, or community work as the primary credential.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography highlight activism, education, or social justice as the primary credential?",
+      "parent_theme": "Professional Background",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_f74096daf3bc0eac",
+      "_merged_from": [
+        "c_f74096daf3bc0eac"
+      ]
+    },
+    {
+      "feature_name": "Formal, Traditional, and Achievement-Focused Tone",
+      "definition": "The biography uses formal, traditional language and focuses on measurable achievements (e.g., legislation passed, awards won, business growth).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography use formal, traditional language and focus on measurable achievements?",
+      "parent_theme": "Tone and Style",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_d67b13dd7282959e",
+      "_merged_from": [
+        "c_d67b13dd7282959e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Specific Conservative Policy Positions",
+      "definition": "The biography identifies strongly with conservative policy positions such as Second Amendment rights, opposition to Obamacare, tax reduction, pro-life stances, and opposition to government mandates.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography identify strongly with specific conservative policy positions?",
+      "parent_theme": "Policy Position Emphasis",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_60a775e3a7e51319",
+      "_merged_from": [
+        "c_60a775e3a7e51319"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Progressive Policy Positions",
+      "definition": "The biography emphasizes progressive policy positions such as healthcare access, environmental protection, civil rights expansion, and social equity.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize progressive policy positions such as healthcare access, environmental protection, or civil rights expansion?",
+      "parent_theme": "Policy Position Emphasis",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_9a3cbb6a2266dad3",
+      "_merged_from": [
+        "c_9a3cbb6a2266dad3"
+      ]
+    },
+    {
+      "feature_name": "Narrative of Fighting Government Overreach vs. Advocating for Expanded Social Programs",
+      "definition": "The biography frames the candidate as fighting against government overreach and bureaucracy, or as advocating for expanded social programs and government accountability.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography frame the candidate as fighting against government overreach and bureaucracy?",
+      "parent_theme": "Narrative Framing of Government Role",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_507585978107b3de",
+      "_merged_from": [
+        "c_507585978107b3de"
+      ]
+    },
+    {
+      "feature_name": "Narrative of Advocating for Expanded Social Programs and Government Accountability",
+      "definition": "The biography frames the candidate as advocating for expanded social programs, government accountability, and addressing inequality.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography frame the candidate as advocating for expanded social programs and government accountability?",
+      "parent_theme": "Narrative Framing of Government Role",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_cfc5525c8a84a36a",
+      "_merged_from": [
+        "c_cfc5525c8a84a36a"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Traditional American Values and Patriotism",
+      "definition": "The biography emphasizes traditional American values, patriotism, and the 'American Dream.'",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize traditional American values and patriotism?",
+      "parent_theme": "Value Orientation",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_41a3083988c5c195",
+      "_merged_from": [
+        "c_41a3083988c5c195"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Social Equity, Diversity, and Inclusion",
+      "definition": "The biography emphasizes social equity, diversity, and inclusion as core values.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize social equity, diversity, and inclusion as core values?",
+      "parent_theme": "Value Orientation",
+      "n_supporting_hypotheses": 4,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_0c327d19089082ac",
+      "_merged_from": [
+        "c_0c327d19089082ac"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Overcoming Adversity in Professional Context",
+      "definition": "The biography uses personal anecdotes of overcoming adversity, particularly in a professional or military context.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography use personal anecdotes of overcoming adversity in a professional or military context?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_53029dc31aa911d0",
+      "_merged_from": [
+        "c_53029dc31aa911d0"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Credentials: Business/Entrepreneurship vs. Advanced Degrees/Professional Expertise",
+      "definition": "The biography emphasizes business ownership and entrepreneurial experience as credentials, or emphasizes advanced degrees and professional expertise (e.g., MD, PhD, law, engineering).",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize business ownership or entrepreneurial experience as a credential over advanced degrees or professional expertise?",
+      "parent_theme": "Credentials",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_3b4190e5f3e03304",
+      "_merged_from": [
+        "c_3b4190e5f3e03304"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Credentials: Advanced Degrees/Professional Expertise",
+      "definition": "The biography emphasizes advanced degrees and professional expertise (e.g., MD, PhD, law, engineering) as credentials.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize advanced degrees or professional expertise as a credential?",
+      "parent_theme": "Credentials",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_f2fb929a5c4e4853",
+      "_merged_from": [
+        "c_f2fb929a5c4e4853"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Incumbency and Established Government Service",
+      "definition": "The biography indicates that the candidate is a current officeholder or has established government service.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography indicate that the candidate is a current officeholder or has established government service?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_271abe9e074fcc8e",
+      "_merged_from": [
+        "c_271abe9e074fcc8e"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Challenger or First-Time Candidate Status",
+      "definition": "The biography indicates that the candidate is a non-incumbent challenger or first-time candidate.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography indicate that the candidate is a non-incumbent challenger or first-time candidate?",
+      "parent_theme": null,
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_5262b7358be35136",
+      "_merged_from": [
+        "c_5262b7358be35136"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Individual Responsibility and Private Sector Solutions",
+      "definition": "The biography emphasizes individual responsibility and private sector solutions to problems, rather than collective or government-led solutions.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize individual responsibility and private sector solutions to problems?",
+      "parent_theme": "Solution Locus",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_df9181796149e0c5",
+      "_merged_from": [
+        "c_df9181796149e0c5"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Collective Solutions and Government's Role",
+      "definition": "The biography emphasizes collective solutions and the government's role in addressing problems.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize collective solutions and the government's role in addressing problems?",
+      "parent_theme": "Solution Locus",
+      "n_supporting_hypotheses": 3,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_d01857967e65c0c9",
+      "_merged_from": [
+        "c_d01857967e65c0c9"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Financial Metrics and Fundraising Success",
+      "definition": "The biography references financial metrics or fundraising success as evidence of effectiveness.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography reference financial metrics or fundraising success as evidence of effectiveness?",
+      "parent_theme": "Metrics of Success",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_aa66a86360c04df5",
+      "_merged_from": [
+        "c_aa66a86360c04df5"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Social Metrics such as Community Engagement and Educational Outcomes",
+      "definition": "The biography references social metrics such as community engagement or educational outcomes as evidence of effectiveness.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography reference social metrics such as community engagement or educational outcomes as evidence of effectiveness?",
+      "parent_theme": "Metrics of Success",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_e9c17d5a2a6f2803",
+      "_merged_from": [
+        "c_e9c17d5a2a6f2803"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Personal Experiences with Economic Success or Overcoming Obstacles",
+      "definition": "The biography describes personal experiences with economic success or overcoming personal obstacles.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography describe personal experiences with economic success or overcoming personal obstacles?",
+      "parent_theme": "Personal Narrative",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_d2f8353efb3edef2",
+      "_merged_from": [
+        "c_d2f8353efb3edef2"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Listening to Community Members and Centering Their Voices",
+      "definition": "The biography emphasizes listening to community members and centering their voices in problem-solving.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography emphasize listening to community members and centering their voices in problem-solving?",
+      "parent_theme": "Problem-Solving Approach",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_dd3c30fc72656ef4",
+      "_merged_from": [
+        "c_dd3c30fc72656ef4"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Solving Problems Through Expertise and Decisive Action",
+      "definition": "The biography emphasizes solving problems through the candidate's expertise and decisive action.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography emphasize solving problems through the candidate's expertise and decisive action?",
+      "parent_theme": "Problem-Solving Approach",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_c46fdb6119462b54",
+      "_merged_from": [
+        "c_c46fdb6119462b54"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Emotional Language and Personal Pronouns",
+      "definition": "The biography uses emotional language and personal pronouns when describing motivation.",
+      "claimed_direction": "B_higher",
+      "classification_question": "Does the biography use emotional language and personal pronouns when describing motivation?",
+      "parent_theme": "Narrative Tone",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_c7aef54a04cc7818",
+      "_merged_from": [
+        "c_c7aef54a04cc7818"
+      ]
+    },
+    {
+      "feature_name": "Emphasis on Abstract Principles and Duty-Based Language",
+      "definition": "The biography uses abstract principles and duty-based language when describing motivation.",
+      "claimed_direction": "A_higher",
+      "classification_question": "Does the biography use abstract principles and duty-based language when describing motivation?",
+      "parent_theme": "Narrative Tone",
+      "n_supporting_hypotheses": 2,
+      "source_splits": [
+        "split2"
+      ],
+      "direction_conflict": false,
+      "candidate_id": "c_444871f3a4e7ecd1",
+      "_merged_from": [
+        "c_444871f3a4e7ecd1"
+      ]
+    }
+  ],
+  "dropped_duplicates": {},
+  "dedup": {
+    "merged": 8,
+    "coverage_ok": true
+  }
+}

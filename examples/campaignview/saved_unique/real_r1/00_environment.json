@@ -1,0 +1,37 @@
+{
+  "recorded_at_utc": "2026-11-01T23:03:26.531434+00:00",
+  "python": "3.12.12",
+  "python_implementation": "CPython",
+  "platform": "Darwin",
+  "machine": "arm64",
+  "packages": {
+    "discern": "0.1.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "openai": "3.42.1",
+    "anthropic": "0.125.0",
+    "openpyxl": "3.1.5"
+  },
+  "source_sha256": {
+    "__init__.py": "b7806218bb3a544aede5506a2c53e3bdf96533c31c167358e712e5577c4f33b5",
+    "audit.py": "c038bba06bd5afc8cf8ad23e88f04777bd1e8fadcb01d5612c4641867bdf3a8e",
+    "baselines.py": "aa7cf1712ef39e94e9e5c900450bbd160b9afde69eea6102a6745750008b972b",
+    "classifier_check.py": "4925c38d9a0984693445b25984b6ffd6840cafd2bc0fa78d7eaaf1d330ad222c",
+    "cli.py": "837a5501186a11fb4247339149b368e291233a537d4245849d3b6b88c4416a0b",
+    "config.py": "3facb5a8f4080cc52a647fa0d536bc9af594daed328dc436cdb1f5ac0becca00",
+    "consolidate.py": "7e7d8f9cba5b03521e4b5ac4c7b6878215cc9ecd84ef5083b00002783bcd442f",
+    "core.py": "85caed73b59d15ec5df2b7b6cbe5d485f350905c3c9f8dbe6b90180746970e23",
+    "data.py": "e58bd29480e32d30e5ccfaa8aa216f7974a2363872effc0c20496fe2e342e8bc",
+    "discovery.py": "2cf68a567c27e261baa41686ef319d6f6b2e44f5c6ff446269e590940f7f767f",
+    "keys.py": "77673ab3a24593c2fd892425b7d88d64b0eb75b6373d0a98c4019fd2ad06f609",
+    "measure.py": "f336c195e3d87af0ef6171c03da8c7fd40457873448ad36d7f734814d528a68f",
+    "pipeline.py": "a3c49e75c5b4a54ca8703c2461b92eb880e14ea2fa5866c35201742bc725bb8b",
+    "prompts.py": "49e49c7ec0a78914ff507e5b01544f062c4fa7244c48bdcb32a83fd4c3fcdcc6",
+    "provenance.py": "c2608315eff26a63e6f227e27328d605be4ad627dfec73f747d854e8c41f145b",
+    "select.py": "6930a9a074f7e7935800d6109ee08d4b6841f255e9238f00fef5859753ad772f",
+    "stability.py": "7c653e0eb870f01387e187d96f1eda3dd60de2317631038fa2895555083bf405",
+    "themes.py": "52806c100bd06e1bed0fa8c56ef9d180bb158e1daa267f040dfaf79ad7636992",
+    "validation.py": "9bed5217754dc45d78bc64aba17aa8006950fec4c3ccec2371add13f891a4735"
+  },
+  "capture_context": "new_run"
+}

@@ -1,0 +1,70 @@
+{
+  "created_utc": "2026-11-01T23:03:04.475498+00:00",
+  "status": "fixed_before_model_calls",
+  "question": "Do the CampaignView differences persist after removing repeated recorded candidate identities and duplicate texts?",
+  "preparation_report": "data/unique_biography_preparation.json",
+  "real_config": "config.unique.real.json",
+  "placebo_config": "config.unique.placebo.json",
+  "changes_from_original": "Only the prepared dataset and output directory. Model pool, pinned snapshots, prompts, seeds, sample sizes, and statistical settings are unchanged.",
+  "replications": {
+    "real": 1,
+    "placebo": 1
+  },
+  "selection_rule": "All proposed measurable candidates enter the unchanged permutation and BH procedure; no selection based on agreement with the old features.",
+  "preflight": [
+    {
+      "condition": "real",
+      "n_discovery_pool": 3361,
+      "n_measurement": 600,
+      "group_sizes": {
+        "pool_focal": 1749,
+        "pool_reference": 1612,
+        "meas_per_group": 300,
+        "active_label": "real",
+        "split1_by_active_label": {
+          "0": 150,
+          "1": 150
+        },
+        "split2_by_active_label": {
+          "0": 150,
+          "1": 150
+        }
+      },
+      "shared_identity_or_text_tokens": {
+        "discovery_pool__measurement_half_1": 0,
+        "discovery_pool__measurement_half_2": 0,
+        "measurement_half_1__measurement_half_2": 0
+      }
+    },
+    {
+      "condition": "placebo",
+      "n_discovery_pool": 3361,
+      "n_measurement": 600,
+      "group_sizes": {
+        "pool_focal": 1749,
+        "pool_reference": 1612,
+        "meas_per_group": 300,
+        "active_label": "placebo",
+        "split1_by_active_label": {
+          "0": 150,
+          "1": 150
+        },
+        "split2_by_active_label": {
+          "0": 150,
+          "1": 150
+        }
+      },
+      "shared_identity_or_text_tokens": {
+        "discovery_pool__measurement_half_1": 0,
+        "discovery_pool__measurement_half_2": 0,
+        "measurement_half_1__measurement_half_2": 0
+      }
+    }
+  ],
+  "sha256": {
+    "prep_bio_party_unique.py": "1136cc8699b5724d6dbc471880db771d723f92a425ee55c1fe23761ef0ac34bf",
+    "bio_party_unique.csv": "c83ce7ee551564b30ac14a26961fad9249268b23739dcd7e070561c8ac53b74e",
+    "config.unique.real.json": "be0d436ee83e1c4f9fc173c4b5628ae4e731bd44c61f835fae81664f00ecbc08",
+    "config.unique.placebo.json": "60a6dad99c6a66f9e1bda5dcea17c7b19d2f86baafff44fac9d57e519b7c694b"
+  }
+}

@@ -39,3 +39,17 @@ def test_scan_detects_local_identity_and_preserves_upstream_credit():
     assert module.findings_for("docs/a.json", json.dumps({"dataset": local_path}).encode())
     assert module.findings_for("pyproject.toml", b'authors = ["Example Researcher"]', ["Example Researcher"])
     assert not module.findings_for("docs/licenses/upstream-LICENSE.txt", b"Copyright Upstream Author", ["Upstream Author"])
+
+
+def test_scan_distinguishes_verified_subject_ids_from_contributor_attribution():
+    name = "examples/campaignview/saved_unique/real_r1/events.jsonl"
+    uid = "Example Researcher_XX_1_2020"
+    identities = ["Example Researcher"]
+    subjects = {uid}
+    assert not module.findings_for(name, json.dumps({"uid": uid}).encode(), identities, subjects)
+    assert module.findings_for(name, json.dumps({"uid": uid, "author": identities[0]}).encode(), identities, subjects)
+    assert module.findings_for(name, json.dumps({"uid": "Example Researcher_unknown"}).encode(), identities, subjects)
+    partition = "examples/campaignview/saved_unique/real_r1/00_partition.json"
+    assert not module.findings_for(partition, json.dumps({"measurement_uids": [uid]}).encode(), identities, subjects)
+    local_path = "/" + "Users" + "/example-user/project"
+    assert module.findings_for(name, json.dumps({"uid": uid, "path": local_path}).encode(), identities, subjects)

@@ -33,3 +33,22 @@ The script explicitly writes CRLF record endings to match the saved Windows-gene
 Embedded text and row order are preserved. The offline verifier checks equality of the rebuilt
 file's bytes, in addition to the hashes in `checksums.json`. This matters because the data
 fingerprint and cache identity depend on file bytes.
+
+## Input used in the current proposal
+
+The current walkthrough uses `data/bio_party_unique.csv`, reconstructed by
+[prep_bio_party_unique.py](prep_bio_party_unique.py). It starts with the same 5,105 eligible
+records described above, then links records that share an FEC candidate ID, BIOGUIDE ID,
+normalized full name across all states and districts, or normalized whole biography text.
+Links are transitive. Retain the earliest available biography per linked group; break ties
+by original source-row order. Exclude a linked group if its records have different party labels.
+These rules use source data only and were fixed before the new model calls.
+
+The resulting input has 3,961 biographies: 2,049 Republican and 1,912 Democratic. The
+[row-level inclusion record](data/unique_biography_rows.csv) and
+[preparation record](data/unique_biography_preparation.json) document every exclusion and the
+source and prepared-file hashes. The [walkthrough](README.md) explains normalization, matching
+limits, the overlap checks, and how to reproduce both complete runs.
+
+The original `data/bio_party.csv` and [original runs](ORIGINAL_RUN.md) remain available as
+historical records. Their data and saved statistical results have not been changed.

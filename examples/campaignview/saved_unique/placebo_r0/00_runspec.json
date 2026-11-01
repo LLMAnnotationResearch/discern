@@ -1,0 +1,37 @@
+{
+  "spec_hash": "3044c47844976cc5",
+  "dataset_fingerprint": "c83ce7ee551564b3",
+  "prompt_version": "discern-1",
+  "package_version": "0.1.0",
+  "discovery_prompt_variant": "relaxed",
+  "model_versions": [
+    {
+      "model": "claude-haiku",
+      "requested": "claude-haiku-4-5-20251001",
+      "resolved": "claude-haiku-4-5-20251001",
+      "pinned": true
+    },
+    {
+      "model": "gpt-4.1",
+      "requested": "gpt-4.1-2025-04-14",
+      "resolved": "gpt-4.1-2025-04-14",
+      "system_fingerprint": "fp_54ef0fa0c3",
+      "pinned": true
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "requested": "gpt-4.1-mini-2025-04-14",
+      "resolved": "gpt-4.1-mini-2025-04-14",
+      "system_fingerprint": "fp_98a8cc63cd",
+      "pinned": true
+    },
+    {
+      "model": "gpt-4o-mini",
+      "requested": "gpt-4o-mini-2024-07-18",
+      "resolved": "gpt-4o-mini-2024-07-18",
+      "system_fingerprint": "fp_efe5482bd3",
+      "pinned": true
+    }
+  ],
+  "unpinned_pool_note": null
+}

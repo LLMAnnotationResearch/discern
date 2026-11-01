@@ -1,0 +1,40 @@
+{
+  "eligible_candidate_year_rows": 5105,
+  "linked_components": 3975,
+  "mixed_party_components_excluded": 14,
+  "mixed_party_rows_excluded": 32,
+  "other_linked_rows_removed": 1112,
+  "retained_biographies": 3961,
+  "retained_by_party": {
+    "Republican": 2049,
+    "Democrat": 1912
+  },
+  "repeated_link_tokens_by_type": {
+    "bioguide": 701,
+    "fec": 1037,
+    "name": 1127,
+    "text": 88
+  },
+  "shared_retained_identity_or_text_tokens": 0,
+  "rules": {
+    "initial_inclusion": "Same party, text-length, primary-result and candidate-year rules as prep_bio_party.py",
+    "links": [
+      "FEC candidate ID",
+      "BIOGUIDE ID",
+      "normalized full name across all states and districts",
+      "normalized biography text"
+    ],
+    "normalization": "Unicode NFKC, casefold and collapsed whitespace; names retain only alphanumeric characters",
+    "transitive_links": true,
+    "representative": "Earliest election year; ties use original source-row order",
+    "mixed_party_components": "Exclude the entire component",
+    "selection_uses_model_outputs": false,
+    "identity_limit": "Recorded links are not an externally verified person registry. Name matches can conservatively merge different people; unknown aliases without shared identifiers may remain."
+  },
+  "sha256": {
+    "source": "01102ada3304a3b9e7d5dced47a980cb9d3bc7b4cf876ec8ea42c9585c6f80eb",
+    "prepared_data": "c83ce7ee551564b30ac14a26961fad9249268b23739dcd7e070561c8ac53b74e",
+    "lineage": "2e73bfdc899aaf98c289abcecb75baf8bff3aad1648bceb71bac26969c741730",
+    "preparation_script": "1136cc8699b5724d6dbc471880db771d723f92a425ee55c1fe23761ef0ac34bf"
+  }
+}

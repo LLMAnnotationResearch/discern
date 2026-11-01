@@ -9,7 +9,7 @@ The language models generate candidates; held-out measurement and replication de
 features are retained. The researcher interprets the findings and decides which explanations
 or new questions warrant further study.
 
-Read the [CampaignView example output](examples/sample-output/campaignview.md) for a complete saved
+Read the [CampaignView example output](examples/sample-output/campaignview-unique.md) for a complete saved
 feature report. The [walkthrough](examples/campaignview/README.md) includes openly licensed data,
 complete saved real and placebo runs, and an offline check of the reported results.
 
@@ -55,15 +55,15 @@ From the repository root, after installation:
 
 ```bash
 # Check both saved CampaignView runs without API keys or network access.
-python examples/campaignview/verify_saved_results.py
+python examples/campaignview/verify_unique_results.py
 
 # Check the configuration and data partition for a new run, without API calls.
-discern run --config examples/campaignview/config.real.json --dry-run
+discern run --config examples/campaignview/config.unique.real.json --dry-run
 ```
 
 The walkthrough explains the data, the full candidate list, and how to rerun discovery and
-measurement. The saved real run retained 47 of 65 candidates at 5% FDR, plus two suggestive
-features. The matching placebo retained zero of 77 candidates at either FDR threshold.
+measurement. The saved real run retained 50 of 72 candidates at 5% FDR, plus one suggestive
+feature. The matching placebo retained zero of 53 candidates at either FDR threshold.
 
 The smaller synthetic example is also available:
 

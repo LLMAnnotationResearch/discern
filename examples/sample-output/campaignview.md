@@ -1,5 +1,8 @@
 # Sample output — CampaignView candidate biographies
 
+This is the original candidate-year run. The current proposal uses the
+[one-biography-per-candidate output](campaignview-unique.md).
+
 A completed `discern` run comparing campaign-website biographies of Republican and Democratic
 candidates for the U.S. House in 2018, 2020, and 2022.
 

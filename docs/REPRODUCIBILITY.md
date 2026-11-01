@@ -6,21 +6,25 @@ supporting Hurst analyses, whose restricted data are not included.
 
 ## Public example: CampaignView
 
+The current proposal uses one biography per linked candidate or duplicate-text group. The
+[walkthrough](../examples/campaignview/README.md) documents the preparation and zero-overlap check.
+[Original candidate-year runs](../examples/campaignview/ORIGINAL_RUN.md) are preserved separately.
+
 From the repository root, after installation:
 
 ```bash
 # Reconstruct the data and recompute both saved runs without API calls:
-python examples/campaignview/verify_saved_results.py
+python examples/campaignview/verify_unique_results.py
 
 # Check the settings and partitions for fresh runs without API calls:
-discern run --config examples/campaignview/config.real.json --dry-run
-discern run --config examples/campaignview/config.placebo.json --dry-run
+discern run --config examples/campaignview/config.unique.real.json --dry-run
+discern run --config examples/campaignview/config.unique.placebo.json --dry-run
 ```
 
-Use [config.real.json](../examples/campaignview/config.real.json) and
-[config.placebo.json](../examples/campaignview/config.placebo.json) for full model reruns. Each file
+Use [config.unique.real.json](../examples/campaignview/config.unique.real.json) and
+[config.unique.placebo.json](../examples/campaignview/config.unique.placebo.json) for full model reruns. Each file
 records all settings, including seeds, rather than relying on defaults. The original settings and
-model responses are retained under [saved/](../examples/campaignview/saved/). Fresh runs write to
+model responses are retained under [saved_unique/](../examples/campaignview/saved_unique/). Fresh runs write to
 a separate folder. See the [walkthrough](../examples/campaignview/README.md) for instructions and
 interpretation.
 
@@ -43,10 +47,10 @@ prompt at temperature .7; consolidation and classification use temperature 0. In
 assignment is balanced within group and half. Recorded fallbacks can change the actual balance.
 Gemini is outside these pools, and assignment is not cost weighted.
 
-Selection uses 1,300 permutations for the 65 real candidates and 1,540 for the 77 placebo
+Selection uses 1,440 permutations for the 72 real candidates and 1,060 for the 53 placebo
 candidates after automatic resolution adjustment. All candidates were measured in both runs.
-Every measured candidate enters the multiple-testing correction. The real run retained 47 validated
-and two suggestive features; the placebo retained neither tier and had three uncorrected tendencies.
+Every measured candidate enters the multiple-testing correction. The real run retained 50 validated
+and one suggestive feature; the placebo retained neither tier and had four uncorrected tendencies.
 
 ### Exact model identifiers
 
@@ -57,8 +61,8 @@ and two suggestive features; the placebo retained neither tier and had three unc
 | `gpt-4.1-mini` | `gpt-4.1-mini-2025-04-14` | Discovery and measurement |
 | `gpt-4.1` | `gpt-4.1-2025-04-14` | Consolidation |
 
-The original [real model record](../examples/campaignview/saved/real_r1/00_runspec.json) and
-[placebo model record](../examples/campaignview/saved/placebo_r0/00_runspec.json) preserve returned
+The original [real model record](../examples/campaignview/saved_unique/real_r1/00_runspec.json) and
+[placebo model record](../examples/campaignview/saved_unique/placebo_r0/00_runspec.json) preserve returned
 identifiers and fingerprints. The package defaults additionally select `deepseek`, which requests
 the floating alias `deepseek-chat`. That model was not used in these CampaignView runs.
 
@@ -66,17 +70,20 @@ Pinned snapshots still permit nondeterministic responses. Aliases, local tags, a
 also change underneath the same name. Saved records describe completed runs; they do not establish
 that providers still offer those models. The offline check needs no model availability probes.
 
-### Software versions and the historical gap
+### Software versions
 
-The saved CampaignView runs record package `0.1.0`, prompt `discern-1`, exact model snapshots,
-settings, and classifications. They do not record the original Python and dependency versions or
-an exact source revision. Those missing versions have not been inferred from a later environment.
+The new runs record Python 3.12.12, package `0.1.0`, prompt `discern-1`, exact model snapshots,
+settings, classifications, and package source hashes at execution time. Each run preserves its
+software environment in `00_environment.json`. The
+[execution record](../examples/campaignview/execution.unique.json) includes all installed package
+versions, operational settings, and combined API token usage for the real and placebo runs.
 
-The environment used to verify the public example is recorded separately in
-[verification_environment.json](submission/verification_environment.json). Source hashes identify
-the package code used for that verification. This is the verification environment, not the original
-empirical environment. The offline check reproduces both runs' saved statistics from their recorded
-classifications; a fresh API rerun need not reproduce individual model answers.
+The offline check reproduces both runs' saved statistics from their recorded classifications;
+a fresh API rerun need not reproduce individual model answers. The original candidate-year runs
+lack their original Python and dependency versions; those missing historical versions have not
+been inferred from the new environment. The earlier
+[verification environment](submission/verification_environment.json) describes verification of
+the original files, not their original empirical environment.
 
 ## Recording future runs
 

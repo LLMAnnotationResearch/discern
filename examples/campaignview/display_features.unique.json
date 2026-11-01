@@ -1,0 +1,40 @@
+{
+  "source": "saved_unique/real_r1/04_selected.json",
+  "purpose": "Eight illustrative validated features for Figure 2, covering credentials, personal experience, and self-presentation rather than obvious partisan policy positions.",
+  "selection_is_presentational_not_statistical": true,
+  "all_candidate_results_included_in_appendix": true,
+  "features": [
+    {
+      "candidate_id": "c_dd3c30fc72656ef4",
+      "feature_name": "Emphasis on Listening to Community Members and Centering Their Voices"
+    },
+    {
+      "candidate_id": "c_b0a19dcff3d2c124",
+      "feature_name": "Emphasis on Direct Personal Experience with Policy Problems"
+    },
+    {
+      "candidate_id": "c_31bab6e5ee509d1b",
+      "feature_name": "Emphasis on Education as Personal Transformation"
+    },
+    {
+      "candidate_id": "c_38270cd6bb4f162b",
+      "feature_name": "Emphasis on Simultaneous Work and Study"
+    },
+    {
+      "candidate_id": "c_e97cd0417bff17d7",
+      "feature_name": "Emphasis on Religious Faith or Affiliation"
+    },
+    {
+      "candidate_id": "c_0312baade9584bf8",
+      "feature_name": "Emphasis on Business Ownership or Entrepreneurship"
+    },
+    {
+      "candidate_id": "c_59600fb045ec3cbf",
+      "feature_name": "Emphasis on Military or Law Enforcement Background"
+    },
+    {
+      "candidate_id": "c_7119fc41529d0c93",
+      "feature_name": "Emphasis on Individual Achievement and Self-Made Success"
+    }
+  ]
+}

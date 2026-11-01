@@ -1,0 +1,118 @@
+{
+  "api_calls": 0,
+  "retained_biographies": 3961,
+  "runs": [
+    {
+      "condition": "real",
+      "dataset_fingerprint": "c83ce7ee551564b3",
+      "n_discovery_pool": 3361,
+      "n_measurement": 600,
+      "group_sizes": {
+        "pool_focal": 1749,
+        "pool_reference": 1612,
+        "meas_per_group": 300,
+        "active_label": "real",
+        "split1_by_active_label": {
+          "0": 150,
+          "1": 150
+        },
+        "split2_by_active_label": {
+          "0": 150,
+          "1": 150
+        }
+      },
+      "shared_tokens_between_partitions": {
+        "discovery_pool__measurement_half_1": {
+          "fec": 0,
+          "bioguide": 0,
+          "name": 0,
+          "text": 0
+        },
+        "discovery_pool__measurement_half_2": {
+          "fec": 0,
+          "bioguide": 0,
+          "name": 0,
+          "text": 0
+        },
+        "measurement_half_1__measurement_half_2": {
+          "fec": 0,
+          "bioguide": 0,
+          "name": 0,
+          "text": 0
+        }
+      },
+      "repeated_tokens_within_partitions": 0,
+      "n_hypotheses": 193,
+      "n_candidates": 72,
+      "n_tested": 72,
+      "n_validated": 50,
+      "n_suggestive": 1,
+      "n_uncorrected": 0,
+      "permutations": 1440,
+      "n_skipped_unmeasurable": 0,
+      "distinct_discovery_biographies_shown": 480,
+      "actual_classifier_counts": {
+        "gpt-4.1-mini": 14400,
+        "gpt-4o-mini": 14400,
+        "claude-haiku": 14400
+      },
+      "all_saved_statistics_reproduced": true
+    },
+    {
+      "condition": "placebo",
+      "dataset_fingerprint": "c83ce7ee551564b3",
+      "n_discovery_pool": 3361,
+      "n_measurement": 600,
+      "group_sizes": {
+        "pool_focal": 1749,
+        "pool_reference": 1612,
+        "meas_per_group": 300,
+        "active_label": "placebo",
+        "split1_by_active_label": {
+          "0": 150,
+          "1": 150
+        },
+        "split2_by_active_label": {
+          "0": 150,
+          "1": 150
+        }
+      },
+      "shared_tokens_between_partitions": {
+        "discovery_pool__measurement_half_1": {
+          "fec": 0,
+          "bioguide": 0,
+          "name": 0,
+          "text": 0
+        },
+        "discovery_pool__measurement_half_2": {
+          "fec": 0,
+          "bioguide": 0,
+          "name": 0,
+          "text": 0
+        },
+        "measurement_half_1__measurement_half_2": {
+          "fec": 0,
+          "bioguide": 0,
+          "name": 0,
+          "text": 0
+        }
+      },
+      "repeated_tokens_within_partitions": 0,
+      "n_hypotheses": 180,
+      "n_candidates": 53,
+      "n_tested": 53,
+      "n_validated": 0,
+      "n_suggestive": 0,
+      "n_uncorrected": 4,
+      "permutations": 1060,
+      "n_skipped_unmeasurable": 0,
+      "distinct_discovery_biographies_shown": 480,
+      "actual_classifier_counts": {
+        "gpt-4.1-mini": 10600,
+        "gpt-4o-mini": 10600,
+        "claude-haiku": 10600
+      },
+      "all_saved_statistics_reproduced": true
+    }
+  ]
+}
