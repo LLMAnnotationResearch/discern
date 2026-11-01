@@ -10,8 +10,8 @@ The public demonstration uses CampaignView candidate biographies. It includes th
 preparation script, complete configurations, and every saved stage of a real-label run and a
 placebo run. Reviewers can follow the entire procedure without access to private data.
 
-To inspect the results without running software, start with the [real-run
-summary](../examples/campaignview/saved/real_r1/05_summary.md) and [placebo
+To inspect the results without running software, start with the [CampaignView example
+output](../examples/sample-output/campaignview.md) and [placebo
 summary](../examples/campaignview/saved/placebo_r0/05_summary.md). The [complete feature
 table](../examples/campaignview/features.real.csv) includes all 65 real-run candidates, their
 definitions and questions, estimates, and selection results.

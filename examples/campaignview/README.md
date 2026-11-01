@@ -33,6 +33,10 @@ from the environment used to verify these files.
 
 ## Read the results
 
+The [example output](../sample-output/campaignview.md) presents the complete saved Markdown report
+in the same format as the journal-abstract examples. It includes the actual definitions,
+classification questions, estimated differences, and selection results from this run.
+
 Start with [features.real.csv](features.real.csv). It contains all 65 candidates, including those
 that failed validation, with full definitions, exact classification questions, prevalence in each
 group, half-specific differences, and unadjusted permutation p-values. Positive differences mean

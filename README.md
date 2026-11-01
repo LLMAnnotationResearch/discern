@@ -9,7 +9,8 @@ The language models generate candidates; held-out measurement and replication de
 features are retained. The researcher interprets the findings and decides which explanations
 or new questions warrant further study.
 
-The [CampaignView walkthrough](examples/campaignview/README.md) includes openly licensed data,
+Read the [CampaignView example output](examples/sample-output/campaignview.md) for a complete saved
+feature report. The [walkthrough](examples/campaignview/README.md) includes openly licensed data,
 complete saved real and placebo runs, and an offline check of the reported results.
 
 ## Intended use
