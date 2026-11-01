@@ -92,6 +92,8 @@ Appendix B reports additional validation using the Hurst survey data, which cann
 The accompanying [manuscript records](submission/README.md) preserve settings, model records, and
 aggregate feature results for transparency. Those analyses require the restricted source data and
 cannot be reproduced from the public package alone. CampaignView is the public reproduction example.
+Its current validation includes one full-pipeline placebo. Extending repeated placebos, stability
+checks, and alternative-method comparisons to CampaignView is planned for Stage 2.
 
 ## Anonymous review copy
 

@@ -5,7 +5,7 @@ source data, preparation, discovery, measurement, statistical selection, and a f
 After installing the package, check both saved runs without API access:
 
 ```bash
-python examples/campaignview/verify_saved_results.py
+python examples/campaignview/verify_unique_results.py
 ```
 
 The walkthrough also gives the commands for fresh real-label and placebo model runs. The
@@ -50,10 +50,15 @@ scripts are `prepare_hurst_validation.py`, `run_validation_batch.py`, `build_the
 for that supporting evidence. Equivalent stability and conventional-method comparisons have not
 been run on CampaignView.
 
+The proposal identifies repeated placebos, stability checks, and alternative-method comparisons
+on the public CampaignView data as Stage 2 work. The current example supplies one full-pipeline
+placebo and the saved real-label analysis.
+
 Optional conventional-method dependencies install with `python -m pip install -e '.[validation]'`.
 The recorded Empath analysis uses all 194 supplied categories and preserves the package license
-in `docs/licenses/`. LIWC was not used. BERTopic is an optional extension outside the proposal's
-main VADER/LDA/Empath comparison; its recorded environment is in `BERTopic_requirements.txt`.
+in `docs/licenses/`. LIWC was not used. BERTopic is included alongside VADER, LDA, and Empath in
+the supplement's Table B3. Its recorded dependency versions are in
+`BERTopic_requirements.txt`.
 
 Repeated use of the same held-out texts measures sensitivity to discovery and model choices.
 It is not a new-sample replication. Model agreement assesses consistency; human labels are needed

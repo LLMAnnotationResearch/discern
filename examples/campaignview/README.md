@@ -96,6 +96,15 @@ The [execution record](execution.unique.json) includes all installed package ver
 settings, and combined token usage. The production pipeline was run through
 `scripts/run_validation_batch.py`, with separate caches for the two conditions.
 
+Across both runs, recorded usage was 54.2 million input and 0.71 million output tokens. At standard
+uncached API rates checked on November 1, 2026, that usage gives an illustrative estimate of
+US$30.55 combined. The [cost record](cost.unique.json) gives each model's usage, rates, sources,
+and calculation. It is not an invoice total: cached-input discounts, unrecorded or failed requests,
+taxes, and local computing are not included.
+
+This example currently includes one full-pipeline placebo. Extending repeated placebos,
+stability checks, and alternative-method comparisons to these public data is planned for Stage 2.
+
 Machine-specific locations in the archived `00_config.json` files were replaced with relative
 paths. Their original run-spec hashes are preserved. All other copied run artifacts, including
 the answers, candidates, selections, summaries, and audit logs, are unchanged. Use the portable

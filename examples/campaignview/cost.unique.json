@@ -1,0 +1,54 @@
+{
+  "currency": "USD",
+  "rates_checked_on": "2026-11-01",
+  "type": "Illustrative standard-rate estimate, not a provider invoice",
+  "usage_scope": "Both runs combined, including model probes, discovery, consolidation, and successful classification attempts",
+  "execution_record_sha256": "f586842c142aa02eee77c07b7cdae4c76fd721927216795e38f542da9d0d68c5",
+  "formula": "sum((input_tokens * input_rate + output_tokens * output_rate) / 1000000)",
+  "assumptions": "Standard synchronous text rates; all recorded input priced as uncached. No batch or cached-input discounts. Usage totals record successful responses only and do not separate provider cache accounting. Failed requests, unrecorded usage, taxes and local computing are excluded. This is not a complete billing reconciliation or a bound on actual charges.",
+  "by_model": [
+    {
+      "model": "anthropic:claude-haiku-4-5-20251001",
+      "successful_calls": 25012,
+      "input_tokens": 18218165,
+      "output_tokens": 366210,
+      "usd_per_million_input": "1",
+      "usd_per_million_output": "5",
+      "estimated_usd": "20.049215",
+      "price_source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "model": "openai:gpt-4.1-2025-04-14",
+      "successful_calls": 10,
+      "input_tokens": 44721,
+      "output_tokens": 36038,
+      "usd_per_million_input": "2",
+      "usd_per_million_output": "8",
+      "estimated_usd": "0.377746",
+      "price_source": "https://developers.openai.com/api/docs/models/gpt-4.1"
+    },
+    {
+      "model": "openai:gpt-4.1-mini-2025-04-14",
+      "successful_calls": 25012,
+      "input_tokens": 17568674,
+      "output_tokens": 157916,
+      "usd_per_million_input": "0.40",
+      "usd_per_million_output": "1.60",
+      "estimated_usd": "7.2801352",
+      "price_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini"
+    },
+    {
+      "model": "openai:gpt-4o-mini-2024-07-18",
+      "successful_calls": 25014,
+      "input_tokens": 18333013,
+      "output_tokens": 153964,
+      "usd_per_million_input": "0.15",
+      "usd_per_million_output": "0.60",
+      "estimated_usd": "2.84233035",
+      "price_source": "https://developers.openai.com/api/docs/models/gpt-4o-mini"
+    }
+  ],
+  "input_tokens": 54164573,
+  "output_tokens": 714128,
+  "estimated_usd": "30.54942655"
+}

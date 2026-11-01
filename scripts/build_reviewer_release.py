@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TOP_FILES = ("README.md", "LICENSE", "pyproject.toml", ".gitignore", ".gitattributes")
 SUFFIXES = {
     "src": {".py", ".typed"},
-    "scripts": {".py"},
+    "scripts": {".py", ".md"},
     "tests": {".py", ".json"},
     "docs": {".md", ".json", ".txt"},
     "examples": {".py", ".md", ".json", ".jsonl", ".csv"},

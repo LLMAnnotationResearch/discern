@@ -10,7 +10,7 @@
   "verification.unique.json": "4ff81ede5a843bfe097ae8339ed14dcb53a31774512313b0097185ae428166d2",
   "features.unique.real.csv": "ca18f1129f38829961c7d8ff03aa47b8c8065acef3d939374d0c8780cfad33c4",
   "features.unique.placebo.csv": "80c0ff2e5b703fcabbd9705a9034713722d05c204d52baeda14c0cf68980d4d8",
-  "README.md": "f5c006635ce4495e371533a90c69b04478550477b2c741ccc26902f8d9e9a0e0",
+  "README.md": "e6dea325859b37f1b0438d6443d1818b03956ab381fba2f2f1c537157f78f9d5",
   "data/bio_party_unique.csv": "c83ce7ee551564b30ac14a26961fad9249268b23739dcd7e070561c8ac53b74e",
   "data/unique_biography_rows.csv": "2e73bfdc899aaf98c289abcecb75baf8bff3aad1648bceb71bac26969c741730",
   "data/unique_biography_preparation.json": "3f3916d721ac89e656239109c946d29126f7e250038be3e1932800c95d9c5f77",
@@ -37,5 +37,6 @@
   "saved_unique/real_r1/05_summary.md": "64e0b17395c502528d7000971a235d488be2821b2f2a8ffc205d2cce7c6d56f2",
   "saved_unique/real_r1/07_timing.json": "98cf78fc8a2dea745add07789767997b5cb1cc97b2974f2f41dfac683b7ee22e",
   "saved_unique/real_r1/events.jsonl": "e8e85e7f2d7bc0c9d6b57089f2e2954f393414103d7f38df7185d6508f039043",
-  "saved_unique/real_r1/manifest.json": "004278c9c1a7e0167b5bf15295260e9ffb454b5073d8955f119a3472e7bc0fd4"
+  "saved_unique/real_r1/manifest.json": "004278c9c1a7e0167b5bf15295260e9ffb454b5073d8955f119a3472e7bc0fd4",
+  "cost.unique.json": "8ea3b4663ea6f03f4f2bb16ae19f8226f991c64a9a496017e8b476867dc0b85e"
 }

@@ -69,6 +69,15 @@ The walkthrough explains the data, the full candidate list, and how to rerun dis
 measurement. The saved real run retained 50 of 72 candidates at 5% FDR, plus one suggestive
 feature. The matching placebo retained zero of 53 candidates at either FDR threshold.
 
+For scale, the two CampaignView runs together recorded 54.2 million input and 0.71 million output
+tokens. Pricing that recorded usage at standard uncached API rates gives an illustrative estimate
+of about US$31 combined. This is not an invoice total; see the [calculation and dated price
+sources](examples/campaignview/cost.unique.json) for assumptions and exclusions.
+
+The current public example includes one full-pipeline placebo. Repeated placebos, stability checks,
+and alternative-method comparisons on CampaignView are planned for Stage 2; existing supporting
+analyses use restricted survey data and are documented in the [manuscript records](docs/submission/README.md).
+
 The smaller synthetic example is also available:
 
 ```bash
@@ -205,8 +214,9 @@ or labels. The offline example reproduces statistics from the supplied classific
 ### Runtime and interrupted runs
 
 Measurement requires approximately `candidates × 2 × n_per_group` classification calls, plus
-discovery, consolidation, and retries. The CampaignView real run required 39,000 measurement
-calls before retries. Cost depends on text length, model prices, and retries; runtime also depends
+discovery, consolidation, and retries. The current CampaignView real run required 43,200 measurement
+calls (72 candidates × 600 biographies), and the placebo required 31,800. Cost depends on text length,
+model prices, and retries; runtime also depends
 on provider rate limits.
 
 Repeat the same command to resume an interrupted run. Completed stages and classifications are
@@ -231,6 +241,7 @@ and does not determine selection.
 For research validation tools and conventional text-method comparisons, see
 [validation code](docs/SECTION_4_VALIDATION.md). Optional dependencies install with
 `python -m pip install -e '.[validation]'`.
+The [script index](scripts/README.md) explains the supporting analysis, table-building, and packaging tools.
 
 ## Tests
 
