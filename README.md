@@ -1,6 +1,10 @@
 # discern
 
 `discern` identifies interpretable features that distinguish texts associated with two groups.
+The pipeline is intended for medium-to-large datasets of short-to-medium texts, such as
+open-ended survey responses. It can help researchers propose mechanisms, develop explanations
+for null effects, or raise puzzles for further study.
+
 It takes a table with a text column and a group column, proposes candidate differences, and
 measures those candidates on data reserved before discovery. Each feature has a definition,
 a yes/no measurement question, and an estimated group difference.
