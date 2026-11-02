@@ -125,11 +125,21 @@ The default-pool run resolved `deepseek-chat` to `deepseek-flash`, fingerprint
 All empirical runs record package `0.1.0` and prompt `discern-1`; those tags alone do not identify
 every historical source edit.
 
-Across the nine Hurst runs, 317 candidates were proposed and 316 measured. P03 proposed 42 and
-measured 41; [unmeasurable_candidates.json](submission/unmeasurable_candidates.json) records the
-missing candidate. A skipped candidate is not a nonsignificant result. Repeated real runs reuse
-the held-out responses, and thematic matching is post hoc; these are sensitivity checks rather
-than independent replications on new respondents.
+The supplement reports 317 proposed and measured candidates across the nine Hurst runs. P03
+initially measured 41 of 42: its question about "positive, negative, or neutral" connotations
+elicited nonbinary answers. After that failure, the question was corrected to ask about negative
+connotations using the original discovery questions. This repair was not preregistered. All 800
+responses were classified anew for the changed question; the other 41 measurements were preserved,
+and selection was rerun across all 42 candidates. No P03 feature passed any reported tier.
+
+The catalog's P03 summary reports this final version. The existing public P03 candidate results,
+configuration, model record, and original hashes describe the initial attempt with 41 measurements;
+[unmeasurable_candidates.json](submission/unmeasurable_candidates.json) records that initial failure.
+Those archived records are preserved, not presented as the final 42-candidate results. Full repair
+artifacts remain local. CampaignView is the complete public reproduction example.
+
+Repeated real runs reuse the held-out responses, and thematic matching is post hoc; these are
+sensitivity checks rather than independent replications on new respondents.
 
 Paths in the public configs were normalized, with original config hashes retained in the catalog.
 They expect an authorized prepared CSV at `restricted/run3_tall_sex.csv` relative to the config

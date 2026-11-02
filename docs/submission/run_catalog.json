@@ -118,7 +118,7 @@
     "run": "P03",
     "condition": "placebo",
     "n_candidates": 42,
-    "n_tested": 41,
+    "n_tested": 42,
     "n_validated": 0,
     "n_suggestive": 0,
     "n_uncorrected": 0,
@@ -132,7 +132,11 @@
       "openai": "3.38.0",
       "anthropic": "0.125.0"
     },
-    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured."
+    "version_evidence": "Batch status records for the 26\u201327 October executions; full environment was not captured.",
+    "reported_version": "P03_REPAIRED",
+    "archived_artifact_version": "P03_INITIAL",
+    "archived_n_tested": 41,
+    "version_note": "Reported summary counts use the corrected question. The public candidate results, config, model record and original_* hashes retain the initial 41-measurement attempt. Full repair artifacts remain local; see README.md for the repair disclosure."
   },
   {
     "run": "P04",
